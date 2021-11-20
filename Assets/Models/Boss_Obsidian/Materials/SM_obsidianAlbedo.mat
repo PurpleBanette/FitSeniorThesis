@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SM_obsidianAlbedo
+  m_Shader: {fileID: -6465566751694194690, guid: e8321c7ebb1b5384aac36f2350a21d57, type: 3}
+  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_02c2dba217064d348ccedd90a8a58a1f:
+        m_Texture: {fileID: 2800000, guid: 6d611b90ec9520d4aae96d91bb6d43ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
+        m_Texture: {fileID: 2800000, guid: a2a95dc3943c7dd4e80f5cb6ce1f3a84, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
+        m_Texture: {fileID: 2800000, guid: ca7140cb6150c694d8b94de7683516fa, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CalculateLights_4d98117c4c224cecb7dc0766f014781b_Texture2D575f512b14d04545920c8f5c12d83926_3206607808:
+        m_Texture: {fileID: 2800000, guid: a2a95dc3943c7dd4e80f5cb6ce1f3a84, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 1
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0
+    m_Colors:
+    - Color_37496f96188a42d89879086d198a701e: {r: 5.992157, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
