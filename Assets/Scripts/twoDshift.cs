@@ -5,8 +5,8 @@ using UnityEngine;
 public class twoDshift : MonoBehaviour
 {
     
-    public GameMaster gm;
-
+    
+    /*
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
@@ -15,4 +15,5 @@ public class twoDshift : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    */
 }

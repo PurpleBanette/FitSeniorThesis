@@ -121,6 +121,7 @@ public class ModifiedTPC : MonoBehaviour
 	public bool inAttack1;
 	public bool inAttack2;
 	public bool inAttack3;
+	[SerializeField] GameObject dodgeBox;
 
 	private void Awake()
 	{
@@ -129,6 +130,10 @@ public class ModifiedTPC : MonoBehaviour
 		_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		charAni = GetComponent<Animator>();
 
+        if (dodgeBox.activeInHierarchy)
+        {
+			dodgeBox.SetActive(false);
+        }
 	}
 
 	private void OnEnable()
@@ -489,6 +494,9 @@ public class ModifiedTPC : MonoBehaviour
 	{
 		if (dodgeTimeoutDelta <= 0.0f)
         {
+			//GameMaster.instance.playerDodgePosition.position = gameObject.transform.position;
+			dodgeBox.SetActive(true);
+
 			charAni.SetTrigger("Dodge");
 			dodgeTimeoutDelta = dodgeTimeout;
 		}

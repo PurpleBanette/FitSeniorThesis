@@ -186,11 +186,12 @@ public class firstBoss : MonoBehaviour
             randAttack = 1;
             if (randAttack == 1)
             {
+                /*
                 if (!gm.twoDmode)
                 {
                     //transform.position = Vector3.Lerp(transform.position, playerpos.position, 0.8f);
                 }
-
+                */
                 ani.SetTrigger("basicAttack");
             }
 
@@ -247,12 +248,12 @@ public class firstBoss : MonoBehaviour
             //gm.comboAllowed = true;
             //gm.combowindow = gm.defaultcombowindow;
             //Debug.Log(health);
-
+            /*
             if (gm.twoDmode)
             {
                 gm.twoDknockback();
             }
-
+            */
             if (health <= 0)
             {
                 dead = true;
