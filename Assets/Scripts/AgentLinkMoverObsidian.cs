@@ -62,7 +62,7 @@ public class AgentLinkMoverObsidian : MonoBehaviour
         Vector3 endPos = data.endPos + Vector3.up * agent.baseOffset;
         while (agent.transform.position != endPos)
         {
-            agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime);
+            agent.transform.position = Vector3.MoveTowards(agent.transform.position, endPos, agent.speed * Time.deltaTime * 10);
             yield return null;
         }
     }
