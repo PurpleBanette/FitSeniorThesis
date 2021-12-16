@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class followCam : MonoBehaviour
 {
+    /*
     public Transform target;
     public GameObject player;
     float dampTime = 0.5f;
@@ -33,4 +34,5 @@ public class followCam : MonoBehaviour
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
         }
     }
+    */
 }

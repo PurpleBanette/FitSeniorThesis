@@ -20,7 +20,6 @@ public class RC_Boss : MonoBehaviour
     public Collider rightweap;
     bool tookHit;
     //public Damagetest playerweapon;
-    public GameMaster gm;
     public GameObject waveProjectile;
     public GameObject waveOrigin;
     bool charge = false;
@@ -53,18 +52,22 @@ public class RC_Boss : MonoBehaviour
     int destination;
     float Phase2timer = 0f;
     Vector3 distanceToWalkpoint;
+    Vector3 LookTarget;
 
     
 
     void Awake()
     {
         NavAgent = GetComponent<NavMeshAgent>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        phase2Hops();
+        //LookTarget = new Vector3(GameMaster.instance.player.transform.position.x, 0f, GameMaster.instance.player.transform.position.z);
+        transform.LookAt(new Vector3(player.transform.position.x, 0f, player.transform.position.z));
+        //phase2Hops();
     }
 
     void phase2Hops()

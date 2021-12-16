@@ -5,31 +5,38 @@ using UnityEngine.UI;
 
 public class GameMaster : MonoBehaviour
 {
-    public static GameMaster instance;
-    //firstBoss FB;
-    GameObject player;
+    public GameObject player;
     GameObject boss;
+    public static GameMaster gm;
+    /*
     public Text healthUi;
     public Text staggeringUi;
     public Text staggerTimeUi;
     public Text blockTutorialUi;
     public Text attackTutorialUi;
-    int blocksPerformed = 0;
-    int attacksPerformed = 0;
-    int health = 100;
+    */
+    //int blocksPerformed = 0;
+    //int attacksPerformed = 0;
+    //int health = 100;
     public bool playerstagger;
     float staggertime = 1f;
-    public float defaultcombowindow = 2f;
-    public float combowindow;
-    public bool twoDmode = true;
-    public bool comboAllowed;
+    //public bool twoDmode = true;
     bool attackTutComplete;
     bool blockTutComplete;
     public bool firstTutComplete;
+    public Transform playerPosition;
+
+    public Transform playerDodgePosition;
+    [SerializeField] float slowMoTimeScale = 0.2f;
+    [SerializeField] float slowMoDuration = 0.3f;
+    float sloMoTimer;
+    bool slowMotion = false;
 
 
     void Awake()
     {
+        gm = this;
+
         player = GameObject.FindGameObjectWithTag("Player");
         boss = GameObject.FindGameObjectWithTag("Boss");
         /*
@@ -43,16 +50,24 @@ public class GameMaster : MonoBehaviour
             Debug.LogWarning("Boss Script NOT DETECTED");
         }
         */
-        combowindow = defaultcombowindow;
+
+        /*
         healthUi.text = "Health online";
         staggeringUi.text = "Ready";
         staggerTimeUi.text = staggertime.ToString();
         blockTutorialUi.text = "Attacks Blocked - 0/3";
         attackTutorialUi.text = "Attacks - 0/3";
+        */
+
+        sloMoTimer = slowMoDuration;
     }
 
     private void Update()
     {
+
+        //The stagger mechanic can be reIntroduced later
+
+        /* 
         if (playerstagger)
         {
             staggeringUi.text = "Staggering";
@@ -69,19 +84,24 @@ public class GameMaster : MonoBehaviour
             staggeringUi.text = "Ready";
             staggerTimeUi.text = staggertime.ToString();
         }
-
-
-        if (comboAllowed)
+        */
+        if (slowMotion)
         {
-            combowindow -= Time.deltaTime;
-            if (combowindow <= 0)
+            sloMoTimer -= Time.deltaTime;
+            Debug.Log(sloMoTimer);
+            if(sloMoTimer <= 0)
             {
-                comboAllowed = false;
-                combowindow = defaultcombowindow;
+                Time.timeScale = 1;
+                sloMoTimer = slowMoDuration;
+                slowMotion = false;
             }
+            
         }
 
     }
+
+    //This is handled in ModifiedTPC
+    /*
     public void playerDamaged(int damageval)
     {
         health = health - damageval;
@@ -92,7 +112,10 @@ public class GameMaster : MonoBehaviour
             healthUi.text = "dead";
         }
     }
+    */
 
+    //We can expirament with 2d mode later
+    /*
     public void twoDknockback()
     {
 
@@ -100,7 +123,12 @@ public class GameMaster : MonoBehaviour
         player.transform.position += transform.forward * 5f;
 
     }
+    */
 
+    
+    //Commenting out Tutorial Scripts for now
+    
+    /*
     public void blockTutorialIterate()
     {
         blocksPerformed += 1;
@@ -148,5 +176,19 @@ public class GameMaster : MonoBehaviour
             Debug.Log("Tutorial Not finished yet");
         }
     }
+    */
 
+    public void activateSlowMo()
+    {
+        Time.timeScale = slowMoTimeScale;
+        slowMotion = true;
+    }
+
+    public IEnumerator SlowMoCo()
+    {
+        Time.timeScale = slowMoTimeScale;
+        yield return new WaitForSecondsRealtime(1);
+        Time.timeScale = 1;
+        //StopCoroutine(activateSlowMo());
+    }
 }

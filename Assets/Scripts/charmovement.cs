@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class charmovement : MonoBehaviour
 {
+   /*
     Vector3 movement;
     //Vector3 turning;
     public float turnSmoothing = 5f;
@@ -136,7 +137,7 @@ public class charmovement : MonoBehaviour
         {
             ani.SetBool("isWalking", false);
         }
-        */
+        
 
 
     }
@@ -192,6 +193,6 @@ public class charmovement : MonoBehaviour
             gm.playerDamaged(10);
         }
     }
-
+*/
     
 }

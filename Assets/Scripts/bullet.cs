@@ -25,7 +25,7 @@ public class bullet : MonoBehaviour
         //Use the below vector3 for LookAt if you dont want the bullets to go up or down
         //targetPosition = new Vector3(player.transform.position.x, this.transform.position.y, player.transform.position.z);
         transform.LookAt(player.transform);
-        rb.AddForce(transform.forward * 5000f);
+        rb.AddForce(transform.forward * 1000f);
     }
 
     // Update is called once per frame
