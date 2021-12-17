@@ -222,9 +222,6 @@ public class bossAiObsidian : MonoBehaviour
 
     void Update()
     {
-
-       
-
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
         bossHealthbar.value = bossHealth; //Updates the boss's health each frame
 
@@ -568,7 +565,7 @@ public class bossAiObsidian : MonoBehaviour
 
     void BossAttackPlayer()
     {
-        bossNavAgent.SetDestination(transform.position); //This forces the boss to look at the player during the beginning of its attack
+        bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
 
     }
 
