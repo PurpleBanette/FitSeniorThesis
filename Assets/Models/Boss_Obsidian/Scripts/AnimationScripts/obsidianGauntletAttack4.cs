@@ -8,6 +8,7 @@ public class obsidianGauntletAttack4 : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossAiObsidian bossReference = animator.GetComponent<bossAiObsidian>();
+        //bossReference.bossNavAgent.isStopped = true;
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossIsAttacking = true;
     }
@@ -22,8 +23,11 @@ public class obsidianGauntletAttack4 : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossAiObsidian bossReference = animator.GetComponent<bossAiObsidian>();
+        //bossReference.bossNavAgent.isStopped = false;
         bossReference.bossNavAgent.speed = bossReference.bossMoveSpeedP3;
         bossReference.bossIsAttacking = false;
+        //bossReference.walkPoint = bossReference.bossWaypoints[bossReference.bossWaypointIndex].transform.position;
+        bossReference.bossWaypointIndex = Random.Range(bossReference.bossWaypointMin, bossReference.bossWaypointMax);
         bossReference.walkPoint = bossReference.bossWaypoints[bossReference.bossWaypointIndex].transform.position;
         animator.ResetTrigger("gauntletAttack4");
 

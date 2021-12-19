@@ -17,6 +17,7 @@ public class disableTimer : MonoBehaviour
 
     private void OnEnable()
     {
+        gameObject.SetActive(true);
         Invoke("Deactivate", maxLifetime);
         vfx.Play();
     }
