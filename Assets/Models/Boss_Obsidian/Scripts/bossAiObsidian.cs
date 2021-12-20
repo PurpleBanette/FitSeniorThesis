@@ -36,7 +36,7 @@ public class bossAiObsidian : MonoBehaviour
     [Header("Projectiles Information")]
     //Phase2
     [Tooltip("The laser gameobject that the boss shoots during phase 2")]
-    [SerializeField] GameObject phase2Laser;
+    public GameObject phase2Laser;
     [SerializeField] Transform p2BulletPosition;
     [SerializeField] GameObject p2Bullet;
     [SerializeField] float p2ShootForce, p2UpwardForce;
@@ -112,7 +112,7 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("Checks if the player is within range")]
     public bool playerInSightRange, playerInAttackRangeP1, playerInAttackRangeP2, playerInLos;//, playerInAttackRangeP3;
     [Tooltip("A bool used to force the boss to look at the player")]
-    [SerializeField] bool playerTracking = false;
+    public bool playerTracking = false;
     [Space(10)]
     //Boss patroling
     [Tooltip("The walkpoint that the AI goes to")] 
@@ -137,6 +137,8 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("The waypoints that the boss travels to during phase 3")]
     public GameObject[] bossWaypoints;
     public int bossWaypointIndex;
+    [Tooltip("Min = 0 or first waypoint, Max = Total number +1")]
+    public int bossWaypointMin, bossWaypointMax;
     
 
     [Header("Hitbox Information")]
@@ -145,15 +147,15 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("Hitboxes for phase 1")]
     [SerializeField] List<GameObject> attackHitboxesPhase1;
     [Tooltip("Hitbox for phase 1 shockwave")]
-    [SerializeField] GameObject shockwaveP1Hitbox;
+    public GameObject shockwaveP1Hitbox;
     [Tooltip("Hitboxes for phase 2")]
     [SerializeField] List<GameObject> attackHitboxesPhase2;
     [Tooltip("Hitboxes for phase 3")]
     [SerializeField] List<GameObject> attackHitboxesPhase3;
     [Tooltip("Hitboxes for the boss's charge attack during phase 3")]
-    [SerializeField] GameObject chargeHitboxPhase3;
+    public GameObject chargeHitboxPhase3;
     [Tooltip("Hitboxes for the boss's Jump Strike attack during phase 3")]
-    [SerializeField] GameObject jumpHitboxPhase3;
+    public GameObject jumpHitboxPhase3;
     [Tooltip("The boss's hurtbox to receive damage from the player")]
     public List<GameObject> hurtboxes;
 
@@ -163,7 +165,7 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("Phase 1 attack 3 particle")]
     [SerializeField] GameObject p1Attack3Particle;
     [Tooltip("Phase 1 weapon trails")]
-    [SerializeField] GameObject p1WeaponTrail;
+    public GameObject p1WeaponTrail;
     [Tooltip("Phase 1 attack 2 particle location")]
     [SerializeField] Transform p1Attack2Location;
     [Tooltip("Phase 1 attack 2 particle")]
@@ -206,7 +208,6 @@ public class bossAiObsidian : MonoBehaviour
         linkMover = GetComponent<AgentLinkMoverObsidian>();
         linkMover.OnLinkStart += HandleLinkStart;
         linkMover.OnLinkEnd += HandleLinkEnd;
-        
     }
 
     
@@ -217,16 +218,23 @@ public class bossAiObsidian : MonoBehaviour
         StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
         Phase1Stats();
-        
     }
 
     void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
         bossHealthbar.value = bossHealth; //Updates the boss's health each frame
-
         PlayerTracking();
+        PhaseStates();
+    }
 
+    void FixedUpdate()
+    {
+        BossAnimations();
+    }
+
+    void PhaseStates()
+    {
         if (currentphase == 1)
         {
             Phase1Pattern(); //Phase 1
@@ -235,7 +243,6 @@ public class bossAiObsidian : MonoBehaviour
             if (playerInSightRange && !playerInAttackRangeP1) BossChasePlayer(); //Chase the player if they are in sight range
             if (playerInAttackRangeP1 && playerInSightRange) BossAttackPlayer(); //Attack the player if they are in attack range
         }
-
         if (currentphase == 1 && bossHealth <= 600) //Transitions into phase 2
         {
             triggerP1.SetActive(false);
@@ -243,7 +250,6 @@ public class bossAiObsidian : MonoBehaviour
             Phase2Transition();
             currentphase = 2;
         }
-
         if (currentphase == 2)
         {
             Phase2Pattern(); // Phase 2
@@ -258,12 +264,12 @@ public class bossAiObsidian : MonoBehaviour
                 Transform fovTarget = rangeChecks[0].transform; //Checks for colliders
                 Vector3 directionToTarget = (player.position - transform.position).normalized;
 
-                if(Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2) //If the player is within line of sight range
+                if (Vector3.Angle(transform.forward, directionToTarget) < fovAngle / 2) //If the player is within line of sight range
                 {
                     float distanceToTarget = Vector3.Distance(transform.position, player.position);
 
                     //If there is no obstacle in the way, the player is detected
-                    if(!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, bossObstacleDetector))
+                    if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, bossObstacleDetector))
                     {
                         playerInLos = true;
                     }
@@ -283,28 +289,24 @@ public class bossAiObsidian : MonoBehaviour
             }
             if (playerInLos) BossAttackPlayer();
         }
-
         if (currentphase == 2 && bossHealth <= 300)
         {
             playerInLos = false;
             Phase3Transition();
             currentphase = 3;
         }
-
         if (currentphase == 3)
         {
             if (playerInSightRange) BossPatroling();
             Phase3Pattern();
             Phase3Timer();
-            
-        }
 
+        }
         if (currentphase == 3 && bossHealth <= 0)
         {
             Phase4Transition();
             currentphase = 4;
         }
-
         if (obsidianIsLeaping)
         {
             //If the boss is using its leap attacks, this disables the collision of the capsule collider until the boss lands on the player. This also slows down the leap if its destination is reached
@@ -322,11 +324,6 @@ public class bossAiObsidian : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        BossAnimations();
-    }
-
     private void HandleLinkStart() //Controls animations when the boss interacts with jumpable navmesh links
     {
         if (currentphase == 1)
@@ -340,6 +337,9 @@ public class bossAiObsidian : MonoBehaviour
         if (currentphase == 3 && !obsidianIsLeaping)
         {
             bossAnimator.SetTrigger("jumpP3");
+            bossNavAgent.speed = bossMoveSpeedP3;
+            bossNavAgent.acceleration = 100f;
+            bossNavAgent.angularSpeed = 200f;
         }
     }
 
@@ -356,6 +356,9 @@ public class bossAiObsidian : MonoBehaviour
         if (currentphase == 3 && !obsidianIsLeaping)
         {
             bossAnimator.SetTrigger("landP3");
+            bossNavAgent.speed = bossMoveSpeedP3;
+            bossNavAgent.acceleration = 100f;
+            bossNavAgent.angularSpeed = 200f;
         }
     }
 
@@ -545,7 +548,7 @@ public class bossAiObsidian : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 2f && currentphase == 3)
         {
             walkPointSet = false;
-            bossWaypointIndex = Random.Range(0, 16);
+            bossWaypointIndex = Random.Range(bossWaypointMin, bossWaypointMax);
         }
     }
 
@@ -577,7 +580,7 @@ public class bossAiObsidian : MonoBehaviour
         }
     }
 
-    void HitboxDeactivatedPhase1() //Deactivates the boss's hitboxes
+    public void HitboxDeactivatedPhase1() //Deactivates the boss's hitboxes
     {
         foreach (var hitboxp1 in attackHitboxesPhase1)
         {
@@ -590,7 +593,7 @@ public class bossAiObsidian : MonoBehaviour
         shockwaveP1Hitbox.SetActive(true);
     }
 
-    void HitboxDeactivatedPhase1Shockwave() //Deactivates the hitbox for the boss's shockwave attack
+    public void HitboxDeactivatedPhase1Shockwave() //Deactivates the hitbox for the boss's shockwave attack
     {
         shockwaveP1Hitbox.SetActive(false);
     }
@@ -603,7 +606,7 @@ public class bossAiObsidian : MonoBehaviour
         }
     }
 
-    void HitboxDeactivatedPhase2() //Deactivates the boss's hitboxes
+    public void HitboxDeactivatedPhase2() //Deactivates the boss's hitboxes
     {
         foreach (var hitboxp2 in attackHitboxesPhase2)
         {
@@ -793,11 +796,19 @@ public class bossAiObsidian : MonoBehaviour
     {
         obsidianIsCharging = true;
         chargeHitboxPhase3.SetActive(true);
-        bossNavAgent.speed = 200f;
-        bossNavAgent.acceleration = 100000f;
+        walkPoint = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        bossNavAgent.SetDestination(player.transform.position);
+        //bossNavAgent.ResetPath();
+        //bossNavAgent.isStopped = true;
+        //bossNavAgent.velocity = (transform.position - player.transform.position).normalized * 10;
+
+        //obsidianIsCharging = true;
+        //chargeHitboxPhase3.SetActive(true);
+        bossNavAgent.speed = 150f;
+        bossNavAgent.acceleration = 10000f;
         bossNavAgent.angularSpeed = 0f;
-        walkPoint = new Vector3(chargeTarget.transform.position.x, transform.position.y, chargeTarget.transform.position.z);
-        bossNavAgent.SetDestination(chargeTarget.transform.position);  
+        //walkPoint = new Vector3(chargeTarget.transform.position.x, transform.position.y, chargeTarget.transform.position.z);
+        
     }
 
     void ObsidianChargeMuzzle() //Particle effects
@@ -813,7 +824,6 @@ public class bossAiObsidian : MonoBehaviour
         LeftFlash.SetActive(true);
         RightFlash.SetActive(true);
 
-
         //Instantiate(p3Attack4Particle, p3MeteorPositionL.position, Quaternion.identity);
         //Instantiate(p3Attack4Particle, p3MeteorPositionR.position, Quaternion.identity);
     }
@@ -822,10 +832,15 @@ public class bossAiObsidian : MonoBehaviour
     {
         obsidianIsCharging = false;
         chargeHitboxPhase3.SetActive(false);
-        bossNavAgent.speed = 10f;
+        bossWaypointIndex = Random.Range(bossWaypointMin, bossWaypointMax);
+        walkPoint = bossWaypoints[bossWaypointIndex].transform.position;
+        //bossNavAgent.isStopped = false;
+
+        //obsidianIsCharging = false;
+        //chargeHitboxPhase3.SetActive(false);
+        bossNavAgent.speed = bossMoveSpeedP3;
         bossNavAgent.acceleration = 100f;
         bossNavAgent.angularSpeed = 200f;
-        bossWaypointIndex = Random.Range(0, 21);
     }
 
     void ObsidianLeapOn() //The boss's leap attack
@@ -863,7 +878,7 @@ public class bossAiObsidian : MonoBehaviour
         bossNavAgent.speed = 0f;
         bossNavAgent.acceleration = 100f;
         bossNavAgent.autoBraking = false;
-        bossWaypointIndex = Random.Range(0, 21);
+        bossWaypointIndex = Random.Range(bossWaypointMin, bossWaypointMax);
         walkPoint = bossWaypoints[bossWaypointIndex].transform.position;
     }
 
