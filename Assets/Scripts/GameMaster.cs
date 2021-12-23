@@ -26,7 +26,7 @@ public class GameMaster : MonoBehaviour
     public bool firstTutComplete;
     public Transform playerPosition;
 
-    public Transform playerDodgePosition;
+    [HideInInspector] public Transform playerDodgePosition;
     [SerializeField] float slowMoTimeScale = 0.2f;
     [SerializeField] float slowMoDuration = 0.3f;
     float sloMoTimer;
