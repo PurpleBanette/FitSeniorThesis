@@ -11,11 +11,16 @@ public class obsidianGauntletAttack4 : StateMachineBehaviour
         //bossReference.bossNavAgent.isStopped = true;
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossIsAttacking = true;
+        foreach (var link in bossReference.jumpLinks)
+        {
+            link.SetActive(false);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        bossAiObsidian bossReference = animator.GetComponent<bossAiObsidian>();
 
     }
 
@@ -30,6 +35,10 @@ public class obsidianGauntletAttack4 : StateMachineBehaviour
         bossReference.bossWaypointIndex = Random.Range(bossReference.bossWaypointMin, bossReference.bossWaypointMax);
         bossReference.walkPoint = bossReference.bossWaypoints[bossReference.bossWaypointIndex].transform.position;
         animator.ResetTrigger("gauntletAttack4");
+        foreach (var link in bossReference.jumpLinks)
+        {
+            link.SetActive(true);
+        }
 
     }
 }

@@ -113,6 +113,7 @@ public class bossAiObsidian : MonoBehaviour
     public bool playerInSightRange, playerInAttackRangeP1, playerInAttackRangeP2, playerInLos;//, playerInAttackRangeP3;
     [Tooltip("A bool used to force the boss to look at the player")]
     public bool playerTracking = false;
+    public List<GameObject> jumpLinks;
     [Space(10)]
     //Boss patroling
     [Tooltip("The walkpoint that the AI goes to")] 
@@ -406,6 +407,7 @@ public class bossAiObsidian : MonoBehaviour
         }
         if (currentphase == 3)
         {
+            var heading = transform.position - player.position;
             bossAnimator.SetFloat("isWalkingGauntlet", Mathf.Abs(bossNavAgent.speed));
             if (phase3Cooldown <= 0.05)
             {
