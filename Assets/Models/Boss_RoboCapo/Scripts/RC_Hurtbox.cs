@@ -12,7 +12,8 @@ public class RC_Hurtbox : MonoBehaviour
     {
         if (other.transform.tag == "Weapon")
         {
-            bossAiReference.bossHealth -= hurtboxDamage;
+            Debug.Log("Ive Been Hit");
+            bossAiReference.rcTakeDamage(hurtboxDamage);
         }
     }
 }

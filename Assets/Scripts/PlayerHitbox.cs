@@ -12,6 +12,11 @@ public class PlayerHitbox : MonoBehaviour
         {
             charCtrl.playerTakeDamage();
         }
+        else if(other.transform.tag == "EnemyProjectile" && charCtrl.blocking == true)
+        {
+            Debug.Log("successful Block");
+            bossAiRobocapo.instance.bossAnimator.SetTrigger("stun");
+        }
         
     }
         

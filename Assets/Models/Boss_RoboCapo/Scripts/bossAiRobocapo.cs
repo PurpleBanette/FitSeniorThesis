@@ -9,8 +9,10 @@ using UnityEngine.UI;
 
 public class bossAiRobocapo : MonoBehaviour
 {
+
+    public static bossAiRobocapo instance;
     //General
-    Animator bossAnimator;
+    public Animator bossAnimator;
     [Header("Boss Information")]
     [Tooltip("The boss's health")]
     public int bossHealth;
@@ -103,25 +105,44 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] Transform particlePlaceholderLocation1;
     [Tooltip("Particles")]
     [SerializeField] GameObject particlePlaceholder1;
+    [Tooltip("This bool is true when RC is vulnerable to attack and false when he is capable of blocking")]
+    public bool vulnurable;
+    [Tooltip("This bool is true when RC is stunned")]
+    public bool stunned;
+
+    //Weapon Colliders
+    [SerializeField] GameObject rightBayonet;
+    [SerializeField] GameObject lefttBayonet;
+
     //Managers
     int bulletPoolManager = 0;
+    
+    
+
 
     void Awake()
     {
+        instance = this;
+
         bossAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         bossNavAgent = GetComponent<NavMeshAgent>();
         bossCapsuleCollider = GetComponent<CapsuleCollider>();
 
         linkMover = GetComponent<AgentLinkMoverRobocapo>();
+
+        bossHealthbar.maxValue = bossHealth;
         //linkMover.OnLinkStart += HandleLinkStart;
         //linkMover.OnLinkEnd += HandleLinkEnd;
+
+        //Add to the hurtbox list
+        attackHitboxesWeapons.Add(rightBayonet);
 
     }
 
     void Start()
     {
-        bossAnimator.SetTrigger("Introduction");
+        //bossAnimator.SetTrigger("Introduction");
         StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
         Phase1Stats();
@@ -132,9 +153,12 @@ public class bossAiRobocapo : MonoBehaviour
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
         playerInAttackRange = Physics.CheckSphere(attackTrigger.transform.position, attackRange, bossPlayerDetector); //checks for attack range
-        bossHealthbar.value = bossHealth; //Updates the boss's health each frame
         PlayerTracking();
         PhaseAiStates();
+
+        ///The below code is unessesary, just set the health bar = health when he takes damage
+        //bossHealthbar.value = bossHealth; 
+
     }
     void FixedUpdate()
     {
@@ -275,7 +299,7 @@ public class bossAiRobocapo : MonoBehaviour
             yield return new WaitForSeconds(0);
             if (playerInAttackRange)
             {
-                Debug.Log("I hit you with imaginary tonfas");
+                //Debug.Log("I hit you with imaginary tonfas");
                 randAttack = Random.Range(1, 2);
                 yield return new WaitForSeconds(timeBetweenAttacksP1);
             }
@@ -374,4 +398,45 @@ public class bossAiRobocapo : MonoBehaviour
     {
         playerTracking = true;
     }
+
+    public void rcTakeDamage(int damage)
+    {
+        if (vulnurable)
+        {
+            bossHealth -= damage;
+            bossHealthbar.value = bossHealth;
+            //bossAnimator.SetTrigger("stagger");
+        }
+
+        else
+        {
+            Debug.Log("the boss blocked the Attack");
+
+        }
+    }
+
+    public void disableWeaponHitboxes()
+    {
+        foreach (GameObject weapon in attackHitboxesWeapons)
+        {
+            if(weapon.activeInHierarchy)
+            {
+                weapon.SetActive(false);
+            }
+            
+        }
+    } 
+
+    //Animation events
+    
+    void ActivateRightBayonet()
+    {
+        rightBayonet.SetActive(true);
+    }
+
+    void DisableRightBayonet()
+    {
+        rightBayonet.SetActive(true);
+    }
+
 }
