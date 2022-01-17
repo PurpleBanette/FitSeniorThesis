@@ -31,6 +31,7 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] GameObject chargeTarget;
     [SerializeField] Transform phase2LaserDirection;
     public bool phaseChanging;
+    
 
     //Information about projectiles
     [Header("Projectiles Information")]
@@ -98,9 +99,9 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("A random number generated to randomize the boss' pathfinding")]
     int randPath;
     [Tooltip("How far the boss can see")]
-    public float fovRadius;
+    public float fovRadius, fovLookRadius;
     [Tooltip("How wide the boss can see")]
-    [Range(0, 360)] public float fovAngle;
+    [Range(0, 360)] public float fovAngle, fovLookAngle;
     //[SerializeField] float smoothRotationSpeed;
     //private Coroutine SmoothLookCoroutine;
     [Tooltip("detect which layer the boss can detect/interact with")]
@@ -140,6 +141,8 @@ public class bossAiObsidian : MonoBehaviour
     public int bossWaypointIndex;
     [Tooltip("Min = 0 or first waypoint, Max = Total number +1")]
     public int bossWaypointMin, bossWaypointMax;
+    [Tooltip("Waypoints that trigger the boss attacks")]
+    public List<GameObject> jumpPointAttacks;
     
 
     [Header("Hitbox Information")]
@@ -892,6 +895,66 @@ public class bossAiObsidian : MonoBehaviour
     void ShieldParticleOff() //Particle effects
     {
         //bossShieldObsidian.SetActive(false);
+    }
+
+    void JumpLinkAttacks()
+    {
+        foreach (var jumpPoint in jumpPointAttacks)
+        {
+            Vector3 distanceToWalkPoint = transform.position - jumpPoint.transform.position;
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                randAttack = Random.Range(0, 4);
+                if (randAttack == 0)
+                {
+                    bossAnimator.SetTrigger("gauntletAttack1");
+                }
+                if (randAttack == 1)
+                {
+                    bossAnimator.SetTrigger("gauntletAttack2");
+                }
+                if (randAttack == 2)
+                {
+                    bossAnimator.SetTrigger("gauntletAttack3");
+                }
+                if (randAttack == 3)
+                {
+                    bossAnimator.SetTrigger("gauntletAttack5");
+                }
+            }
+        }
+    }
+    void bossHeadLook()
+    {
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, fovLookRadius, bossPlayerDetector);
+        if (rangeChecks.Length != 0) //Attack the player if they are within line of sight and in range
+        {
+            Transform fovTarget = rangeChecks[0].transform; //Checks for colliders
+            Vector3 directionToTarget = (player.position - transform.position).normalized;
+
+            if (Vector3.Angle(transform.forward, directionToTarget) < fovLookAngle / 2) //If the player is within line of sight range
+            {
+                float distanceToTarget = Vector3.Distance(transform.position, player.position);
+
+                //If there is no obstacle in the way, the player is detected
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, bossObstacleDetector))
+                {
+                    //on
+                }
+                else
+                {
+                    //off
+                }
+            }
+            else
+            {
+                //off
+            }
+        }
+        else if (playerInLos)
+        {
+            //off
+        }
     }
 }
 
