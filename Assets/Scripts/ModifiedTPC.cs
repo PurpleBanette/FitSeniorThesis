@@ -13,6 +13,7 @@ public class ModifiedTPC : MonoBehaviour
 	InputAction Dodge;
 	InputAction Attack;
 	InputAction Block;
+	InputAction LockToTarget;
 
 
 	[Header("Player")]
@@ -122,6 +123,7 @@ public class ModifiedTPC : MonoBehaviour
 	public bool inAttack2;
 	public bool inAttack3;
 	[SerializeField] GameObject dodgeBox;
+	bool lockedOn;
 
 	private void Awake()
 	{
@@ -158,9 +160,17 @@ public class ModifiedTPC : MonoBehaviour
 
 		customCharActions.Player.Block.performed += DoBlock;
 		customCharActions.Player.Block.Enable();
+
+		customCharActions.Player.LockToTarget.performed += DoLockToTarget;
+		customCharActions.Player.LockToTarget.Enable();
 	}
 
-	private void DoBlock(InputAction.CallbackContext obj)
+    private void DoLockToTarget(InputAction.CallbackContext obj)
+    {
+		lockOnTarget();
+	}
+
+    private void DoBlock(InputAction.CallbackContext obj)
 	{
 		//Debug.Log("Blocking");
 		block();
@@ -188,6 +198,8 @@ public class ModifiedTPC : MonoBehaviour
 		charAni.SetTrigger("Jump");
 		JumpForce();
 	}
+
+	
 
 	private void OnDisable()
 	{
@@ -501,6 +513,22 @@ public class ModifiedTPC : MonoBehaviour
 			dodgeTimeoutDelta = dodgeTimeout;
 		}
 			
+		
+	}
+
+	void lockOnTarget()
+    {
+        if (!lockedOn)
+        {
+			lockedOn = true;
+			Debug.Log("locked to boss");
+        }
+        else
+        {
+			lockedOn = false;
+			Debug.Log("free Cam");
+		}
+		
 		
 	}
 
