@@ -88,7 +88,7 @@ public class GameMaster : MonoBehaviour
         if (slowMotion)
         {
             sloMoTimer -= Time.deltaTime;
-            Debug.Log(sloMoTimer);
+            //Debug.Log(sloMoTimer);
             if(sloMoTimer <= 0)
             {
                 Time.timeScale = 1;

@@ -73,6 +73,14 @@ public class @CharacterActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""LockToTarget"",
+                    ""type"": ""Button"",
+                    ""id"": ""04f67fc6-fe82-4b48-a7e6-ec635d0825ec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -306,6 +314,28 @@ public class @CharacterActions : IInputActionCollection, IDisposable
                     ""action"": ""MouseLock"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0619e72f-ba18-49d8-8dfa-de2e12f87007"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Xbox Controller;PS4 Controller"",
+                    ""action"": ""LockToTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""581784d4-4d2f-4ff6-b349-2d059cc5654c"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""LockToTarget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -369,6 +399,7 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_MouseLock = m_Player.FindAction("MouseLock", throwIfNotFound: true);
+        m_Player_LockToTarget = m_Player.FindAction("LockToTarget", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -425,6 +456,7 @@ public class @CharacterActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Block;
     private readonly InputAction m_Player_MouseLock;
+    private readonly InputAction m_Player_LockToTarget;
     public struct PlayerActions
     {
         private @CharacterActions m_Wrapper;
@@ -436,6 +468,7 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Block => m_Wrapper.m_Player_Block;
         public InputAction @MouseLock => m_Wrapper.m_Player_MouseLock;
+        public InputAction @LockToTarget => m_Wrapper.m_Player_LockToTarget;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -466,6 +499,9 @@ public class @CharacterActions : IInputActionCollection, IDisposable
                 @MouseLock.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLock;
                 @MouseLock.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLock;
                 @MouseLock.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseLock;
+                @LockToTarget.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockToTarget;
+                @LockToTarget.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockToTarget;
+                @LockToTarget.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLockToTarget;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -491,6 +527,9 @@ public class @CharacterActions : IInputActionCollection, IDisposable
                 @MouseLock.started += instance.OnMouseLock;
                 @MouseLock.performed += instance.OnMouseLock;
                 @MouseLock.canceled += instance.OnMouseLock;
+                @LockToTarget.started += instance.OnLockToTarget;
+                @LockToTarget.performed += instance.OnLockToTarget;
+                @LockToTarget.canceled += instance.OnLockToTarget;
             }
         }
     }
@@ -540,5 +579,6 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
         void OnMouseLock(InputAction.CallbackContext context);
+        void OnLockToTarget(InputAction.CallbackContext context);
     }
 }
