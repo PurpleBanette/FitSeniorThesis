@@ -218,10 +218,10 @@ public class bossAiObsidian : MonoBehaviour
 
     void Start()
     {
-        //bossAnimator.SetTrigger("Introduction");
-        /*StartCoroutine(Phase1Pattern()); //Starts phase 1
+        bossAnimator.SetTrigger("Introduction");
+        StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
-        Phase1Stats();*/
+        Phase1Stats();
     }
 
     void Update()

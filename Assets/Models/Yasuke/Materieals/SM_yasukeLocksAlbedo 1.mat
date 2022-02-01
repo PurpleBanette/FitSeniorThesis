@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SM_yasukeLocksAlbedo 1
-  m_Shader: {fileID: -6465566751694194690, guid: e8321c7ebb1b5384aac36f2350a21d57, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 922f1dae5b1d04246ba000d3e5e59752, type: 3}
   m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -23,12 +23,20 @@ Material:
         m_Texture: {fileID: 2800000, guid: 9731e25bcbc45cb468701081e388c755, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_70f7f0c6b0414f0b91e5561ed8ef843e:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
         m_Texture: {fileID: 2800000, guid: a2a95dc3943c7dd4e80f5cb6ce1f3a84, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
         m_Texture: {fileID: 2800000, guid: a0470fd60b97b8a4eae6ec6c8ceaec9e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture3D_d6a8f0782b3d458ca59f546dba668014:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _CalculateLights_4d98117c4c224cecb7dc0766f014781b_Texture2D575f512b14d04545920c8f5c12d83926_3206607808:
@@ -48,8 +56,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 8.13
-    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: -0.96
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 1
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 4
+    - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: 0
+    - Vector1_a0985c90018c40018516521048fd2267: 1
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 1
+    - Vector1_e312d995706e4465be4aabbe4de981d4: 1
     m_Colors:
     - Color_37496f96188a42d89879086d198a701e: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: 0.5, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
