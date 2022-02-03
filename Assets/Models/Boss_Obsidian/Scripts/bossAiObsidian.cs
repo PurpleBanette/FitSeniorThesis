@@ -16,7 +16,7 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("The current phase of the boss")] 
     [SerializeField] int currentphase;
     [Tooltip("A bool that determines if the boss is dead")] 
-    [SerializeField] bool dead = false;
+    public bool dead = false;
     [Tooltip("The boss's health slider")] 
     [SerializeField] Slider bossHealthbar;
     [Tooltip("The movement speed of the boss during each phase")]
@@ -31,6 +31,7 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] GameObject chargeTarget;
     [SerializeField] Transform phase2LaserDirection;
     public bool phaseChanging;
+    obsidianWeaponPickup obsWep;
     
 
     //Information about projectiles
@@ -46,10 +47,11 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] bool p2rpTrigger;
     [Space(10)]
     //Phase3 Weapon
-    [SerializeField] GameObject obsidianWeapon;
+    public GameObject obsidianWeapon;
     [SerializeField] Transform p3WeaponPosition;
     [SerializeField] Transform p3BossOrigin;
     [SerializeField] float p3WeaponShootForce;
+    [SerializeField] GameObject p3WeaponPickupParticle;
     [Space(10)]
     //Phase3 Blaster
     [SerializeField] Transform p3BlasterPosition;
@@ -212,13 +214,13 @@ public class bossAiObsidian : MonoBehaviour
         linkMover = GetComponent<AgentLinkMoverObsidian>();
         linkMover.OnLinkStart += HandleLinkStart;
         linkMover.OnLinkEnd += HandleLinkEnd;
+
     }
 
     
 
     void Start()
     {
-        bossAnimator.SetTrigger("Introduction");
         StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
         Phase1Stats();
@@ -506,6 +508,7 @@ public class bossAiObsidian : MonoBehaviour
     void Phase3Transition()
     {
         StopAllCoroutines();
+        Phase2RapidFireStop();
         bossAnimator.SetTrigger("phase3");
         attackRange = 100;
         bossNavAgent.acceleration = 100;
@@ -540,6 +543,9 @@ public class bossAiObsidian : MonoBehaviour
         walkPoint = transform.position;
         bossAnimator.SetTrigger("phase4");
         dead = true;
+        obsWep = FindObjectOfType<obsidianWeaponPickup>();
+        obsWep.StartParticle();
+
     }
 
     void BossPatroling() //The boss moving in random directions
