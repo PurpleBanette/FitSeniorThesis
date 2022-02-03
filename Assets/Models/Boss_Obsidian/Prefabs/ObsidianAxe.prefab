@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8693201007434747712}
   - component: {fileID: 686839141}
   - component: {fileID: 686839142}
+  - component: {fileID: -246934395951750194}
   m_Layer: 0
   m_Name: ObsidianAxe
   m_TagString: Untagged
@@ -62,6 +63,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.83, y: 15, z: 3}
   m_Center: {x: 0, y: 6.98, z: 0}
+--- !u!114 &-246934395951750194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9023196529381823145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1207dad17213a2429f4c3cef40792f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wepParticle: {fileID: 405235994187597759, guid: 6d36f47f6959ea84a97e39089a2ea6a6, type: 3}
 --- !u!1001 &2495923380694789795
 PrefabInstance:
   m_ObjectHideFlags: 0
