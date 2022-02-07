@@ -22,7 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: New Material 4
   m_Shader: {fileID: -6465566751694194690, guid: 4a98726a4248b354fbb9adb72d2d6fc4, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT_ADDITIONAL_LIGHTS_CALCULATE_SHADOWS
+    _SOFT_SHADOW
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -125,14 +126,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_2656c87527ee4ba98c181cff49c8b60f: 1
     - Vector1_2709a36a388a442ba34e17b3024eb590: 1
-    - Vector1_2f982c43d3db4470a8aaa597ae52d055: -0.6
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 0
     - Vector1_3531a84e06a94e57802ea39ece47c9fe: 2
     - Vector1_3fb0d6f64ec84bd5a8d5264039870994: 1
     - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: 7.2
     - Vector1_a0985c90018c40018516521048fd2267: 1
     - Vector1_ab8f09bb8f074c1089745da64df70ee6: 0
-    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 1.5
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.63
     - Vector1_c1abe7b023da410ba9a36040fd2b2e1e: 1
     - Vector1_ccd5cae6f88b48b5ac0e38ed8fbb3eef: 0
     - Vector1_d631efad0e1f4386bf36e5f84e2ac2e4: 2.01
