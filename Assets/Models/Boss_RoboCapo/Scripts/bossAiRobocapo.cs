@@ -110,13 +110,20 @@ public class bossAiRobocapo : MonoBehaviour
     [Tooltip("This bool is true when RC is stunned")]
     public bool stunned;
 
-    //Weapon Colliders
+    //Weapons and Weapon Colliders
     [SerializeField] GameObject rightBayonet;
     [SerializeField] GameObject lefttBayonet;
 
+    [SerializeField] GameObject bulletEmmitterLeft;
+    [SerializeField] GameObject bulletEmmitterRight;
+
+
+
     //Managers
     int bulletPoolManager = 0;
-    
+
+    float buckshotForce = 100f;
+    GameObject currentBullet;
     
 
 
@@ -184,19 +191,21 @@ public class bossAiRobocapo : MonoBehaviour
         if (!dead)
         {
             bossAnimator.SetFloat("isWalking", Mathf.Abs(bossNavAgent.speed));
+            /*
             if (currentphase == 1)
             {
+                //randAttack = Random.Range(1, 4);
                 if (randAttack == 1)
                 {
                     bossAnimator.SetTrigger("attack1");
                 }
                 if (randAttack == 2)
                 {
-                    bossAnimator.SetTrigger("attack2");
+                    bossAnimator.SetTrigger("3Hit");
                 }
                 if (randAttack == 3)
                 {
-                    bossAnimator.SetTrigger("attack3");
+                    bossAnimator.SetTrigger("WindmillCharge");
                 }
                 if (randAttack == 4 && playerInAttackRange)
                 {
@@ -207,7 +216,7 @@ public class bossAiRobocapo : MonoBehaviour
             {
                 if (randAttack == 1)
                 {
-                    bossAnimator.SetTrigger("shoot1");
+                    bossAnimator.SetBool("ShotLoop", true);
                 }
                 if (randAttack == 2)
                 {
@@ -222,7 +231,7 @@ public class bossAiRobocapo : MonoBehaviour
                     randAttack = Random.Range(1, 2);
                 }
             }
-
+            */
         }
     }
 
@@ -344,6 +353,8 @@ public class bossAiRobocapo : MonoBehaviour
     }
     void BossPatroling() //The boss moving in random directions
     {
+        bossNavAgent.speed = bossMoveSpeedP1;
+
         if (!walkPointSet)
         {
             SearchWalkPoint();
@@ -373,12 +384,33 @@ public class bossAiRobocapo : MonoBehaviour
         if (!dead)
         {
             bossNavAgent.SetDestination(player.position);
+            bossNavAgent.speed = bossMoveSpeedP1;
         }
     }
     void BossAttackPlayer()
     {
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
+        bossNavAgent.speed = 0f;
 
+        /*
+        randAttack = Random.Range(1, 4);
+        if (randAttack == 1)
+        {
+            bossAnimator.SetTrigger("attack1");
+        }
+        if (randAttack == 2)
+        {
+            bossAnimator.SetTrigger("3Hit");
+        }
+        if (randAttack == 3)
+        {
+            bossAnimator.SetTrigger("WindmillCharge");
+        }
+        if (randAttack == 4 && playerInAttackRange)
+        {
+            randAttack = Random.Range(1, 3);
+        }
+        */
     }
     void PlayerTracking() //Tracks the player's position so the boss faces in their direction
     {
@@ -437,6 +469,20 @@ public class bossAiRobocapo : MonoBehaviour
     void DisableRightBayonet()
     {
         rightBayonet.SetActive(true);
+    }
+
+    void leftBuckshot()
+    {
+        //currentBullet = RC_ObjectPool.instance.GetPooledObject(RC_ObjectPool.instance.pooledBuckshot, true);
+        //RC_ObjectPool.instance.LaunchObject(currentBullet, playerTarget, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager,playerTarget, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
+    }
+
+    void rightBuckshot()
+    {
+        //currentBullet = RC_ObjectPool.instance.GetPooledObject(RC_ObjectPool.instance.pooledBuckshot, true);
+        //RC_ObjectPool.instance.LaunchObject(currentBullet, playerTarget, bulletEmmitterRight.transform, 0f, null, buckshotForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager, playerTarget, bulletEmmitterRight.transform, 0f, null, buckshotForce);
     }
 
 }
