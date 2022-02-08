@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 public class ModifiedTPC : MonoBehaviour
 {
+	public static ModifiedTPC instance;
 	CharacterActions customCharActions;
 	InputAction Move;
 	InputAction Look;
@@ -125,8 +126,20 @@ public class ModifiedTPC : MonoBehaviour
 	[SerializeField] GameObject dodgeBox;
 	bool lockedOn;
 
+	//Picking up Boss's weapon
+	obsidianWeaponPickup obsWep;
+	public GameObject bossWeaponPosition, bossWeaponPrefab;
+
+	//Hurtbox ticks
+	public List<GameObject> hurtboxesPlayer;
+	public bool playerHitTick;
+	public float InvincibleFrameTimerPlayer = 1f;
+
+
+
 	private void Awake()
 	{
+		instance = this;
 		customCharActions = new CharacterActions();
 		_controller = GetComponent<CharacterController>();
 		_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -247,7 +260,7 @@ public class ModifiedTPC : MonoBehaviour
 	private void Update()
 	{
 		charAni.SetFloat("isRunning", _speed);
-
+		PlayerInvincibilityDetection();
 	}
 
 	private void LateUpdate()
@@ -478,6 +491,7 @@ public class ModifiedTPC : MonoBehaviour
 		{
 			charAni.SetTrigger("Attack3");
 		}
+
 	}
 	void block()
 	{
@@ -534,7 +548,7 @@ public class ModifiedTPC : MonoBehaviour
 
 	public void playerTakeDamage()
 	{
-		health -= 10;
+		health -= 5;
 		healthBar.value = health;
 		//Debug.Log(health);
 		if (health <= 0 && !dead)
@@ -544,7 +558,35 @@ public class ModifiedTPC : MonoBehaviour
         }
 	}
 
+	public void PlayerPickupWeapon()
+    {
+		obsWep = FindObjectOfType<obsidianWeaponPickup>();
+		//obsWep.weprb.useGravity = false;
+		obsWep.transform.parent = bossWeaponPosition.transform;
+		obsWep.transform.localPosition = obsWep.itemPosition;
+		obsWep.transform.localEulerAngles = obsWep.itemRotation;
+		obsWep.transform.localScale = obsWep.itemScale;
+	}
 
-
+	public void PlayerInvincibilityDetection()
+    {
+		if (playerHitTick && InvincibleFrameTimerPlayer > 0)
+        {
+			InvincibleFrameTimerPlayer -= Time.deltaTime;
+			foreach (var hurtbox in hurtboxesPlayer)
+            {
+				hurtbox.SetActive(false);
+            }
+        }
+		if (playerHitTick && InvincibleFrameTimerPlayer <= 0)
+        {
+			playerHitTick = false;
+			InvincibleFrameTimerPlayer = 1f;
+			foreach (var hurtbox in hurtboxesPlayer)
+            {
+				hurtbox.SetActive(true);
+            }
+        }
+    }
 
 }

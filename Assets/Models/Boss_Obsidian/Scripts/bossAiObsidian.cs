@@ -8,6 +8,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMoverObsidian))]
 public class bossAiObsidian : MonoBehaviour
 {
+    public static bossAiObsidian instance;
     //General information about the Boss
     Animator bossAnimator;
     [Header("Boss Information")]
@@ -164,6 +165,8 @@ public class bossAiObsidian : MonoBehaviour
     public GameObject jumpHitboxPhase3;
     [Tooltip("The boss's hurtbox to receive damage from the player")]
     public List<GameObject> hurtboxes;
+    public float InvincibleFrameTimer = 0.25f;
+    public bool hitTick = false;
 
     [Header("Particles and Effects")]
     [Tooltip("Phase 1 attack 3 particle location")]
@@ -206,6 +209,7 @@ public class bossAiObsidian : MonoBehaviour
 
     void Awake()
     {
+        instance = this;
         bossAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         bossNavAgent = GetComponent<NavMeshAgent>();
@@ -232,6 +236,7 @@ public class bossAiObsidian : MonoBehaviour
         bossHealthbar.value = bossHealth; //Updates the boss's health each frame
         PlayerTracking();
         PhaseStates();
+        InvincibilityDetection();
     }
 
     void FixedUpdate()
@@ -535,6 +540,7 @@ public class bossAiObsidian : MonoBehaviour
 
     void Phase4Transition()
     {
+        dead = true;
         StopAllCoroutines();
         bossNavAgent.speed = 0f;
         bossNavAgent.acceleration = 1000;
@@ -542,7 +548,6 @@ public class bossAiObsidian : MonoBehaviour
         sightRange = 0f;
         walkPoint = transform.position;
         bossAnimator.SetTrigger("phase4");
-        dead = true;
         obsWep = FindObjectOfType<obsidianWeaponPickup>();
         obsWep.StartParticle();
 
@@ -967,6 +972,26 @@ public class bossAiObsidian : MonoBehaviour
         else if (playerInLos)
         {
             //off
+        }
+    }
+    void InvincibilityDetection()
+    {
+        if (hitTick && InvincibleFrameTimer > 0 && !phaseChanging)
+        {
+            InvincibleFrameTimer -= Time.deltaTime;
+            foreach (var hurtbox in hurtboxes)
+            {
+                hurtbox.SetActive(false);
+            }
+        }
+        if (hitTick && InvincibleFrameTimer <= 0 && !phaseChanging)
+        {
+            hitTick = false;
+            InvincibleFrameTimer = 0.25f;
+            foreach (var hurtbox in hurtboxes)
+            {
+                hurtbox.SetActive(true);
+            }
         }
     }
 }
