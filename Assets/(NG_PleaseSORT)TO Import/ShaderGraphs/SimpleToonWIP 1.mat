@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7077640939350778630
+--- !u!114 &-7898762452898047994
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,9 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CaveMat
-  m_Shader: {fileID: -6465566751694194690, guid: 4a98726a4248b354fbb9adb72d2d6fc4, type: 3}
-  m_ShaderKeywords: 
+  m_Name: SimpleToonWIP 1
+  m_Shader: {fileID: -6465566751694194690, guid: 352b14c9b9a3e4e4f872cffad81c5071, type: 3}
+  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -36,20 +36,8 @@ Material:
         m_Texture: {fileID: 2800000, guid: 102c9066497adcd4ea90f59201ba06e2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - Texture2D_091e103e544546a889f1e8d2376d14ce:
-        m_Texture: {fileID: 2800000, guid: 49c94886d2714694eba8a18db92b88d5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_11db0eabef74429291810f321c4b1a96:
-        m_Texture: {fileID: 2800000, guid: 92856bab59132254b95fe742e628e616, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - Texture2D_70f7f0c6b0414f0b91e5561ed8ef843e:
         m_Texture: {fileID: 2800000, guid: fbbc1c6f2ff99cd44a194be106b798ed, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_7f2edcfecdac4fc9aa67a39f433b4317:
-        m_Texture: {fileID: 2800000, guid: dbcceb0e9aeed224bb48466d2296df4e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
@@ -58,10 +46,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
         m_Texture: {fileID: 2800000, guid: 732b449bb625f414ab840e238cf3bbab, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_fa2931794bf54c00adaf96328791eb41:
-        m_Texture: {fileID: 2800000, guid: 35d7a8f639f5bf949ad20340e1453b67, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture3D_d6a8f0782b3d458ca59f546dba668014:
@@ -112,10 +96,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_337cbce1d56d42148fc8c77ce31e0822_Out_0:
-        m_Texture: {fileID: 2800000, guid: fc27579a349f2cb4bb8b4dea0458be4c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -129,20 +109,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2709a36a388a442ba34e17b3024eb590: 1
-    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 10.42
-    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 1.7
-    - Vector1_3fb0d6f64ec84bd5a8d5264039870994: 1
-    - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: 1.01
-    - Vector1_a0985c90018c40018516521048fd2267: 11.57
-    - Vector1_ab8f09bb8f074c1089745da64df70ee6: 0
-    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.5
-    - Vector1_c1abe7b023da410ba9a36040fd2b2e1e: 1
-    - Vector1_ccd5cae6f88b48b5ac0e38ed8fbb3eef: 0
-    - Vector1_d631efad0e1f4386bf36e5f84e2ac2e4: 2.01
-    - Vector1_dee67caaae9647769b2564f542064c08: 0.5
-    - Vector1_e312d995706e4465be4aabbe4de981d4: -0.01
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 7.64
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 0.2
+    - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: -0.02
+    - Vector1_a0985c90018c40018516521048fd2267: 1
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.41
+    - Vector1_e312d995706e4465be4aabbe4de981d4: 5.28
     - Vector1_e380723ec1c94be4a89fe681fc4da117: 1
+    - Vector1_e9657de56b994e9a98513c90f76d3787: -0.37
+    - Vector1_edd24381078746bab6143280806dcb25: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -170,10 +145,10 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_2e08d63562d247b0be9f261b3ec86761: {r: 2.6721995, g: 2.6755922, b: 0, a: 0}
-    - Color_37496f96188a42d89879086d198a701e: {r: 0, g: 0.1882353, b: 0.7490196, a: 0}
-    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: -14.25, g: 0, b: 0, a: 0}
-    - Vector2_790d657bfefe41e199f55e33dfc56aca: {r: 8, g: 8, b: 0, a: 0}
+    - Color_37496f96188a42d89879086d198a701e: {r: 0.023153365, g: 0.023153365, b: 0.023153365, a: 0}
+    - Color_b3fc4c78523349e6b8737aad70985877: {r: 0.6377403, g: 0.735849, b: 0.5935386, a: 0}
+    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: 1.94, g: 0, b: 0, a: 0}
+    - Vector2_790d657bfefe41e199f55e33dfc56aca: {r: 3.42, g: 1.22, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
