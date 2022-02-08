@@ -11,6 +11,7 @@ public class PlayerHitbox : MonoBehaviour
         if(other.transform.tag == "EnemyProjectile" && charCtrl.blocking == false)
         {
             charCtrl.playerTakeDamage();
+            ModifiedTPC.instance.playerHitTick = true;
         }
         else if(other.transform.tag == "EnemyProjectile" && charCtrl.blocking == true)
         {
