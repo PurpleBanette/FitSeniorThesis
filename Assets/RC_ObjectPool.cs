@@ -13,9 +13,11 @@ public class RC_ObjectPool : MonoBehaviour
     [SerializeField] GameObject Bullets;
     [SerializeField] GameObject Buckshot;
 
-    public int bulletsToPool = 20;
-    public int buckshotToPool = 20;
+    public int bulletsToPool;
+    public int buckshotToPool;
 
+    public GameObject L_defaultTarget;
+    public GameObject R_defaultTarget;
 
     private void Awake()
     {
@@ -94,7 +96,10 @@ public class RC_ObjectPool : MonoBehaviour
 
     public int GetPooledObjectManaged(List<GameObject> pooledObjects, int objectManager, Transform playerTarget, Transform projectileSpawnPoint, float spreadValue, List<GameObject> particlepool, float shotForce)
     {
-        Vector3 bulletDirection = playerTarget.transform.position - projectileSpawnPoint.transform.position;
+        Vector3 bulletDirection;
+        
+        bulletDirection = playerTarget.transform.position - projectileSpawnPoint.transform.position;
+        
 
         //calculate direction from weapon to player
         //Vector3 bulletDirection = playerTarget.transform.position - p2BulletPosition.transform.position;

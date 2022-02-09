@@ -15,7 +15,7 @@ public class bossAiRobocapo : MonoBehaviour
     public Animator bossAnimator;
     [Header("Boss Information")]
     [Tooltip("The boss's health")]
-    public int bossHealth;
+    public int bossHealth = 1000;
     [Tooltip("The current phase of the boss")]
     [SerializeField] int currentphase;
     [Tooltip("A bool that determines if the boss is dead")]
@@ -117,6 +117,8 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] GameObject bulletEmmitterLeft;
     [SerializeField] GameObject bulletEmmitterRight;
 
+    [SerializeField] GameObject chargeHitbox;
+
 
 
     //Managers
@@ -124,7 +126,7 @@ public class bossAiRobocapo : MonoBehaviour
 
     float buckshotForce = 100f;
     GameObject currentBullet;
-    
+    bool rapidFire;
 
 
     void Awake()
@@ -144,7 +146,10 @@ public class bossAiRobocapo : MonoBehaviour
 
         //Add to the hurtbox list
         attackHitboxesWeapons.Add(rightBayonet);
+        attackHitboxesWeapons.Add(lefttBayonet);
+        attackHitboxesWeapons.Add(chargeHitbox);
 
+        disableWeaponHitboxes();
     }
 
     void Start()
@@ -246,8 +251,8 @@ public class bossAiRobocapo : MonoBehaviour
             if (bossHealth <= 750)
             {
                 attackTrigger.SetActive(false);
-                Phase2Transition();
                 currentphase = 2;
+                //Phase2Transition();
             }
         }
         if (currentphase == 2)
@@ -300,57 +305,9 @@ public class bossAiRobocapo : MonoBehaviour
             dead = true;
         }
     }
-    IEnumerator Phase1Pattern()
-    {
-        attackTrigger.SetActive(true);
-        while (true && !dead)
-        {
-            yield return new WaitForSeconds(0);
-            if (playerInAttackRange)
-            {
-                //Debug.Log("I hit you with imaginary tonfas");
-                randAttack = Random.Range(1, 2);
-                yield return new WaitForSeconds(timeBetweenAttacksP1);
-            }
-        }
-    }
-    void Phase1Stats()
-    {
-        //This code should be at the end of the introduction animation event state, but for now it is here so that the boss can move
-        bossNavAgent.speed = bossMoveSpeedP1;
-        bossNavAgent.angularSpeed = 200;
-        bossNavAgent.acceleration = 10;
-        bossNavAgent.stoppingDistance = 0;
-        bossNavAgent.autoBraking = true;
-    }
-    void Phase2Transition()
-    {
-        StopAllCoroutines();
-        bossAnimator.SetTrigger("phase2");
-    }
-    IEnumerator Phase2Pattern()
-    {
-        attackTrigger.SetActive(true);
-        while (true && !dead)
-        {
-            yield return new WaitForSeconds(0);
-            if (playerInLos)
-            {
-                Debug.Log("I shot you with imaginary bullets");
-                randAttack = Random.Range(1, 2);
-                yield return new WaitForSeconds(timeBetweenAttacksP2);
-            }
-        }
-    }
-    void Phase2Stats()
-    {
-        //This code should be at the end of the introduction animation event state, but for now it is here so that the boss can move
-        bossNavAgent.speed = bossMoveSpeedP2;
-        bossNavAgent.angularSpeed = 250;
-        bossNavAgent.acceleration = 20;
-        bossNavAgent.stoppingDistance = 0;
-        bossNavAgent.autoBraking = true;
-    }
+
+
+    
     void BossPatroling() //The boss moving in random directions
     {
         bossNavAgent.speed = bossMoveSpeedP1;
@@ -392,8 +349,9 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
         bossNavAgent.speed = 0f;
 
-        /*
+        
         randAttack = Random.Range(1, 4);
+        /*
         if (randAttack == 1)
         {
             bossAnimator.SetTrigger("attack1");
@@ -443,7 +401,8 @@ public class bossAiRobocapo : MonoBehaviour
         else
         {
             Debug.Log("the boss blocked the Attack");
-
+            bossAnimator.SetBool("block",true);
+            ModifiedTPC.instance.weapon.enabled = false;
         }
     }
 
@@ -457,10 +416,68 @@ public class bossAiRobocapo : MonoBehaviour
             }
             
         }
-    } 
+    }
+
+    //Stat Changes
+
+    void Phase1Stats()
+    {
+        //This code should be at the end of the introduction animation event state, but for now it is here so that the boss can move
+        bossNavAgent.speed = bossMoveSpeedP1;
+        bossNavAgent.angularSpeed = 600;
+        bossNavAgent.acceleration = 100;
+        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.autoBraking = true;
+    }
+
+    void Phase2Stats()
+    {
+        //This code should be at the end of the introduction animation event state, but for now it is here so that the boss can move
+        bossNavAgent.speed = bossMoveSpeedP2;
+        bossNavAgent.angularSpeed = 750;
+        bossNavAgent.acceleration = 75;
+        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.autoBraking = true;
+    }
+
+    //Attack Patterns
+    IEnumerator Phase1Pattern()
+    {
+        attackTrigger.SetActive(true);
+        while (true && !dead)
+        {
+            yield return new WaitForSeconds(0);
+            if (playerInAttackRange)
+            {
+                //Debug.Log("I hit you with imaginary tonfas");
+                randAttack = Random.Range(1, 4);
+                yield return new WaitForSeconds(timeBetweenAttacksP1);
+            }
+        }
+    }
+    void Phase2Transition()
+    {
+        StopAllCoroutines();
+        //bossAnimator.SetTrigger("phase2");
+    }
+    IEnumerator Phase2Pattern()
+    {
+        attackTrigger.SetActive(true);
+        while (true && !dead)
+        {
+            yield return new WaitForSeconds(0);
+            if (playerInLos)
+            {
+                Debug.Log("I shot you with imaginary bullets");
+                randAttack = Random.Range(1, 2);
+                yield return new WaitForSeconds(timeBetweenAttacksP2);
+            }
+        }
+    }
+
 
     //Animation events
-    
+
     void ActivateRightBayonet()
     {
         rightBayonet.SetActive(true);
@@ -485,4 +502,69 @@ public class bossAiRobocapo : MonoBehaviour
         bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager, playerTarget, bulletEmmitterRight.transform, 0f, null, buckshotForce);
     }
 
+    void startRapidFire()
+    {
+        StartCoroutine("RapidFire");
+    }
+
+    IEnumerator RapidFire()
+    {
+        rapidFire = true;
+        while (rapidFire == true)
+        {
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletEmmitterRight.transform, 0f, null, buckshotForce);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    void endRapidFire()
+    {
+        StopCoroutine("RapidFire");
+    }
+
+    void makeVulnurable()
+    {
+        vulnurable = true;
+    }
+    void endVulnurability()
+    {
+        vulnurable = false;
+    }
+
+    void Charge() //The boss's charge attack
+    {
+        //obsidianIsCharging = true;
+        chargeHitbox.SetActive(true);
+        walkPoint = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        bossNavAgent.SetDestination(player.transform.position);
+        
+        bossNavAgent.speed = 150f;
+        bossNavAgent.acceleration = 1000f;
+        bossNavAgent.angularSpeed = 0f;
+        
+    }
+
+    void endCharge()
+    {
+        chargeHitbox.SetActive(false);
+
+        if(currentphase == 1)
+        {
+            Phase1Stats();
+        }
+        else
+        {
+            Phase2Stats();
+        }
+    }
+
+    void activateAttack()
+    {
+
+    }
+    void disableAttack()
+    {
+
+    }
 }

@@ -526,8 +526,6 @@ public class ModifiedTPC : MonoBehaviour
 			charAni.SetTrigger("Dodge");
 			dodgeTimeoutDelta = dodgeTimeout;
 		}
-			
-		
 	}
 
 	void lockOnTarget()
