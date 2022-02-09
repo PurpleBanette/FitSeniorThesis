@@ -197,6 +197,8 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] GameObject p3Attack6Particle;
     [Tooltip("Phase 3 attack 6 charge effect")]
     [SerializeField] GameObject p3Attack6ChargeEffect;
+    [Tooltip("Phase 3 attack 6 smoke effect")]
+    [SerializeField] GameObject p3Attack6Smoke;
     [Tooltip("Obsidian's Shield")]
     [SerializeField] GameObject bossShieldObsidian;
 
@@ -237,6 +239,7 @@ public class bossAiObsidian : MonoBehaviour
         PlayerTracking();
         PhaseStates();
         InvincibilityDetection();
+        FinisherCheck();
     }
 
     void FixedUpdate()
@@ -875,6 +878,7 @@ public class bossAiObsidian : MonoBehaviour
         walkPoint = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         bossNavAgent.SetDestination(player.transform.position);
         bossNavAgent.autoBraking = true;
+        p3Attack6Smoke.SetActive(false);
     }
 
     void ObsidianLeapMuzzle() //Particle effects
@@ -903,6 +907,7 @@ public class bossAiObsidian : MonoBehaviour
         bossNavAgent.autoBraking = false;
         bossWaypointIndex = Random.Range(bossWaypointMin, bossWaypointMax);
         walkPoint = bossWaypoints[bossWaypointIndex].transform.position;
+        p3Attack6Smoke.SetActive(true);
     }
 
     void ShieldParticleOn() //Particle effects
@@ -976,6 +981,7 @@ public class bossAiObsidian : MonoBehaviour
     }
     void InvincibilityDetection()
     {
+        //If the boss takes damage, start the invincibility timer, disable hurtbox
         if (hitTick && InvincibleFrameTimer > 0 && !phaseChanging)
         {
             InvincibleFrameTimer -= Time.deltaTime;
@@ -984,6 +990,7 @@ public class bossAiObsidian : MonoBehaviour
                 hurtbox.SetActive(false);
             }
         }
+        //enable hurtboxes after the timer is done
         if (hitTick && InvincibleFrameTimer <= 0 && !phaseChanging)
         {
             hitTick = false;
@@ -991,6 +998,28 @@ public class bossAiObsidian : MonoBehaviour
             foreach (var hurtbox in hurtboxes)
             {
                 hurtbox.SetActive(true);
+            }
+        }
+    }
+    void AttackCameraShakeEffect()
+    {
+        cinemachineCameraShake.instance.ShakeCamera(5f, .3f);
+    }
+    void FootstepCameraShakeEffect()
+    {
+        cinemachineCameraShake.instance.ShakeCamera(0.4f, .2f);
+    }
+    void FinisherCheck()
+    {
+        Vector3 bossPlayerDistance = transform.position - player.transform.position;
+        //If the player reaches the end, grabs the weapon, and approaches the boss
+        if (currentphase == 4 && ModifiedTPC.instance.playerHasBossWeapon == true)
+        {
+            if (bossPlayerDistance.magnitude < 5f)
+            {
+                Debug.Log("Boss is dead");
+                //Placeholder for the finishing cutscene
+                Destroy(gameObject);
             }
         }
     }

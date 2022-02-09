@@ -129,6 +129,7 @@ public class ModifiedTPC : MonoBehaviour
 	//Picking up Boss's weapon
 	obsidianWeaponPickup obsWep;
 	public GameObject bossWeaponPosition, bossWeaponPrefab;
+	public bool playerHasBossWeapon;
 
 	//Hurtbox ticks
 	public List<GameObject> hurtboxesPlayer;
@@ -566,6 +567,7 @@ public class ModifiedTPC : MonoBehaviour
 		obsWep.transform.localPosition = obsWep.itemPosition;
 		obsWep.transform.localEulerAngles = obsWep.itemRotation;
 		obsWep.transform.localScale = obsWep.itemScale;
+		playerHasBossWeapon = true;
 	}
 
 	public void PlayerInvincibilityDetection()
