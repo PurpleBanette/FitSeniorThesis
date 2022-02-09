@@ -92,6 +92,7 @@ public class GameMaster : MonoBehaviour
             if(sloMoTimer <= 0)
             {
                 Time.timeScale = 1;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 sloMoTimer = slowMoDuration;
                 slowMotion = false;
             }
@@ -181,12 +182,14 @@ public class GameMaster : MonoBehaviour
     public void activateSlowMo()
     {
         Time.timeScale = slowMoTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         slowMotion = true;
     }
 
     public IEnumerator SlowMoCo()
     {
         Time.timeScale = slowMoTimeScale;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
         yield return new WaitForSecondsRealtime(1);
         Time.timeScale = 1;
         //StopCoroutine(activateSlowMo());
