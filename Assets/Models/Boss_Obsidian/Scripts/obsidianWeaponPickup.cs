@@ -44,8 +44,8 @@ public class obsidianWeaponPickup : MonoBehaviour
     {
         if (bossAiObsidian.instance.dead)
         {
-            wepParticle.SetActive(false);
             ModifiedTPC.instance.PlayerPickupWeapon();
+            wepParticle.SetActive(false);
         }
     }
 }
