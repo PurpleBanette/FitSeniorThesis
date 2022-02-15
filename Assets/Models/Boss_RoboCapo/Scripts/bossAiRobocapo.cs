@@ -24,6 +24,7 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] Slider bossHealthbar;
     [Tooltip("The movement speed of the boss during each phase")]
     public float bossMoveSpeedP1, bossMoveSpeedP2, bossMoveSpeedP3, bossMoveSpeedP4;
+    public float dashSpeed;
     [Tooltip("Checks if the boss is in the middle of an attack animation")]
     public bool bossIsAttacking;
     [Tooltip("The boss's capsule collider")]
@@ -107,6 +108,8 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] GameObject particlePlaceholder1;
     [Tooltip("This bool is true when RC is vulnerable to attack and false when he is capable of blocking")]
     public bool vulnurable;
+    [Tooltip("This bool is true when RC is attacking while still capable of blocking")]
+    public bool protAttack;
     [Tooltip("This bool is true when RC is stunned")]
     public bool stunned;
 
@@ -127,6 +130,10 @@ public class bossAiRobocapo : MonoBehaviour
     float buckshotForce = 100f;
     GameObject currentBullet;
     bool rapidFire;
+    float randAttackTime;
+    float minAtkCooldown = 4f;
+    float maxAtkCooldown = 10f;
+    public bool attackSet;
 
 
     void Awake()
@@ -138,9 +145,12 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent = GetComponent<NavMeshAgent>();
         bossCapsuleCollider = GetComponent<CapsuleCollider>();
 
+        randAttackTime = Random.Range(minAtkCooldown, maxAtkCooldown);
+
         linkMover = GetComponent<AgentLinkMoverRobocapo>();
 
         bossHealthbar.maxValue = bossHealth;
+        bossHealthbar.value = bossHealth;
         //linkMover.OnLinkStart += HandleLinkStart;
         //linkMover.OnLinkEnd += HandleLinkEnd;
 
@@ -166,10 +176,24 @@ public class bossAiRobocapo : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
         playerInAttackRange = Physics.CheckSphere(attackTrigger.transform.position, attackRange, bossPlayerDetector); //checks for attack range
         PlayerTracking();
+
+        //This cooldown is to prevent RC from constantly triggering an attack
+        if (attackSet)
+        {
+            randAttackTime -= Time.deltaTime;
+            if(randAttackTime <= 0)
+            {
+                randAttackTime = Random.Range(minAtkCooldown, maxAtkCooldown);
+                attackSet = false;
+            }
+        }
+
         PhaseAiStates();
 
         ///The below code is unessesary, just set the health bar = health when he takes damage
         //bossHealthbar.value = bossHealth; 
+
+        Debug.Log(randAttackTime);
 
     }
     void FixedUpdate()
@@ -196,47 +220,7 @@ public class bossAiRobocapo : MonoBehaviour
         if (!dead)
         {
             bossAnimator.SetFloat("isWalking", Mathf.Abs(bossNavAgent.speed));
-            /*
-            if (currentphase == 1)
-            {
-                //randAttack = Random.Range(1, 4);
-                if (randAttack == 1)
-                {
-                    bossAnimator.SetTrigger("attack1");
-                }
-                if (randAttack == 2)
-                {
-                    bossAnimator.SetTrigger("3Hit");
-                }
-                if (randAttack == 3)
-                {
-                    bossAnimator.SetTrigger("WindmillCharge");
-                }
-                if (randAttack == 4 && playerInAttackRange)
-                {
-                    randAttack = Random.Range(1, 2);
-                }
-            }
-            if (currentphase == 2)
-            {
-                if (randAttack == 1)
-                {
-                    bossAnimator.SetBool("ShotLoop", true);
-                }
-                if (randAttack == 2)
-                {
-                    bossAnimator.SetTrigger("shoot2");
-                }
-                if (randAttack == 3)
-                {
-                    bossAnimator.SetTrigger("shoot3");
-                }
-                if (randAttack == 4 && playerInAttackRange)
-                {
-                    randAttack = Random.Range(1, 2);
-                }
-            }
-            */
+            
         }
     }
 
@@ -244,10 +228,27 @@ public class bossAiRobocapo : MonoBehaviour
     {
         if (currentphase == 1)
         {
-            Phase1Pattern();
-            if (!playerInSightRange && !playerInAttackRange) BossPatroling();
+            //Phase1Pattern();
+            
+            if(!attackSet && !playerInAttackRange)
+            {
+                DashToPlayer();
+            }
+            else if(!attackSet && playerInAttackRange) 
+            {
+                BossAttackPlayer();
+            }
+            /*
+            else if (!playerInSightRange && !playerInAttackRange)
+            {
+                BossPatroling();
+            }
+            */
+
+            /*
             if (playerInSightRange && !playerInAttackRange) BossChasePlayer();
             if (playerInSightRange && playerInAttackRange) BossAttackPlayer();
+            */
             if (bossHealth <= 750)
             {
                 attackTrigger.SetActive(false);
@@ -344,31 +345,44 @@ public class bossAiRobocapo : MonoBehaviour
             bossNavAgent.speed = bossMoveSpeedP1;
         }
     }
+
+    void DashToPlayer()
+    {
+        bossNavAgent.SetDestination(player.position);
+        bossNavAgent.speed = dashSpeed;
+    }
+
     void BossAttackPlayer()
     {
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
         bossNavAgent.speed = 0f;
 
-        
-        randAttack = Random.Range(1, 4);
-        /*
-        if (randAttack == 1)
-        {
-            bossAnimator.SetTrigger("attack1");
-        }
-        if (randAttack == 2)
+        Debug.Log("attackTick");
+        randAttack = Random.Range(1, 8);
+
+        if (randAttack >= 2)
         {
             bossAnimator.SetTrigger("3Hit");
         }
         if (randAttack == 3)
         {
+            bossAnimator.SetTrigger("attack1");
+        }
+        if (randAttack == 4)
+        {
             bossAnimator.SetTrigger("WindmillCharge");
         }
-        if (randAttack == 4 && playerInAttackRange)
+        if (randAttack == 5 || randAttack == 6)
         {
-            randAttack = Random.Range(1, 3);
+            bossAnimator.SetTrigger("WindUpOverhead");
         }
-        */
+        if (randAttack == 7)
+        {
+            bossAnimator.SetTrigger("DoubleWind");
+        }
+
+        //resets the cooldown for attacks
+        //attackSet = true;
     }
     void PlayerTracking() //Tracks the player's position so the boss faces in their direction
     {
@@ -401,7 +415,12 @@ public class bossAiRobocapo : MonoBehaviour
         else
         {
             Debug.Log("the boss blocked the Attack");
-            bossAnimator.SetBool("block",true);
+            
+            if (!protAttack)
+            {
+                bossAnimator.SetTrigger("block");
+            }
+            
             ModifiedTPC.instance.weapon.enabled = false;
         }
     }
@@ -419,6 +438,15 @@ public class bossAiRobocapo : MonoBehaviour
     }
 
     //Stat Changes
+
+    void DashStats()
+    {
+        bossNavAgent.speed = dashSpeed;
+        bossNavAgent.angularSpeed = 600;
+        bossNavAgent.acceleration = 100;
+        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.autoBraking = true;
+    }
 
     void Phase1Stats()
     {
