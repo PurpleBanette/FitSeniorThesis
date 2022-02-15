@@ -18,7 +18,5 @@ public class PlayerHitbox : MonoBehaviour
             Debug.Log("successful Block");
             bossAiRobocapo.instance.bossAnimator.SetTrigger("stun");
         }
-        
     }
-        
 }

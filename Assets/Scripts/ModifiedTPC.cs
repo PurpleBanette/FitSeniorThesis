@@ -87,7 +87,7 @@ public class ModifiedTPC : MonoBehaviour
 	private int _animIDMotionSpeed;
 
 	private Animator _animator;
-	private CharacterController _controller;
+	public CharacterController _controller;
 	private GameObject _mainCamera;
 
 	private const float _threshold = 0.01f;
@@ -103,7 +103,7 @@ public class ModifiedTPC : MonoBehaviour
 	Animator charAni;
 	Vector2 Lookvalues = new Vector2();
 	Vector2 MoveValues = new Vector2();
-	int health = 100;
+	public int health = 100;
 	public bool canFall = true;
 	bool dead;
 	[SerializeField]
@@ -136,6 +136,13 @@ public class ModifiedTPC : MonoBehaviour
 	public bool playerHitTick;
 	public float InvincibleFrameTimerPlayer = 1f;
 
+	//Grabbed Yasuke Measurements
+	public Vector3 yasukeRotation;
+	public Vector3 yasukeScale;
+
+	public Vector3 grabbedPositionObsidian;
+	public Vector3 grabbedRotationObsidian;
+	public Vector3 grabbedScaleObsidian;
 
 
 	private void Awake()
@@ -262,6 +269,7 @@ public class ModifiedTPC : MonoBehaviour
 	{
 		charAni.SetFloat("isRunning", _speed);
 		PlayerInvincibilityDetection();
+		PlayerHealthUpdate();
 	}
 
 	private void LateUpdate()
@@ -548,13 +556,13 @@ public class ModifiedTPC : MonoBehaviour
 	public void playerTakeDamage()
 	{
 		health -= 5;
-		healthBar.value = health;
+		/*healthBar.value = health;
 		//Debug.Log(health);
 		if (health <= 0 && !dead)
         {
 			loser.text = "YOU SUCK";
 			dead = true;
-        }
+        }*/
 	}
 
 	public void PlayerPickupWeapon()
@@ -588,5 +596,14 @@ public class ModifiedTPC : MonoBehaviour
             }
         }
     }
-
+	void PlayerHealthUpdate()
+    {
+		healthBar.value = health;
+		//Debug.Log(health);
+		if (health <= 0 && !dead)
+		{
+			loser.text = "YOU SUCK";
+			dead = true;
+		}
+	}
 }
