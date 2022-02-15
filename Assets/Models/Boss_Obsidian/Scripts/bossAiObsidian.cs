@@ -10,7 +10,7 @@ public class bossAiObsidian : MonoBehaviour
 {
     public static bossAiObsidian instance;
     //General information about the Boss
-    Animator bossAnimator;
+    public Animator bossAnimator;
     [Header("Boss Information")]
     [Tooltip("The boss's health")] 
     public int bossHealth;
@@ -90,6 +90,8 @@ public class bossAiObsidian : MonoBehaviour
     public Transform player;
     [Tooltip("A target to allow the boss to aim at the player's center")] 
     public Transform playerTarget;
+    ModifiedTPC mtpc;
+    public GameObject playerGrabPosition;
 
     //Information regarding the boss's AI
     [Header("Boss AI Information")]
@@ -167,6 +169,11 @@ public class bossAiObsidian : MonoBehaviour
     public List<GameObject> hurtboxes;
     public float InvincibleFrameTimer = 0.25f;
     public bool hitTick = false;
+    [Tooltip("The trigger hitbox to allow the boss to notice the player is on its head")]
+    [SerializeField] GameObject headGrabTrigger;
+
+    [Header("Fixed Damage Attacks")]
+    public int grabSlamDamage;
 
     [Header("Particles and Effects")]
     [Tooltip("Phase 1 attack 3 particle location")]
@@ -1022,6 +1029,27 @@ public class bossAiObsidian : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+    public void BossPickupPlayer()
+    {
+        mtpc = FindObjectOfType<ModifiedTPC>();
+        mtpc.transform.parent = playerGrabPosition.transform;
+        mtpc.transform.localPosition = mtpc.grabbedPositionObsidian;
+        mtpc.transform.localEulerAngles = mtpc.grabbedRotationObsidian;
+        mtpc.transform.localScale = mtpc.grabbedScaleObsidian;
+        mtpc._controller.enabled = false;
+    }
+    public void BossDropPlayer()
+    {
+        mtpc = FindObjectOfType<ModifiedTPC>();
+        mtpc.transform.parent = null;
+        mtpc.transform.localEulerAngles = mtpc.yasukeRotation;
+        mtpc.transform.localScale = mtpc.yasukeScale;
+        mtpc._controller.enabled = true;
+    }
+    void FixedDamageGrabSlam()
+    {
+        mtpc.health -= grabSlamDamage;
     }
 }
 
