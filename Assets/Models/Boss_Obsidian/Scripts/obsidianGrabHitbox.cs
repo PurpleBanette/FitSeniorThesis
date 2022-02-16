@@ -20,7 +20,7 @@ public class obsidianGrabHitbox : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            bossAiObsidian.instance.bossAnimator.SetBool("playerInGrabRange", true);
+            bossAiObsidian.instance.bossAnimator.SetBool("playerInGrabRangeP1", true);
             bossAiObsidian.instance.bossAnimator.ResetTrigger("axeAttack1");
             bossAiObsidian.instance.bossAnimator.ResetTrigger("axeAttack2");
             bossAiObsidian.instance.bossAnimator.ResetTrigger("axeAttack3");
@@ -30,7 +30,7 @@ public class obsidianGrabHitbox : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            bossAiObsidian.instance.bossAnimator.SetBool("playerInGrabRange", false);
+            bossAiObsidian.instance.bossAnimator.SetBool("playerInGrabRangeP1", false);
             bossAiObsidian.instance.bossAnimator.ResetTrigger("grabP1");
         }
     }

@@ -148,7 +148,9 @@ public class bossAiObsidian : MonoBehaviour
     public int bossWaypointMin, bossWaypointMax;
     [Tooltip("Waypoints that trigger the boss attacks")]
     public List<GameObject> jumpPointAttacks;
-    
+    [Tooltip("The Navmesh links that allow Obsidian to jump")]
+    private NavMeshLink navMeshLinkScript;
+
 
     [Header("Hitbox Information")]
     [Tooltip("Trigger GameObject for Phase 1 Attacks")] 
@@ -247,6 +249,7 @@ public class bossAiObsidian : MonoBehaviour
         PhaseStates();
         InvincibilityDetection();
         FinisherCheck();
+
     }
 
     void FixedUpdate()
@@ -649,9 +652,10 @@ public class bossAiObsidian : MonoBehaviour
 
     void PlayerTracking() //Tracks the player's position so the boss faces in their direction
     {
-        Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z); //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
+        
         if (playerTracking)
         {
+            Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z); //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
             transform.LookAt(targetPostition);
         }
     }
@@ -1050,6 +1054,26 @@ public class bossAiObsidian : MonoBehaviour
     void FixedDamageGrabSlam()
     {
         mtpc.health -= grabSlamDamage;
+        ModifiedTPC.instance.FixedHealthUpdate();
+    }
+    public void BossLeapAtPlayerP1()
+    {
+        navMeshLinkScript = GetComponent<NavMeshLink>();
+        Vector3 bossPosition = transform.position;
+        Vector3 playerPosition = player.transform.position;
+        navMeshLinkScript.startPoint = bossPosition;
+        navMeshLinkScript.endPoint = playerPosition;
+    }
+    public void BossLeapAtPlayerP1CostModifier()
+    {
+        if (obsidianAxeleapHitbox.instance.playerTooFarAway)
+        {
+            navMeshLinkScript.costModifier = 5;
+        }
+        if (!obsidianAxeleapHitbox.instance.playerTooFarAway)
+        {
+            navMeshLinkScript.costModifier = -5;
+        }
     }
 }
 
