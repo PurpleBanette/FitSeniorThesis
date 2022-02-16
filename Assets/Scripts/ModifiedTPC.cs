@@ -114,6 +114,8 @@ public class ModifiedTPC : MonoBehaviour
 	float blockTimeout = 0.5f;
 	[SerializeField]
 	float dodgeTimeout = 0.2f;
+	[SerializeField]
+	Slider dodgeMeter;
 
 	float dodgeTimeoutDelta;
 	float blockTimeoutDelta;
@@ -152,11 +154,13 @@ public class ModifiedTPC : MonoBehaviour
 		_controller = GetComponent<CharacterController>();
 		_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 		charAni = GetComponent<Animator>();
-
-        if (dodgeBox.activeInHierarchy)
+		dodgeMeter.maxValue = dodgeTimeout;
+		if (dodgeBox.activeInHierarchy)
         {
 			dodgeBox.SetActive(false);
         }
+
+		
 	}
 
 	private void OnEnable()
@@ -269,7 +273,8 @@ public class ModifiedTPC : MonoBehaviour
 	{
 		charAni.SetFloat("isRunning", _speed);
 		PlayerInvincibilityDetection();
-		PlayerHealthUpdate();
+		//PlayerHealthUpdate();
+		DodgeMeterUpdate();
 	}
 
 	private void LateUpdate()
@@ -556,13 +561,13 @@ public class ModifiedTPC : MonoBehaviour
 	public void playerTakeDamage()
 	{
 		health -= 5;
-		/*healthBar.value = health;
+		healthBar.value = health;
 		//Debug.Log(health);
 		if (health <= 0 && !dead)
         {
 			loser.text = "YOU SUCK";
 			dead = true;
-        }*/
+        }
 	}
 
 	public void PlayerPickupWeapon()
@@ -598,12 +603,20 @@ public class ModifiedTPC : MonoBehaviour
     }
 	void PlayerHealthUpdate()
     {
-		healthBar.value = health;
+		/*healthBar.value = health;
 		//Debug.Log(health);
 		if (health <= 0 && !dead)
 		{
 			loser.text = "YOU SUCK";
 			dead = true;
-		}
+		}*/
 	}
+	public void FixedHealthUpdate()
+    {
+		healthBar.value = health;
+	}
+	void DodgeMeterUpdate()
+    {
+		dodgeMeter.value = dodgeTimeoutDelta;
+    }
 }
