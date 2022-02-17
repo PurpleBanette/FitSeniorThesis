@@ -69,7 +69,7 @@ public class bossAiRobocapo : MonoBehaviour
     [Tooltip("Checks if the player is within range")]
     public bool playerInSightRange, playerInAttackRange, playerInLos;
     [Tooltip("A bool used to force the boss to look at the player")]
-    [SerializeField] bool playerTracking = false;
+    public bool playerTracking = false;
     [Space(10)]
     //Patroling
     [Tooltip("The walkpoint that the AI goes to")]
@@ -112,16 +112,25 @@ public class bossAiRobocapo : MonoBehaviour
     public bool protAttack;
     [Tooltip("This bool is true when RC is stunned")]
     public bool stunned;
+    public bool charging;
 
     //Weapons and Weapon Colliders
+    [SerializeField] GameObject rightTonfa;
+    [SerializeField] GameObject leftTonfa;
+
+    [SerializeField] GameObject SweeperSphere;
+
     [SerializeField] GameObject rightBayonet;
     [SerializeField] GameObject lefttBayonet;
 
     [SerializeField] GameObject bulletEmmitterLeft;
     [SerializeField] GameObject bulletEmmitterRight;
 
-    [SerializeField] GameObject chargeHitbox;
+    public GameObject chargeHitbox;
 
+    //Debug Ui
+    [SerializeField] Text behaviorTracker;
+    [SerializeField] Text randAttackTracker;
 
 
     //Managers
@@ -131,9 +140,9 @@ public class bossAiRobocapo : MonoBehaviour
     GameObject currentBullet;
     bool rapidFire;
     float randAttackTime;
-    float minAtkCooldown = 4f;
-    float maxAtkCooldown = 10f;
-    public bool attackSet;
+    float minAtkCooldown = 3.5f;
+    float maxAtkCooldown = 6f;
+    public bool attackSet = true;
 
 
     void Awake()
@@ -158,6 +167,9 @@ public class bossAiRobocapo : MonoBehaviour
         attackHitboxesWeapons.Add(rightBayonet);
         attackHitboxesWeapons.Add(lefttBayonet);
         attackHitboxesWeapons.Add(chargeHitbox);
+        attackHitboxesWeapons.Add(SweeperSphere);
+        attackHitboxesWeapons.Add(rightTonfa);
+        attackHitboxesWeapons.Add(leftTonfa);
 
         disableWeaponHitboxes();
     }
@@ -165,9 +177,11 @@ public class bossAiRobocapo : MonoBehaviour
     void Start()
     {
         //bossAnimator.SetTrigger("Introduction");
-        StartCoroutine(Phase1Pattern()); //Starts phase 1
+        //StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
-        Phase1Stats();
+        BossIdle();
+        
+        //Phase1Stats();
     }
 
 
@@ -189,11 +203,8 @@ public class bossAiRobocapo : MonoBehaviour
         }
 
         PhaseAiStates();
-
-        ///The below code is unessesary, just set the health bar = health when he takes damage
-        //bossHealthbar.value = bossHealth; 
-
         Debug.Log(randAttackTime);
+        randAttackTracker.text = randAttack.ToString();
 
     }
     void FixedUpdate()
@@ -230,13 +241,24 @@ public class bossAiRobocapo : MonoBehaviour
         {
             //Phase1Pattern();
             
-            if(!attackSet && !playerInAttackRange)
+            if(!attackSet && !playerInAttackRange && !charging)
             {
                 DashToPlayer();
+                behaviorTracker.text = "Dashing";
             }
-            else if(!attackSet && playerInAttackRange) 
+            else if(!attackSet && playerInAttackRange && !charging) 
             {
                 BossAttackPlayer();
+                behaviorTracker.text = "Attacking";
+            }
+            else if(!charging)
+            {
+                BossIdle();
+                behaviorTracker.text = "Idle";
+            }
+            else
+            {
+                behaviorTracker.text = "Charging";
             }
             /*
             else if (!playerInSightRange && !playerInAttackRange)
@@ -258,7 +280,7 @@ public class bossAiRobocapo : MonoBehaviour
         }
         if (currentphase == 2)
         {
-            Phase2Pattern();
+            //Phase2Pattern();
             //Searching for the player tag within its FOV radius
             Collider[] rangeChecks = Physics.OverlapSphere(transform.position, fovRadius, bossPlayerDetector);
             if (!playerInSightRange && !playerInLos) BossPatroling(); //Patrol if the boss can't find the player
@@ -308,6 +330,10 @@ public class bossAiRobocapo : MonoBehaviour
     }
 
 
+    void BossIdle()
+    {
+        bossNavAgent.speed = 0f;
+    }
     
     void BossPatroling() //The boss moving in random directions
     {
@@ -358,27 +384,31 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.speed = 0f;
 
         Debug.Log("attackTick");
-        randAttack = Random.Range(1, 8);
+        if (!attackSet)
+        {
+            randAttack = Random.Range(1, 8);
 
-        if (randAttack >= 2)
-        {
-            bossAnimator.SetTrigger("3Hit");
-        }
-        if (randAttack == 3)
-        {
-            bossAnimator.SetTrigger("attack1");
-        }
-        if (randAttack == 4)
-        {
-            bossAnimator.SetTrigger("WindmillCharge");
-        }
-        if (randAttack == 5 || randAttack == 6)
-        {
-            bossAnimator.SetTrigger("WindUpOverhead");
-        }
-        if (randAttack == 7)
-        {
-            bossAnimator.SetTrigger("DoubleWind");
+            if (randAttack <= 2)
+            {
+                bossAnimator.SetBool("3Hit",true);
+            }
+            if (randAttack == 3)
+            {
+                bossAnimator.SetBool("basicAttack",true);
+            }
+            if (randAttack == 4)
+            {
+                bossAnimator.SetTrigger("WindmillCharge");
+            }
+            if (randAttack == 5 || randAttack == 6)
+            {
+                bossAnimator.SetBool("WindUpOverhead",true);
+            }
+            if (randAttack == 7)
+            {
+                bossAnimator.SetTrigger("DoubleWind");
+            }
+            attackSet = true;
         }
 
         //resets the cooldown for attacks
@@ -386,9 +416,11 @@ public class bossAiRobocapo : MonoBehaviour
     }
     void PlayerTracking() //Tracks the player's position so the boss faces in their direction
     {
-        Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z); //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
+         
         if (playerTracking)
         {
+            //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
+            Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z);
             transform.LookAt(targetPostition);
         }
     }
@@ -443,11 +475,12 @@ public class bossAiRobocapo : MonoBehaviour
     {
         bossNavAgent.speed = dashSpeed;
         bossNavAgent.angularSpeed = 600;
-        bossNavAgent.acceleration = 100;
+        bossNavAgent.acceleration = 500;
         bossNavAgent.stoppingDistance = 0;
         bossNavAgent.autoBraking = true;
     }
 
+    /*
     void Phase1Stats()
     {
         //This code should be at the end of the introduction animation event state, but for now it is here so that the boss can move
@@ -467,6 +500,7 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.stoppingDistance = 0;
         bossNavAgent.autoBraking = true;
     }
+    
 
     //Attack Patterns
     IEnumerator Phase1Pattern()
@@ -483,11 +517,14 @@ public class bossAiRobocapo : MonoBehaviour
             }
         }
     }
+    
+
     void Phase2Transition()
     {
         StopAllCoroutines();
         //bossAnimator.SetTrigger("phase2");
     }
+    
     IEnumerator Phase2Pattern()
     {
         attackTrigger.SetActive(true);
@@ -502,7 +539,7 @@ public class bossAiRobocapo : MonoBehaviour
             }
         }
     }
-
+    */
 
     //Animation events
 
@@ -542,7 +579,7 @@ public class bossAiRobocapo : MonoBehaviour
         {
             bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
             bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletEmmitterRight.transform, 0f, null, buckshotForce);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -562,36 +599,28 @@ public class bossAiRobocapo : MonoBehaviour
 
     void Charge() //The boss's charge attack
     {
-        //obsidianIsCharging = true;
+        charging = true;
+        playerTracking = false;
         chargeHitbox.SetActive(true);
         walkPoint = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         bossNavAgent.SetDestination(player.transform.position);
         
         bossNavAgent.speed = 150f;
         bossNavAgent.acceleration = 1000f;
-        bossNavAgent.angularSpeed = 0f;
-        
+        bossNavAgent.angularSpeed = 20f;
     }
 
     void endCharge()
     {
         chargeHitbox.SetActive(false);
-
-        if(currentphase == 1)
-        {
-            Phase1Stats();
-        }
-        else
-        {
-            Phase2Stats();
-        }
+        charging = false;
     }
 
-    void activateAttack()
+    void activateSweepingAttack()
     {
 
     }
-    void disableAttack()
+    void disableSweepingAttack()
     {
 
     }
