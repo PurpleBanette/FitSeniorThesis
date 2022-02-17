@@ -19,7 +19,7 @@ public class resetWindUp : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bossAiRobocapo.instance.bossAnimator.ResetTrigger("WindUpOverhead");
+        bossAiRobocapo.instance.bossAnimator.SetBool("WindUpOverhead",false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
