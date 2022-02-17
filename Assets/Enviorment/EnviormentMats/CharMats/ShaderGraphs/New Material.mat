@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: New Material
-  m_Shader: {fileID: -6465566751694194690, guid: 04e7983229aaac848b58a67d0a890887, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4a98726a4248b354fbb9adb72d2d6fc4, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,12 +32,32 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_02c2dba217064d348ccedd90a8a58a1f:
+        m_Texture: {fileID: 2800000, guid: 4da56c3347ba040af96d59f4b1b4d270, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_70f7f0c6b0414f0b91e5561ed8ef843e:
+        m_Texture: {fileID: 2800000, guid: a4b632a52e51d4722bcc577d9bbdee29, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
+        m_Texture: {fileID: 2800000, guid: a2a95dc3943c7dd4e80f5cb6ce1f3a84, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_e2ad159c61ed48778f3c5fe856577102:
         m_Texture: {fileID: 2800000, guid: 58f08571068d548c784771cce1346ce6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
+        m_Texture: {fileID: 2800000, guid: e02be121d293d43c7acea20228035a70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_f14abffa70ca425d94e1c8e9e8f9fa04:
         m_Texture: {fileID: 2800000, guid: 58f08571068d548c784771cce1346ce6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_fa2931794bf54c00adaf96328791eb41:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -99,12 +119,22 @@ Material:
     m_Floats:
     - Vector1_02758239cc4e443b96b7a5429b378542: 0
     - Vector1_0a2c8194e26442ca869f3c42bee793c1: 1
+    - Vector1_16c0537d0b5d45309da9a4c75751ef9a: 1.02
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: -0.07
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 1
     - Vector1_41deebb127844d429560f67507cf0366: 44.31
+    - Vector1_6b4d022f523f4a5a9e23c7b74f291db6: 0
+    - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: 0
+    - Vector1_a0985c90018c40018516521048fd2267: 1
     - Vector1_b8d1c0fe61564f7fbdb3589d8acf57b3: 0.01
+    - Vector1_bd0953b2866b4604aa97e258f58b716d: 0
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.03
     - Vector1_c42e670948f4453599f874c9bdf8be9e: 0
     - Vector1_c93a57c4fb9045388140b4e00104ccfa: 1
-    - Vector1_d0b04a73dd134cd29b2b4d5ee9a5a9d7: 0.32
-    - Vector1_f7176b2a15bc4c1f8ab54c2eeb8692de: 0.5
+    - Vector1_d0b04a73dd134cd29b2b4d5ee9a5a9d7: 0.05
+    - Vector1_e312d995706e4465be4aabbe4de981d4: 0.25
+    - Vector1_e380723ec1c94be4a89fe681fc4da117: -1.34
+    - Vector1_f7176b2a15bc4c1f8ab54c2eeb8692de: 0.119
     - Vector1_f969daa837bf447aa1850150284579b3: 0.2
     - _AlphaClip: 0
     - _Blend: 0
@@ -133,12 +163,19 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_068403d75ad146eb9c44a4f07550be88: {r: 1, g: 0, b: 0, a: 0}
     - Color_262f5c54519d4b1aa08067fd09331620: {r: 0.764151, g: 0.02523142, b: 0.02523142, a: 0}
+    - Color_31faad6aac8e4546999b5e526adcb086: {r: 0, g: 0, b: 0, a: 0}
+    - Color_37496f96188a42d89879086d198a701e: {r: 0.11320752, g: 0.05757752, b: 0.057137758, a: 0}
     - Color_4bbf7377a9a54c92b64e493905ba3a57: {r: 0, g: 0.6509804, b: 0.08701442, a: 0.682353}
     - Color_5be99d3a44b04984808d8623795b5c55: {r: 1, g: 0.0990566, b: 0.0990566, a: 0}
     - Color_ee45d1129e0240aa85b1dcfadc547f5c: {r: 0.31132078, g: 0.08664116, b: 0.08664116, a: 0}
+    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: 1, g: 0, b: 0, a: 0}
     - Vector2_3fd47e64d1354b718e93ef0586a803be: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_8b76c318c3b34fec8748bd76c37107d3: {r: 0.02, g: 0.01, b: 0, a: 0}
+    - Vector2_7908e1ef1216456f865021ddaeec0ac1: {r: 3, g: 3, b: 0, a: 0}
+    - Vector2_790d657bfefe41e199f55e33dfc56aca: {r: 3, g: 3, b: 0, a: 0}
+    - Vector2_87de75654fac44b5927d5c5ee6e579d8: {r: 2, g: 2, b: 0, a: 0}
+    - Vector2_8b76c318c3b34fec8748bd76c37107d3: {r: 2, g: 1, b: -2, a: 0}
     - Vector3_32e54304f54143f3914b608773d640ec: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
