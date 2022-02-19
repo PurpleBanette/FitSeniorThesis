@@ -560,7 +560,7 @@ public class ModifiedTPC : MonoBehaviour
 
 	public void playerTakeDamage()
 	{
-		health -= 5;
+		health -= 10;
 		healthBar.value = health;
 		//Debug.Log(health);
 		if (health <= 0 && !dead)
