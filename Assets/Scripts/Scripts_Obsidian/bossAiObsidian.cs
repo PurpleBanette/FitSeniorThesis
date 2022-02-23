@@ -8,14 +8,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMoverObsidian))]
 public class bossAiObsidian : MonoBehaviour
 {
-    public static bossAiObsidian instance;
+    public static bossAiObsidian instance; 
     //General information about the Boss
     public Animator bossAnimator;
     [Header("Boss Information")]
     [Tooltip("The boss's health")] 
     public int bossHealth;
     [Tooltip("The current phase of the boss")] 
-    [SerializeField] int currentphase;
+    public int currentphase;
     [Tooltip("A bool that determines if the boss is dead")] 
     public bool dead = false;
     [Tooltip("The boss's health slider")] 
@@ -181,6 +181,7 @@ public class bossAiObsidian : MonoBehaviour
 
     [Header("Fixed Damage Attacks")]
     public int grabSlamDamage;
+    public int stungunDamage;
 
     [Header("Particles and Effects")]
     [Tooltip("Phase 1 attack 3 particle location")]
@@ -699,7 +700,7 @@ public class bossAiObsidian : MonoBehaviour
     {
         phase2Laser.SetActive(true);
     }
-    void obsidianLaserOff() //Particle effects
+    public void obsidianLaserOff() //Particle effects
     {
         phase2Laser.SetActive(false);
     }
@@ -720,7 +721,7 @@ public class bossAiObsidian : MonoBehaviour
         }
     }
 
-    void Phase2RapidFireStop() //Forces the rapid fire to stop
+    public void Phase2RapidFireStop() //Forces the rapid fire to stop
     {
         p2rpTrigger = false;
         StopCoroutine(Phase2RapidFire());
@@ -1058,7 +1059,13 @@ public class bossAiObsidian : MonoBehaviour
     }
     void FixedDamageGrabSlam()
     {
-        mtpc.health -= grabSlamDamage;
+        ModifiedTPC.instance.health -= grabSlamDamage;
+        ModifiedTPC.instance.FixedHealthUpdate();
+    }
+
+    void FixedStungunDamage()
+    {
+        ModifiedTPC.instance.health -= stungunDamage;
         ModifiedTPC.instance.FixedHealthUpdate();
     }
     public void BossLeapAtPlayerP1CostModifier()
