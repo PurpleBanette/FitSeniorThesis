@@ -27,7 +27,8 @@ public class AgentLinkMoverObsidian : MonoBehaviour
         agent.autoTraverseOffMeshLink = false;
         while (true)
         {
-            if (agent.isOnOffMeshLink && bossReference.bossIsAttacking == false && bossReference.phaseChanging == false)
+            //Normal jumping
+            if (agent.isOnOffMeshLink && bossReference.bossIsAttacking == false && bossReference.phaseChanging == false && !bossReference.jumpAttack)
             {
                 OnLinkStart?.Invoke();
                 if (m_Method == OffMeshLinkMoveMethodObsidian.NormalSpeed)
@@ -45,6 +46,7 @@ public class AgentLinkMoverObsidian : MonoBehaviour
                 agent.CompleteOffMeshLink();
                 OnLinkEnd?.Invoke();
             }
+            //Teleport
             if (agent.isOnOffMeshLink && bossReference.obsidianIsLeaping == true && bossReference.phaseChanging == false)
             {
                 OnLinkStart?.Invoke();
@@ -52,6 +54,25 @@ public class AgentLinkMoverObsidian : MonoBehaviour
                 agent.CompleteOffMeshLink();
                 OnLinkEnd?.Invoke();
             }
+            //Attack Jump
+            /*if (bossReference.jumpAttack)
+            {
+                OnLinkStart?.Invoke();
+                if (m_Method == OffMeshLinkMoveMethodObsidian.NormalSpeed)
+                {
+                    yield return StartCoroutine(NormalSpeed(agent));
+                }
+                else if (m_Method == OffMeshLinkMoveMethodObsidian.Parabola)
+                {
+                    yield return StartCoroutine(Parabola(agent, 2.0f, 0.5f));
+                }
+                else if (m_Method == OffMeshLinkMoveMethodObsidian.Curve)
+                {
+                    yield return StartCoroutine(Curve(agent, jumpCurveSpeed));
+                }
+                agent.CompleteOffMeshLink();
+                OnLinkEnd?.Invoke();
+            }*/
             yield return null;
         }
     }

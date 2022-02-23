@@ -8,14 +8,14 @@ using UnityEngine.UI;
 [RequireComponent(typeof(NavMeshAgent), typeof(AgentLinkMoverObsidian))]
 public class bossAiObsidian : MonoBehaviour
 {
-    public static bossAiObsidian instance;
+    public static bossAiObsidian instance; 
     //General information about the Boss
     public Animator bossAnimator;
     [Header("Boss Information")]
     [Tooltip("The boss's health")] 
     public int bossHealth;
     [Tooltip("The current phase of the boss")] 
-    [SerializeField] int currentphase;
+    public int currentphase;
     [Tooltip("A bool that determines if the boss is dead")] 
     public bool dead = false;
     [Tooltip("The boss's health slider")] 
@@ -33,6 +33,9 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] Transform phase2LaserDirection;
     public bool phaseChanging;
     obsidianWeaponPickup obsWep;
+    [Tooltip("Checks if boss is grounded")]
+    public bool bossGrounded;
+    float bossGroundedRadius = 2f;
     
 
     //Information about projectiles
@@ -150,6 +153,8 @@ public class bossAiObsidian : MonoBehaviour
     public List<GameObject> jumpPointAttacks;
     [Tooltip("The Navmesh links that allow Obsidian to jump")]
     public NavMeshLink navMeshLinkScript;
+    [Tooltip("bool that tracks if the boss is using a jump attack")]
+    public bool jumpAttack;
 
 
     [Header("Hitbox Information")]
@@ -176,6 +181,7 @@ public class bossAiObsidian : MonoBehaviour
 
     [Header("Fixed Damage Attacks")]
     public int grabSlamDamage;
+    public int stungunDamage;
 
     [Header("Particles and Effects")]
     [Tooltip("Phase 1 attack 3 particle location")]
@@ -249,7 +255,7 @@ public class bossAiObsidian : MonoBehaviour
         PhaseStates();
         InvincibilityDetection();
         FinisherCheck();
-
+        BossGroundCheck();
     }
 
     void FixedUpdate()
@@ -357,15 +363,15 @@ public class bossAiObsidian : MonoBehaviour
 
     private void HandleLinkStart() //Controls animations when the boss interacts with jumpable navmesh links
     {
-        if (currentphase == 1)
+        if (currentphase == 1 && !jumpAttack)
         {
             bossAnimator.SetTrigger("jumpP1");
         }
-        if (currentphase == 2)
+        if (currentphase == 2 && !jumpAttack)
         {
             bossAnimator.SetTrigger("jumpP2");
         }
-        if (currentphase == 3 && !obsidianIsLeaping)
+        if (currentphase == 3 && !obsidianIsLeaping && !jumpAttack)
         {
             bossAnimator.SetTrigger("jumpP3");
             bossNavAgent.speed = bossMoveSpeedP3;
@@ -694,7 +700,7 @@ public class bossAiObsidian : MonoBehaviour
     {
         phase2Laser.SetActive(true);
     }
-    void obsidianLaserOff() //Particle effects
+    public void obsidianLaserOff() //Particle effects
     {
         phase2Laser.SetActive(false);
     }
@@ -715,7 +721,7 @@ public class bossAiObsidian : MonoBehaviour
         }
     }
 
-    void Phase2RapidFireStop() //Forces the rapid fire to stop
+    public void Phase2RapidFireStop() //Forces the rapid fire to stop
     {
         p2rpTrigger = false;
         StopCoroutine(Phase2RapidFire());
@@ -1053,31 +1059,36 @@ public class bossAiObsidian : MonoBehaviour
     }
     void FixedDamageGrabSlam()
     {
-        mtpc.health -= grabSlamDamage;
+        ModifiedTPC.instance.health -= grabSlamDamage;
         ModifiedTPC.instance.FixedHealthUpdate();
     }
-    public void BossLeapAtPlayerP1()
+
+    void FixedStungunDamage()
     {
-        navMeshLinkScript = GetComponent<NavMeshLink>();
-        Vector3 bossPosition = transform.position;
-        Vector3 playerPosition = player.transform.position;
-        navMeshLinkScript.startPoint = bossPosition;
-        navMeshLinkScript.endPoint = playerPosition;
-        bossNavAgent.speed = bossMoveSpeedP1;
-    }
-    void BossLeapAtPlayerP1End()
-    {
-        bossNavAgent.speed = 0;
+        ModifiedTPC.instance.health -= stungunDamage;
+        ModifiedTPC.instance.FixedHealthUpdate();
     }
     public void BossLeapAtPlayerP1CostModifier()
     {
-        if (obsidianAxeleapHitbox.instance.playerTooFarAway)
+        /*if (obsidianAxeleapHitbox.instance.playerTooFarAway)
         {
-            navMeshLinkScript.costModifier = 5;
+            navMeshLinkScript.costModifier = 2;
         }
         if (!obsidianAxeleapHitbox.instance.playerTooFarAway)
         {
-            navMeshLinkScript.costModifier = -5;
+            navMeshLinkScript.costModifier = -2;
+        }*/
+    }
+    void BossGroundCheck()
+    {
+        bossGrounded = Physics.CheckSphere(transform.position, bossGroundedRadius, bossTerrainDetector);
+        if (bossGrounded)
+        {
+            bossAnimator.SetBool("bossGrounded", true);
+        }
+        else
+        {
+            bossAnimator.SetBool("bossGrounded", false);
         }
     }
 }
