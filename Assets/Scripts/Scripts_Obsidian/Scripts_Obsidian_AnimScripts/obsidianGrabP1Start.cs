@@ -9,6 +9,7 @@ public class obsidianGrabP1Start : StateMachineBehaviour
         bossAiObsidian bossReference = animator.GetComponent<bossAiObsidian>();
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossIsAttacking = true;
+        bossReference.bossNavAgent.SetDestination(bossReference.transform.position);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
