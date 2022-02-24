@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7085913204654997195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7085913204654997197}
+  - component: {fileID: 7085913204654997194}
+  - component: {fileID: 7085913204654997196}
+  m_Layer: 0
+  m_Name: GameManagement
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7085913204654997197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085913204654997195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7085913204654997194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085913204654997195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6842f316924aa8541acfd318f8e48e67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBullets: []
+  pooledMiniMeteors: []
+  pooledGrenades: []
+  pooledBarrageL: []
+  pooledBarrageR: []
+  pooledBlasterBullets: []
+  pooledmuzzleFlash: []
+  pooledblastermuzzleFlash: []
+  pooledbarragemuzzleFlashL: []
+  pooledbarragemuzzleFlashR: []
+  pooledmeteorVfxL: []
+  pooledmeteorVfxR: []
+  chargeMuzzleflashes: []
+  jumpMuzzleflashes: []
+  phase2Bullets: {fileID: 8594593328828421032, guid: 8fdc08c61dfa0c240acd5eab9ed81530, type: 3}
+  miniMeteors: {fileID: 4496452060675400132, guid: 626d5e0e774a73b4e862be8b78019ef1, type: 3}
+  barrageProjectile: {fileID: 5193022833883532067, guid: c667c9b65dcc10642b79c561098ec6ef, type: 3}
+  grenades: {fileID: 4496452060675400132, guid: 9bb9f7d2bbd22284db348a69fcb95b76, type: 3}
+  blasterBullets: {fileID: 5193022833883532067, guid: 9d731941903adfa4583ced715664d701, type: 3}
+  MeteorL: {fileID: 4496452060675400132, guid: c1cd93dbf065e8e4283e6ec2e8b67087, type: 3}
+  MeteorR: {fileID: 4496452060675400132, guid: c1cd93dbf065e8e4283e6ec2e8b67087, type: 3}
+  bulletsToPool: 60
+  blasterToPool: 60
+  meteorsToPool: 20
+  grenadestopool: 10
+  barragePool: 10
+  rapidLaserParticle: {fileID: 8299725223924072852, guid: 1fb0869decff76a4a99f70bdb3bbb0a6, type: 3}
+  blasterParticle: {fileID: 8440453472026985016, guid: 8c34e8bff5253ac4baab0157ecbd56a4, type: 3}
+  barrageParticle: {fileID: 5678371734946492674, guid: d572fa10a3e9f8849b62f026259d58f6, type: 3}
+  meteorParticle: {fileID: 1725379795280819340, guid: f103372bacb11ab47acde44077ab062f, type: 3}
+  chargeMuzzleParticle: {fileID: 5440658978756813532, guid: 0bd0c774fa657624da7a4de87754dd00, type: 3}
+  jumpMuzzleParticle: {fileID: 1460571390508789946, guid: 7ae4e3d6844668540be83808e45efcb7, type: 3}
+  canExpand: 0
+--- !u!114 &7085913204654997196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7085913204654997195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e826f65b4b64c0a478020c795f1e1062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerstagger: 0
+  firstTutComplete: 0
+  playerPosition: {fileID: 0}
+  playerDodgePosition: {fileID: 0}
+  slowMoTimeScale: 0.2
+  slowMoDuration: 0.3
