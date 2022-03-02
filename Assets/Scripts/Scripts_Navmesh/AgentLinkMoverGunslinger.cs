@@ -28,7 +28,7 @@ public class AgentLinkMoverGunslinger : MonoBehaviour
         while (true)
         {
             //Normal jumping
-            if (bossReference.dead)
+            if (!bossReference.dead && agent.isOnOffMeshLink && bossReference.phaseChanging == false)
             {
                 OnLinkStart?.Invoke();
                 if (m_Method == OffMeshLinkMoveMethodGunslinger.NormalSpeed)
@@ -47,7 +47,7 @@ public class AgentLinkMoverGunslinger : MonoBehaviour
                 OnLinkEnd?.Invoke();
             }
             //Teleport
-            if (bossReference.dead)
+            if (!bossReference.dead && agent.isOnOffMeshLink && bossReference.phaseChanging == false)
             {
                 OnLinkStart?.Invoke();
                 yield return StartCoroutine(NormalSpeed(agent));
