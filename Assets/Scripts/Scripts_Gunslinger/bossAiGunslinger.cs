@@ -74,8 +74,6 @@ public class bossAiGunslinger : MonoBehaviour
     [SerializeField] float walkPointRange;
     [Space(10)]
     //Boss attacking
-    [Tooltip("The time between each attack for each phase")]
-    [SerializeField] float timeBetweenAttacks;
     [Tooltip("the cooldown for attacks")]
     [SerializeField] float attackCooldown;
     [Tooltip("The minimum and maximum timer range between attacks")]
@@ -126,7 +124,6 @@ public class bossAiGunslinger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Phase1Pattern()); //Starts phase 1
         currentphase = 1;
         Phase1Stats();
     }
@@ -151,7 +148,7 @@ public class bossAiGunslinger : MonoBehaviour
     {
         if (currentphase == 1)
         {
-            
+            bossAnimator.SetFloat("isWalking", Mathf.Abs(bossNavAgent.speed));
         }
     }
 
@@ -177,6 +174,15 @@ public class bossAiGunslinger : MonoBehaviour
         {
             Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z); //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
             transform.LookAt(targetPostition);
+        }
+    }
+
+    void CooldownTimer()
+    {
+        attackCooldown -= Time.deltaTime;
+        if (attackCooldown <= 0)
+        {
+            attackCooldown = Random.Range(attackCooldownMin, attackCooldownMax);
         }
     }
 
@@ -235,35 +241,31 @@ public class bossAiGunslinger : MonoBehaviour
     {
         if (currentphase == 1)
         {
+            CooldownTimer();
             Phase1Pattern(); //Phase 1
             playerInAttackRangeP1 = Physics.CheckSphere(transform.position, attackRange, bossPlayerDetector);
-            if (!playerInSightRange && !playerInAttackRangeP1) BossPatroling(); //Patrol if the boss can't find the player
-            if (playerInSightRange && !playerInAttackRangeP1) BossChasePlayer(); //Chase the player if they are in sight range
-            if (playerInAttackRangeP1 && playerInSightRange) BossAttackPlayer(); //Attack the player if they are in attack range
         }
     }
 
-    IEnumerator Phase1Pattern()
+    void Phase1Pattern()
     {
-        while (true && !dead)
+        BossPatroling();
+        /*if (attackCooldown <= 0.05)
         {
-            yield return new WaitForSeconds(0);
-            if (playerInAttackRangeP1)
-            {
-                randAttack = Random.Range(1, 4);
-                yield return new WaitForSeconds(timeBetweenAttacks);
-            }
-        }
+            //When the boss's cooldown reaches 0, generate a number to choose which attack to hit the player with
+            randAttack = Random.Range(1, 7);
+            BossAttackPlayer();
+        }*/
     }
     void Phase1Stats()
     {
-        timeBetweenAttacks = 3f;
+        attackCooldown = 7f;
         bossNavAgent.speed = bossMoveSpeedP1;
         attackRange = 5;
         sightRange = 1000;
-        bossNavAgent.angularSpeed = 200;
-        bossNavAgent.acceleration = 10;
-        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.angularSpeed = 500;
+        bossNavAgent.acceleration = 150;
+        bossNavAgent.stoppingDistance = 2;
         bossNavAgent.autoBraking = true;
     }
 
