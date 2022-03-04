@@ -6,8 +6,8 @@ public class RC_Hurtbox : MonoBehaviour
 {
     [SerializeField]
     bossAiRobocapo bossAiReference;
-    [SerializeField]
-    int hurtboxDamage;
+    
+    int hurtboxDamage = 25;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Weapon")

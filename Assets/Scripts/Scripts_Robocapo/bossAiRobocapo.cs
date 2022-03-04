@@ -121,7 +121,7 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] GameObject SweeperSphere;
 
     [SerializeField] GameObject rightBayonet;
-    [SerializeField] GameObject lefttBayonet;
+    [SerializeField] GameObject leftBayonet;
 
     [SerializeField] GameObject bulletEmmitterLeft;
     [SerializeField] GameObject bulletEmmitterRight;
@@ -145,6 +145,13 @@ public class bossAiRobocapo : MonoBehaviour
     public bool attackSet = true;
 
 
+    //DEBUG Variables
+
+    //Use this to disable the vulnurability mechanic
+    bool Debug_InfiniteVulnurability = true;
+    [SerializeField] Text TxtDebug_CurrentPhase;
+
+
     void Awake()
     {
         instance = this;
@@ -165,7 +172,7 @@ public class bossAiRobocapo : MonoBehaviour
 
         //Add to the hurtbox list
         attackHitboxesWeapons.Add(rightBayonet);
-        attackHitboxesWeapons.Add(lefttBayonet);
+        attackHitboxesWeapons.Add(leftBayonet);
         attackHitboxesWeapons.Add(chargeHitbox);
         attackHitboxesWeapons.Add(SweeperSphere);
         attackHitboxesWeapons.Add(rightTonfa);
@@ -184,9 +191,10 @@ public class bossAiRobocapo : MonoBehaviour
         //Phase1Stats();
     }
 
-
     void Update()
     {
+        TxtDebug_CurrentPhase.text = currentphase.ToString(); 
+
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
         playerInAttackRange = Physics.CheckSphere(attackTrigger.transform.position, attackRange, bossPlayerDetector); //checks for attack range
         PlayerTracking();
@@ -205,6 +213,36 @@ public class bossAiRobocapo : MonoBehaviour
         PhaseAiStates();
         Debug.Log(randAttackTime);
         randAttackTracker.text = randAttack.ToString();
+
+
+        //Phase Setter
+        if (bossHealth <= 750 && currentphase == 1)
+        {
+            attackTrigger.SetActive(false);
+            currentphase = 2;
+            //Phase2Transition();
+        }
+
+        if (bossHealth <= 500 && currentphase == 2)
+        {
+            attackTrigger.SetActive(false);
+            currentphase = 3;
+
+        }
+
+        if (bossHealth <= 250 && currentphase == 3)
+        {
+            attackTrigger.SetActive(false);
+            currentphase = 4;
+        }
+
+        if (bossHealth <= 0)
+        {
+            attackTrigger.SetActive(false);
+            currentphase = 5;
+            dead = true;
+            bossAnimator.SetTrigger("Death");
+        }
 
     }
     void FixedUpdate()
@@ -230,14 +268,13 @@ public class bossAiRobocapo : MonoBehaviour
     {
         if (!dead)
         {
-            bossAnimator.SetFloat("isWalking", Mathf.Abs(bossNavAgent.speed));
-            
+            bossAnimator.SetFloat("isWalking", Mathf.Abs(bossNavAgent.speed));    
         }
     }
 
     void PhaseAiStates()
     {
-        if (currentphase == 1)
+        if (currentphase == 1 || currentphase == 3 || currentphase == 4)
         {
             //Phase1Pattern();
             
@@ -260,6 +297,7 @@ public class bossAiRobocapo : MonoBehaviour
             {
                 behaviorTracker.text = "Charging";
             }
+            
             /*
             else if (!playerInSightRange && !playerInAttackRange)
             {
@@ -271,20 +309,18 @@ public class bossAiRobocapo : MonoBehaviour
             if (playerInSightRange && !playerInAttackRange) BossChasePlayer();
             if (playerInSightRange && playerInAttackRange) BossAttackPlayer();
             */
-            if (bossHealth <= 750)
-            {
-                attackTrigger.SetActive(false);
-                currentphase = 2;
-                //Phase2Transition();
-            }
+
+            
         }
+        
+        
         if (currentphase == 2)
         {
             //Phase2Pattern();
             //Searching for the player tag within its FOV radius
             Collider[] rangeChecks = Physics.OverlapSphere(transform.position, fovRadius, bossPlayerDetector);
-            if (!playerInSightRange && !playerInLos) BossPatroling(); //Patrol if the boss can't find the player
-            if (playerInSightRange && !playerInLos) BossChasePlayer(); //Chase the player if they are in sight range
+            //if (!playerInSightRange && !playerInLos) BossPatroling(); //Patrol if the boss can't find the player
+            //if (playerInSightRange && !playerInLos) BossChasePlayer(); //Chase the player if they are in sight range
             if (rangeChecks.Length != 0) //Attack the player if they are within line of sight and in range
             {
                 Transform fovTarget = rangeChecks[0].transform; //Checks for colliders
@@ -313,20 +349,10 @@ public class bossAiRobocapo : MonoBehaviour
             {
                 playerInLos = false;
             }
-            if (playerInLos) BossAttackPlayer(); 
+            
+            if (playerInLos) BossAttackPlayer();    
         }
-        if (currentphase == 3)
-        {
 
-        }
-        if (currentphase == 4)
-        {
-
-        }
-        if (currentphase == 5)
-        {
-            dead = true;
-        }
     }
 
 
@@ -388,25 +414,46 @@ public class bossAiRobocapo : MonoBehaviour
         {
             randAttack = Random.Range(1, 8);
 
-            if (randAttack <= 2)
+            if(currentphase == 1)
             {
-                bossAnimator.SetBool("3Hit",true);
+                if (randAttack <= 2 || randAttack == 3)
+                {
+                    bossAnimator.SetBool("3Hit", true);
+                }
+
+                if (randAttack == 4 || randAttack == 7)
+                {
+                    bossAnimator.SetTrigger("WindmillCharge");
+                }
+                if (randAttack == 5 || randAttack == 6)
+                {
+                    bossAnimator.SetBool("WindUpOverhead", true);
+                }
+                
             }
-            if (randAttack == 3)
+
+            else if (currentphase == 2)
             {
-                bossAnimator.SetBool("basicAttack",true);
+                if(randAttack <= 5)
+                {
+                    bossAnimator.SetBool("ShotLoop", true);
+                }
+                else
+                {
+                    bossAnimator.SetTrigger("Gunspin");
+                }
             }
-            if (randAttack == 4)
+
+            else if(currentphase == 3)
             {
-                bossAnimator.SetTrigger("WindmillCharge");
-            }
-            if (randAttack == 5 || randAttack == 6)
-            {
-                bossAnimator.SetBool("WindUpOverhead",true);
-            }
-            if (randAttack == 7)
-            {
-                bossAnimator.SetTrigger("DoubleWind");
+                if(randAttack <= 3)
+                {
+                    bossAnimator.SetBool("basicAttack", true);
+                }
+                else
+                {
+                    bossAnimator.SetTrigger("DoubleWind");
+                }
             }
             attackSet = true;
         }
@@ -437,7 +484,7 @@ public class bossAiRobocapo : MonoBehaviour
 
     public void rcTakeDamage(int damage)
     {
-        if (vulnurable)
+        if (vulnurable || Debug_InfiniteVulnurability)
         {
             bossHealth -= damage;
             bossHealthbar.value = bossHealth;
@@ -476,7 +523,7 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.speed = dashSpeed;
         bossNavAgent.angularSpeed = 600;
         bossNavAgent.acceleration = 500;
-        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.stoppingDistance = 10;
         bossNavAgent.autoBraking = true;
     }
 
@@ -550,7 +597,37 @@ public class bossAiRobocapo : MonoBehaviour
 
     void DisableRightBayonet()
     {
-        rightBayonet.SetActive(true);
+        rightBayonet.SetActive(false);
+    }
+
+    void ActivateLeftBayonet()
+    {
+        leftBayonet.SetActive(true);
+    }
+
+    void DisableLeftBayonet()
+    {
+        leftBayonet.SetActive(false);
+    }
+
+    void ActivateRightTonfa()
+    {
+        rightTonfa.SetActive(true);
+    }
+
+    void DisableRightTonfa()
+    {
+        rightTonfa.SetActive(false);
+    }
+
+    void ActivateLeftTonfa()
+    {
+        leftTonfa.SetActive(true);
+    }
+
+    void DisableLeftTonfa()
+    {
+        leftTonfa.SetActive(false);
     }
 
     void leftBuckshot()
@@ -614,6 +691,11 @@ public class bossAiRobocapo : MonoBehaviour
     {
         chargeHitbox.SetActive(false);
         charging = false;
+    }
+
+    void endTracking()
+    {
+        playerTracking = false;
     }
 
     void activateSweepingAttack()
