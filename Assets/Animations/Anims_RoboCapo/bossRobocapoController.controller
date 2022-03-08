@@ -1208,7 +1208,7 @@ AnimatorStateMachine:
     m_Position: {x: 995, y: 125, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4213423230148385470}
-    m_Position: {x: 60, y: -170, z: 0}
+    m_Position: {x: 120, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1828307860940241560}
     m_Position: {x: 420, y: -220, z: 0}
@@ -1401,8 +1401,8 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_CycleOffsetParameter: isWalking
+  m_TimeParameter: isWalking
 --- !u!1102 &4213423230148385470
 AnimatorState:
   serializedVersion: 6

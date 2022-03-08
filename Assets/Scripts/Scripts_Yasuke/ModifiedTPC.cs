@@ -98,7 +98,7 @@ public class ModifiedTPC : MonoBehaviour
 	public bool blocking;
 	GameObject boss;
 	Animator bossAni;
-	GameObject weaponobj;
+	[SerializeField] GameObject weaponobj;
 	public Collider weapon;
 	Animator charAni;
 	Vector2 Lookvalues = new Vector2();
@@ -619,4 +619,9 @@ public class ModifiedTPC : MonoBehaviour
     {
 		dodgeMeter.value = dodgeTimeoutDelta;
     }
+
+	public void disableWeapon()
+    {
+		weapon.enabled = false;
+	}
 }

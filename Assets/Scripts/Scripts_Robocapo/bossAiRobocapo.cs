@@ -143,7 +143,7 @@ public class bossAiRobocapo : MonoBehaviour
     float minAtkCooldown = 3.5f;
     float maxAtkCooldown = 6f;
     public bool attackSet = true;
-
+    
 
     //DEBUG Variables
 
@@ -193,6 +193,8 @@ public class bossAiRobocapo : MonoBehaviour
 
     void Update()
     {
+       
+
         TxtDebug_CurrentPhase.text = currentphase.ToString(); 
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
@@ -211,7 +213,7 @@ public class bossAiRobocapo : MonoBehaviour
         }
 
         PhaseAiStates();
-        Debug.Log(randAttackTime);
+        //Debug.Log(randAttackTime);
         randAttackTracker.text = randAttack.ToString();
 
 
@@ -288,14 +290,14 @@ public class bossAiRobocapo : MonoBehaviour
                 BossAttackPlayer();
                 behaviorTracker.text = "Attacking";
             }
-            else if(!charging)
+            else if(charging)
             {
-                BossIdle();
-                behaviorTracker.text = "Idle";
+                behaviorTracker.text = "Charging";
             }
             else
             {
-                behaviorTracker.text = "Charging";
+                BossIdle();
+                behaviorTracker.text = "Idle";
             }
             
             /*
@@ -350,7 +352,26 @@ public class bossAiRobocapo : MonoBehaviour
                 playerInLos = false;
             }
             
-            if (playerInLos) BossAttackPlayer();    
+            //if (playerInLos) BossAttackPlayer();
+
+            ///ALTERNATE SETUP
+            if (!attackSet && !playerInAttackRange && playerInLos)
+            {
+                //RangedAttacks
+                Phase2RangedAttackList();
+                behaviorTracker.text = "Ranged Attacks";
+            }
+            else if (!attackSet && playerInAttackRange)
+            {
+                BossAttackPlayer();
+                behaviorTracker.text = "Melee Attacking";
+            }
+            
+            else
+            {
+                BossIdle();
+                behaviorTracker.text = "Idle";
+            }
         }
 
     }
@@ -404,6 +425,21 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.speed = dashSpeed;
     }
 
+    void Phase2RangedAttackList()
+    {
+        if (!attackSet)
+        {
+            if (randAttack <= 5)
+            {
+                bossAnimator.SetBool("ShotLoop", true);
+            }
+            else
+            {
+                bossAnimator.SetTrigger("Gunspin");
+            }
+        }
+    }
+
     void BossAttackPlayer()
     {
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
@@ -414,13 +450,13 @@ public class bossAiRobocapo : MonoBehaviour
         {
             randAttack = Random.Range(1, 8);
 
-            if(currentphase == 1)
+            if(currentphase == 1 || currentphase == 2)
             {
                 if (randAttack <= 2 || randAttack == 3)
                 {
                     bossAnimator.SetBool("3Hit", true);
                 }
-
+                /*
                 if (randAttack == 4 || randAttack == 7)
                 {
                     bossAnimator.SetTrigger("WindmillCharge");
@@ -429,9 +465,14 @@ public class bossAiRobocapo : MonoBehaviour
                 {
                     bossAnimator.SetBool("WindUpOverhead", true);
                 }
-                
-            }
+                */
+                else
+                {
+                    bossAnimator.SetBool("WindUpOverhead", true);
+                }
 
+            }
+            /*
             else if (currentphase == 2)
             {
                 if(randAttack <= 5)
@@ -443,7 +484,7 @@ public class bossAiRobocapo : MonoBehaviour
                     bossAnimator.SetTrigger("Gunspin");
                 }
             }
-
+            */
             else if(currentphase == 3)
             {
                 if(randAttack <= 3)
@@ -558,8 +599,8 @@ public class bossAiRobocapo : MonoBehaviour
             yield return new WaitForSeconds(0);
             if (playerInAttackRange)
             {
-                //Debug.Log("I hit you with imaginary tonfas");
-                randAttack = Random.Range(1, 4);
+                
+                randAttack = Random.Range(1, 8);
                 yield return new WaitForSeconds(timeBetweenAttacksP1);
             }
         }

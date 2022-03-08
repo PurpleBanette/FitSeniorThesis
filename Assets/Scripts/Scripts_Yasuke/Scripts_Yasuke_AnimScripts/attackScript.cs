@@ -20,18 +20,20 @@ public class attackScript : StateMachineBehaviour
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    /*
+   
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(charctrl.inputRecieved)
-        {
-            nextAttack = true;
-            animator.SetTrigger("Attack2");
-            
-        }
-        
+        /*
+       if(charctrl.inputRecieved)
+       {
+           nextAttack = true;
+           animator.SetTrigger("Attack2");
+
+       }
+        */
+        charctrl.transform.LookAt(new Vector3(bossAiRobocapo.instance.transform.position.x,charctrl.transform.position.y,bossAiRobocapo.instance.transform.position.z));
     }
-    */
+
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

@@ -13,6 +13,8 @@ public class RC_Hurtbox : MonoBehaviour
         if (other.transform.tag == "Weapon")
         {
             //Debug.Log("Ive Been Hit");
+            hitPause.instance.INevarFreeze();
+            ModifiedTPC.instance.disableWeapon();
             bossAiReference.rcTakeDamage(hurtboxDamage);
         }
     }
