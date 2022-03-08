@@ -19,7 +19,7 @@ public class bossAiGunslinger : MonoBehaviour
     [Tooltip("A bool that determines if the boss is dead")]
     public bool dead;
     [Tooltip("The boss's health slider")]
-    [SerializeField] Slider bossHealthbar;
+    public Slider bossHealthbar;
     [Tooltip("The movement speed of the boss during each phase")]
     public float bossMoveSpeedP1, bossMoveSpeedP2, bossMoveSpeedP3, bossMoveSpeedP4;
     [Tooltip("Checks if the boss is in the middle of an attack animation")]
@@ -92,7 +92,7 @@ public class bossAiGunslinger : MonoBehaviour
     [Tooltip("Checks if boss is grounded")]
     public bool bossGrounded;
     [Tooltip("the sphere radius of the boss's ground detection")]
-    float bossGroundedRadius = 2f;
+    float bossGroundedRadius = 4f;
     [Tooltip("bool to check if the boss is changing phases")]
     public bool phaseChanging;
 
@@ -101,7 +101,7 @@ public class bossAiGunslinger : MonoBehaviour
     public float InvincibleFrameTimer = 0.25f;
     public bool hitTick = false;
 
-    [Header("Fixed Damage Attacks")]
+    [Header("Fixed Damage Attacks")] 
     public int placeholder1;
 
     [Header("Particles and Effects")]
@@ -132,7 +132,7 @@ public class bossAiGunslinger : MonoBehaviour
     void Update()
     {
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, bossPlayerDetector); //checks for sight range
-        bossHealthbar.value = bossHealth; //Updates the boss's health each frame
+        //bossHealthbar.value = bossHealth; //Updates the boss's health each frame
         PlayerTracking();
         PhaseStates();
         InvincibilityDetection();
@@ -154,7 +154,10 @@ public class bossAiGunslinger : MonoBehaviour
 
     private void HandleLinkStart() //Controls animations when the boss interacts with jumpable navmesh links
     {
- 
+        if (currentphase == 1)
+        {
+            bossAnimator.SetTrigger("jumpP1");
+        }
     }
 
     private void HandleLinkEnd() //Controls animations when the boss interacts with jumpable navmesh links
