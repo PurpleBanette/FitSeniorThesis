@@ -33,7 +33,7 @@ public class DodgeBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "EnemyProjectile")
+        if (other.transform.tag == "EnemyProjectile" || other.transform.tag == "EnemyAttackTriggers")
         {
             Debug.Log("successfull Dodge");
             //StartCoroutine(GameMaster.gm.activateSlowMo());

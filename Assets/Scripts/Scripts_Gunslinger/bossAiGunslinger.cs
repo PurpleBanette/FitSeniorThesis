@@ -31,6 +31,10 @@ public class bossAiGunslinger : MonoBehaviour
 
     //Information about projectiles
     [Header("Projectiles Information")]
+    [SerializeField] Transform revolverBulletPosition;
+    [SerializeField] GameObject revolverBullet;
+    [SerializeField] float revolverBulletShootForce, revolverBulletUpwardForce;
+    [SerializeField] float revolverBulletSpread;
 
     //Information regarding the player
     [Header("Player Information")]
@@ -100,12 +104,17 @@ public class bossAiGunslinger : MonoBehaviour
     public List<GameObject> hurtboxes;
     public float InvincibleFrameTimer = 0.25f;
     public bool hitTick = false;
+    public int damageDaggerSpin;
+    [Tooltip("the hitbox for gunslinger's dagger spin")]
+    public List<GameObject> daggerSpinHitboxes;
 
     [Header("Fixed Damage Attacks")] 
     public int placeholder1;
 
     [Header("Particles and Effects")]
     public int placeholder2;
+
+    int revolverBulletPoolManager = 0;
 
 
     void Awake()
@@ -165,7 +174,7 @@ public class bossAiGunslinger : MonoBehaviour
 
     }
 
-    void BossAttackPlayer()
+    public void BossAttackPlayer()
     {
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
     }
@@ -178,6 +187,15 @@ public class bossAiGunslinger : MonoBehaviour
             Vector3 targetPostition = new Vector3(player.position.x, this.transform.position.y, player.position.z); //The Y position uses the boss's Y position so that the boss does not rotate vertically based on the player's vertical position
             transform.LookAt(targetPostition);
         }
+    }
+    void PlayerTrackFalse()
+    {
+        playerTracking = false;
+    }
+
+    void PlayerTrackTrue()
+    {
+        playerTracking = true;
     }
 
     void CooldownTimer()
@@ -305,6 +323,24 @@ public class bossAiGunslinger : MonoBehaviour
         if (currentphase == 1)
         {
             bossNavAgent.SetDestination(player.position);
+        }
+    }
+    void AttackRevolverShoot()
+    {
+        revolverBulletPoolManager = objectPoolGunslinger.instance.GetPooledObjectManaged(objectPoolGunslinger.instance.pooledBullets, revolverBulletPoolManager, playerTarget, revolverBulletPosition, revolverBulletSpread, null, revolverBulletShootForce);
+    }
+    void ActivateHitboxDaggerSpin()
+    {
+        foreach (var hitboxp in daggerSpinHitboxes)
+        {
+            hitboxp.SetActive(true);
+        }
+    }
+    void DeactivateHitboxDaggerSpin()
+    {
+        foreach (var hitboxp in daggerSpinHitboxes)
+        {
+            hitboxp.SetActive(false);
         }
     }
 }
