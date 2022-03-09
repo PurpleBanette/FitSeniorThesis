@@ -620,6 +620,10 @@ public class ModifiedTPC : MonoBehaviour
 		dodgeMeter.value = dodgeTimeoutDelta;
     }
 
+	void enableWeapon()
+    {
+		weapon.enabled = true;
+    }
 	public void disableWeapon()
     {
 		weapon.enabled = false;

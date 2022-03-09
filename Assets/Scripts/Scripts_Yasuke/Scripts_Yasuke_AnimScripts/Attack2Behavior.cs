@@ -6,10 +6,12 @@ public class Attack2Behavior : StateMachineBehaviour
 {
     ModifiedTPC charctrl;
     bool nextAttack;
+    GameObject boss;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         charctrl = animator.GetComponent<ModifiedTPC>();
-        charctrl.weapon.enabled = true;
+        boss = GameObject.FindGameObjectWithTag("Boss");
+        //charctrl.weapon.enabled = true;
         charctrl.canFall = false;
         charctrl.inAttack2 = true;
     }
@@ -25,7 +27,7 @@ public class Attack2Behavior : StateMachineBehaviour
                 animator.SetTrigger("Attack3");
             }
         */
-        charctrl.transform.LookAt(new Vector3(bossAiRobocapo.instance.transform.position.x, charctrl.transform.position.y, bossAiRobocapo.instance.transform.position.z));
+        charctrl.transform.LookAt(new Vector3(boss.transform.position.x, charctrl.transform.position.y, boss.transform.position.z));
     }
     
 
