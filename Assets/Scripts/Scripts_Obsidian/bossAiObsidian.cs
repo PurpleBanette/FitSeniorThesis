@@ -231,7 +231,7 @@ public class bossAiObsidian : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         bossNavAgent = GetComponent<NavMeshAgent>();
         bossCapsuleCollider = GetComponent<CapsuleCollider>();
-
+        
         linkMover = GetComponent<AgentLinkMoverObsidian>();
         linkMover.OnLinkStart += HandleLinkStart;
         linkMover.OnLinkEnd += HandleLinkEnd;

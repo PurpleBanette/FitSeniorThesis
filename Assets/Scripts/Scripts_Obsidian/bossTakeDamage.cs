@@ -9,8 +9,10 @@ public class bossTakeDamage : MonoBehaviour
     {
         if (other.transform.tag == "Weapon")
         {
-            bossAiObsidian.instance.bossHealth -= hurtboxDamage;
+            bossAiObsidian.instance.bossHealth -= hurtboxDamage * 3;
             bossAiObsidian.instance.hitTick = true;
+            hitPause.instance.INevarFreeze();
+            ModifiedTPC.instance.disableWeapon();
         }
     }
     private void Update()
