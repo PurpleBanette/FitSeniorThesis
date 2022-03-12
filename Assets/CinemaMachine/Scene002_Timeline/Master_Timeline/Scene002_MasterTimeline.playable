@@ -188,6 +188,29 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 4ec0875ae86a6b2468a4eb25286d562e
     defaultValue: {fileID: 0}
+--- !u!114 &-6086387461464086980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48853ae485fa386428341ac1ea122570, type: 3}
+  m_Name: ControlPlayableAsset(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  sourceGameObject:
+    exposedName: fec4885613b683142a5fabf42bd89b09
+    defaultValue: {fileID: 0}
+  prefabGameObject: {fileID: 0}
+  updateParticle: 1
+  particleRandomSeed: 770
+  updateDirector: 1
+  updateITimeControl: 1
+  searchHierarchy: 0
+  active: 1
+  postPlayback: 2
 --- !u!114 &-5888312081734868765
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -432,10 +455,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: CM_V_Scene002_Shot_005
   - m_Version: 1
-    m_Start: 25.35
+    m_Start: 24.3
     m_ClipIn: 0
     m_Asset: {fileID: -7727211619661732901}
-    m_Duration: 3.8166666666666664
+    m_Duration: 4.866666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -5261663802273424493}
     m_EaseInDuration: 0
@@ -1149,10 +1172,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 25.2
-    m_ClipIn: 0
+    m_Start: 28.783333333333335
+    m_ClipIn: 2.241666666666667
     m_Asset: {fileID: -1354385862426985625}
-    m_Duration: 35.650000000000006
+    m_Duration: 32.06666666666666
     m_TimeScale: 0.5
     m_ParentTrack: {fileID: -3935864709502675405}
     m_EaseInDuration: 0
@@ -1562,6 +1585,144 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: -----Scene002_INT_Yasuke_Shot005_009-----
+  - m_Version: 1
+    m_Start: 24.1
+    m_ClipIn: 0
+    m_Asset: {fileID: -6086387461464086980}
+    m_Duration: 3.3166666666666664
+    m_TimeScale: 0.5
+    m_ParentTrack: {fileID: -3935864709502675405}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: -----Scene002_INT_Yasuke_Shot005_009-----
+  - m_Version: 1
+    m_Start: 27.416666666666668
+    m_ClipIn: 0.9749999999999996
+    m_Asset: {fileID: 2489488331562370234}
+    m_Duration: 1.3666666666666671
+    m_TimeScale: 0.5
+    m_ParentTrack: {fileID: -3935864709502675405}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: 0
+    m_BlendOutDuration: 0
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: -----Scene002_INT_Yasuke_Shot005_009-----
   m_Markers:
     m_Objects:
     - {fileID: -988965174615416686}
@@ -1860,7 +2021,7 @@ MonoBehaviour:
     m_Start: 21.366666666666667
     m_ClipIn: 0
     m_Asset: {fileID: 8866452202592978158}
-    m_Duration: 3.9833333333333343
+    m_Duration: 2.9333333333333336
     m_TimeScale: 1
     m_ParentTrack: {fileID: -295283390057706684}
     m_EaseInDuration: 0
@@ -1929,7 +2090,7 @@ MonoBehaviour:
     m_Start: 29.166666666666668
     m_ClipIn: 0
     m_Asset: {fileID: -7832541542745476041}
-    m_Duration: 5.599999999999998
+    m_Duration: 3.6833333333333336
     m_TimeScale: 1
     m_ParentTrack: {fileID: -295283390057706684}
     m_EaseInDuration: 0
@@ -2010,10 +2171,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: CM_V_Scene002_Shot_009_Pau_B
   - m_Version: 1
-    m_Start: 34.766666666666666
+    m_Start: 32.85
     m_ClipIn: 0
     m_Asset: {fileID: -7734680422077028165}
-    m_Duration: 2.06666666666667
+    m_Duration: 3.9833333333333343
     m_TimeScale: 1
     m_ParentTrack: {fileID: -295283390057706684}
     m_EaseInDuration: 0
@@ -3324,6 +3485,29 @@ MonoBehaviour:
   searchHierarchy: 0
   active: 1
   postPlayback: 2
+--- !u!114 &2489488331562370234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48853ae485fa386428341ac1ea122570, type: 3}
+  m_Name: ControlPlayableAsset(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  sourceGameObject:
+    exposedName: f59d0a92dc1c0f945b9e1c4052206422
+    defaultValue: {fileID: 0}
+  prefabGameObject: {fileID: 0}
+  updateParticle: 1
+  particleRandomSeed: 770
+  updateDirector: 1
+  updateITimeControl: 1
+  searchHierarchy: 0
+  active: 1
+  postPlayback: 2
 --- !u!114 &2848797443081717700
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3365,7 +3549,7 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 3.5766666666666658
     m_Asset: {fileID: 3033775694009109488}
-    m_Duration: 30.820833333332917
+    m_Duration: 36.833333333333336
     m_TimeScale: 0.8
     m_ParentTrack: {fileID: 3004113248533029917}
     m_EaseInDuration: 0
@@ -3431,7 +3615,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: --------Scene002_Cam_Transfrom------------
   - m_Version: 1
-    m_Start: 30.820833333332917
+    m_Start: 36.833333333333336
     m_ClipIn: 0
     m_Asset: {fileID: 649295952537266777}
     m_Duration: 83.34583333333377
