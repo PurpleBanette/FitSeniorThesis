@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/CharacterActions.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Scripts_Yasuke/CharacterActions.inputactions'
 
 using System;
 using System.Collections;
