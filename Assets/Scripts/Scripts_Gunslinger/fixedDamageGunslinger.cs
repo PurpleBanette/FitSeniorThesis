@@ -13,7 +13,7 @@ public class fixedDamageGunslinger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player" && name == "hitbox_daggerSpin")
+        if (other.transform.tag == "Player" && name == "hitbox_daggerSpin" && !ModifiedTPC.instance.blocking)
         {
             ModifiedTPC.instance.health -= bossAiGunslinger.instance.damageDaggerSpin;
             ModifiedTPC.instance.FixedHealthUpdate();
