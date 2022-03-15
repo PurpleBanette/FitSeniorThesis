@@ -17,7 +17,7 @@ public class bossAiRobocapo : MonoBehaviour
     [Tooltip("The boss's health")]
     public int bossHealth = 1000;
     [Tooltip("The current phase of the boss")]
-    [SerializeField] int currentphase;
+    public int currentphase;
     [Tooltip("A bool that determines if the boss is dead")]
     [SerializeField] bool dead = false;
     [Tooltip("The boss's health slider")]
@@ -70,6 +70,9 @@ public class bossAiRobocapo : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange, playerInLos;
     [Tooltip("A bool used to force the boss to look at the player")]
     public bool playerTracking = false;
+    [Tooltip("Checks if boss is grounded")]
+    public bool bossGrounded;
+    float bossGroundedRadius = 5f;
     [Space(10)]
     //Patroling
     [Tooltip("The walkpoint that the AI goes to")]
@@ -92,6 +95,8 @@ public class bossAiRobocapo : MonoBehaviour
     public int bossWaypointIndex;
     [Tooltip("The minimum and maximum waypoints. The first number should always be 0 and the last number should by +1 more than the total number of waypoints. If there are 16 waypoints, the number for the maximum must be 17")]
     public int bossWaypointMin, bossWaypointMax;
+    [SerializeField] float randomJumpTimer = 10f;
+    public bool shotLoopChecker;
     //Hitboxes
     [Header("Hitbox Information")]
     [Tooltip("A gameobject with a trigger that detects the player")]
@@ -212,10 +217,11 @@ public class bossAiRobocapo : MonoBehaviour
             }
         }
 
+        BossGroundCheck();
+        JumpDeltaTimer();
         PhaseAiStates();
         //Debug.Log(randAttackTime);
         randAttackTracker.text = randAttack.ToString();
-
 
         //Phase Setter
         if (bossHealth <= 750 && currentphase == 1)
@@ -429,15 +435,34 @@ public class bossAiRobocapo : MonoBehaviour
     {
         if (!attackSet)
         {
-            if (randAttack <= 5)
+            randAttack = Random.Range(7, 9);
+            if (currentphase == 1 || currentphase == 2)
+            {
+                if (randAttack == 7)
+                {
+                    bossAnimator.SetTrigger("Gunspin");
+                }
+                if (randAttack == 8)
+                {
+                    bossAnimator.SetBool("ShotLoop", true);
+                    shotLoopChecker = true;
+                }
+                attackSet = true;
+            }
+            /*if (randAttack <= 5)
             {
                 bossAnimator.SetBool("ShotLoop", true);
             }
             else
             {
                 bossAnimator.SetTrigger("Gunspin");
-            }
+            }*/
+
+            
         }
+
+
+
     }
 
     void BossAttackPlayer()
@@ -446,9 +471,38 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.speed = 0f;
 
         Debug.Log("attackTick");
-        if (!attackSet)
+        if (!attackSet && !robocapoPlayerRangeDetectorSphere.instance.playerTooFarAway)
         {
-            randAttack = Random.Range(1, 8);
+            randAttack = Random.Range(1, 7);
+            if (currentphase == 1 || currentphase == 2)
+            {
+                if (randAttack == 1)
+                {
+                    bossAnimator.SetBool("TripleStab", true);
+                }
+                if (randAttack == 2)
+                {
+                    bossAnimator.SetTrigger("WindmillCharge");
+                }
+                if (randAttack == 3)
+                {
+                    bossAnimator.SetBool("3Hit", true);
+                }
+                if (randAttack == 4)
+                {
+                    bossAnimator.SetBool("WindUpOverhead", true);
+                }
+                if (randAttack == 5)
+                {
+                    bossAnimator.SetTrigger("DoubleWind");
+                }
+                if (randAttack == 6)
+                {
+                    bossAnimator.SetBool("basicAttack", true);
+                }
+                attackSet = true;
+            }
+            /*randAttack = Random.Range(1, 8);
 
             if(currentphase == 1 || currentphase == 2)
             {
@@ -465,13 +519,16 @@ public class bossAiRobocapo : MonoBehaviour
                 {
                     bossAnimator.SetBool("WindUpOverhead", true);
                 }
-                */
+                
                 else
                 {
                     bossAnimator.SetBool("WindUpOverhead", true);
                 }
 
-            }
+            }*/
+
+
+
             /*
             else if (currentphase == 2)
             {
@@ -485,7 +542,7 @@ public class bossAiRobocapo : MonoBehaviour
                 }
             }
             */
-            else if(currentphase == 3)
+            /*else if(currentphase == 3)
             {
                 if(randAttack <= 3)
                 {
@@ -496,7 +553,7 @@ public class bossAiRobocapo : MonoBehaviour
                     bossAnimator.SetTrigger("DoubleWind");
                 }
             }
-            attackSet = true;
+            attackSet = true;*/
         }
 
         //resets the cooldown for attacks
@@ -746,5 +803,36 @@ public class bossAiRobocapo : MonoBehaviour
     void disableSweepingAttack()
     {
 
+    }
+    void JumpDeltaTimer()
+    {
+        if (shotLoopChecker)
+        {
+            randomJumpTimer -= Time.deltaTime * 2;
+            if (randomJumpTimer <= 0)
+            {
+                bossAnimator.SetBool("ShotLoop", false);
+                bossAnimator.SetTrigger("jump");
+                randomJumpTimer = 10f;
+            }
+        }
+        else
+        {
+            randomJumpTimer = 10f;
+        }
+    }
+    void BossGroundCheck()
+    {
+        bossGrounded = Physics.CheckSphere(transform.position, bossGroundedRadius, bossTerrainDetector);
+        if (bossGrounded)
+        {
+            bossGrounded = true;
+            bossAnimator.SetBool("bossGrounded", true);
+        }
+        else
+        {
+            bossGrounded = false;
+            bossAnimator.SetBool("bossGrounded", false);
+        }
     }
 }
