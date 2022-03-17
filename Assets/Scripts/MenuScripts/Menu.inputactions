@@ -1,0 +1,74 @@
+{
+    "name": "Menu",
+    "maps": [
+        {
+            "name": "User",
+            "id": "04c6bb26-d29f-4c9a-9472-833bc0f33baf",
+            "actions": [
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "26dadaa3-79e1-463d-a4b5-889592547d7e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Close menu",
+                    "type": "Button",
+                    "id": "c92f2957-e867-4551-9ffc-377f6ff3a7d8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "88dbef95-2f58-4531-a371-0733276448b4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab3b3d24-a02f-4856-9a2e-53d4058ee69d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fd25ec5-f682-41b1-8255-f39910df855e",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ac5bad3-886d-4062-98c4-3afcaeb13b04",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Close menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
