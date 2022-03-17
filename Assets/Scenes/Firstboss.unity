@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: dodgeMeter
       value: 
       objectReference: {fileID: 1397726760}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: _controller
+      value: 
+      objectReference: {fileID: 69881495}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
 --- !u!4 &69881492 stripped
@@ -273,6 +277,11 @@ Transform:
 --- !u!4 &69881494 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6344335737636122910, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+  m_PrefabInstance: {fileID: 69881491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!143 &69881495 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 3621653895501476744, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
   m_PrefabInstance: {fileID: 69881491}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &187112042
@@ -884,7 +893,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-249064
+  m_Name: pb_Mesh30846
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
