@@ -9,6 +9,8 @@ public class objectPoolGunslinger : MonoBehaviour
 
     public List<GameObject> pooledmuzzleFlash;
 
+    public GameObject muzzleParticle;
+
     [SerializeField]
     GameObject revolverBullet;
 
@@ -21,6 +23,8 @@ public class objectPoolGunslinger : MonoBehaviour
         instance = this;
 
         poolSetup(revolverBullet, pooledBullets, bulletsToPool);
+
+        poolSetup(muzzleParticle, pooledmuzzleFlash, 5);
     }
 
 
