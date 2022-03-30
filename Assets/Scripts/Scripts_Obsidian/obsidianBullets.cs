@@ -55,7 +55,11 @@ public class obsidianBullets : MonoBehaviour
     {
         if (impactParticle != null) Instantiate(impactParticle, transform.position, Quaternion.identity);
 
-        gameObject.SetActive(false);
+        if (other.transform.tag != "roofRevolverTrigger")
+        {
+            gameObject.SetActive(false);
+        }
+        
         //rb.velocity = Vector3.zero;
     }
 }

@@ -96,7 +96,7 @@ public class bossAiGunslinger : MonoBehaviour
     [Tooltip("Checks if boss is grounded")]
     public bool bossGrounded;
     [Tooltip("the sphere radius of the boss's ground detection")]
-    float bossGroundedRadius = 4f;
+    [SerializeField] float bossGroundedRadius = 4f;
     [Tooltip("bool to check if the boss is changing phases")]
     public bool phaseChanging;
 
@@ -112,7 +112,10 @@ public class bossAiGunslinger : MonoBehaviour
     public int placeholder1;
 
     [Header("Particles and Effects")]
-    public int placeholder2;
+    [Tooltip("Particle for gunshots")]
+    [SerializeField] GameObject muzzleFlash;
+    [Tooltip("Particle positions for gunshots")]
+    [SerializeField] Transform muzzleFlashPositionRevolver;
 
     int revolverBulletPoolManager = 0;
 
@@ -327,7 +330,7 @@ public class bossAiGunslinger : MonoBehaviour
     }
     void AttackRevolverShoot()
     {
-        revolverBulletPoolManager = objectPoolGunslinger.instance.GetPooledObjectManaged(objectPoolGunslinger.instance.pooledBullets, revolverBulletPoolManager, playerTarget, revolverBulletPosition, revolverBulletSpread, null, revolverBulletShootForce);
+        revolverBulletPoolManager = objectPoolGunslinger.instance.GetPooledObjectManaged(objectPoolGunslinger.instance.pooledBullets, revolverBulletPoolManager, playerTarget, revolverBulletPosition, revolverBulletSpread, objectPoolGunslinger.instance.pooledmuzzleFlash, revolverBulletShootForce);
     }
     void ActivateHitboxDaggerSpin()
     {
@@ -343,4 +346,23 @@ public class bossAiGunslinger : MonoBehaviour
             hitboxp.SetActive(false);
         }
     }
+    void RevolverMuzzle()
+    {
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.tag == "EnemyAttackTriggers" && currentphase == 1)
+        {
+            bossAnimator.SetBool("roofRevolverBool", true);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "EnemyAttackTriggers" && currentphase == 1)
+        {
+            bossAnimator.SetBool("roofRevolverBool", false);
+        }
+    }
+    
 }

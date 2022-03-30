@@ -52751,6 +52751,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1273988209}
     - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: yasukeScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: yasukeScale.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: yasukeScale.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
       propertyPath: bossWeaponPrefab
       value: 
       objectReference: {fileID: 9023196529381823145, guid: 5071a7e95f9952843bae9b449d11a609, type: 3}
@@ -52758,6 +52770,42 @@ PrefabInstance:
       propertyPath: bossWeaponPosition
       value: 
       objectReference: {fileID: 775936838}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedScaleObsidian.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedScaleObsidian.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedScaleObsidian.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedPositionObsidian.x
+      value: 0.02714
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedPositionObsidian.y
+      value: 0.00884
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedPositionObsidian.z
+      value: -0.02558
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedRotationObsidian.x
+      value: 73.369
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedRotationObsidian.y
+      value: 10.414
+      objectReference: {fileID: 0}
+    - target: {fileID: 3621653897098500710, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+      propertyPath: grabbedRotationObsidian.z
+      value: 71.222
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
 --- !u!43 &1856867728
@@ -54141,7 +54189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2066239155
 Transform:
   m_ObjectHideFlags: 0
