@@ -809,7 +809,11 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48716,6 +48720,11 @@ CharacterController:
   m_CorrespondingSourceObject: {fileID: 3621653895501476744, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
   m_PrefabInstance: {fileID: 1846671593}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1273988210 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6686785650017403928, guid: c7f71c25d99e31a489d3441e30934a41, type: 3}
+  m_PrefabInstance: {fileID: 1846671593}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1313447853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6905483994033372607, guid: 684dc5fd8f5deab4789712aa37640361, type: 3}
@@ -54132,7 +54141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2066239155
 Transform:
   m_ObjectHideFlags: 0
@@ -54173,7 +54182,7 @@ PlayableDirector:
   - key: {fileID: 704957773353570547, guid: d223728696dd34249a5bd854efe5cefb, type: 2}
     value: {fileID: 811562039}
   - key: {fileID: 3644372547151459143, guid: d223728696dd34249a5bd854efe5cefb, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1273988210}
   - key: {fileID: -8625676020940701796, guid: d223728696dd34249a5bd854efe5cefb, type: 2}
     value: {fileID: 8730493428826953944}
   - key: {fileID: -7678969728781468970, guid: d223728696dd34249a5bd854efe5cefb, type: 2}

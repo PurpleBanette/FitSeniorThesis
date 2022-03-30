@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class RC_Hurtbox : MonoBehaviour
 {
-    [SerializeField]
-    bossAiRobocapo bossAiReference;
-    
     int hurtboxDamage = 25;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Weapon")
         {
-            //Debug.Log("Ive Been Hit");
+            Debug.Log("Ive Been Hit");
             hitPause.instance.INevarFreeze();
             ModifiedTPC.instance.disableWeapon();
-            bossAiReference.rcTakeDamage(hurtboxDamage);
+            bossAiRobocapo.instance.rcTakeDamage(hurtboxDamage);
         }
     }
 }
