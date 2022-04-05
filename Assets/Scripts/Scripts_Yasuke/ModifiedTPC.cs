@@ -303,13 +303,15 @@ public class ModifiedTPC : MonoBehaviour
 
 	private void CharGravity()
 	{
-
+		/*
+		 * Mid air combo mechanic, uncomment to cancel gravity while attacking
         if (!canFall)
         {
 			_verticalVelocity = 0f;
         }
-        else
-        {
+		*/
+        //else
+        //{
 			if (Grounded)
 			{
 
@@ -366,7 +368,7 @@ public class ModifiedTPC : MonoBehaviour
 			{
 				_verticalVelocity += Gravity * Time.deltaTime;
 			}
-		}
+		//}
 		
 	}
 
