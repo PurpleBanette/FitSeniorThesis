@@ -26,6 +26,7 @@ public class obsidianWeaponPickup : MonoBehaviour
     void Start()
     {
         //bossRef = GetComponent<bossAiObsidian>();
+        StartParticle();
     }
 
     // Update is called once per frame

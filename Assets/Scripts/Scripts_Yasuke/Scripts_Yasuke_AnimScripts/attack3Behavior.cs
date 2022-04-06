@@ -5,6 +5,7 @@ using UnityEngine;
 public class attack3Behavior : StateMachineBehaviour
 {
     ModifiedTPC charctrl;
+    bool nextAttack;
     GameObject boss;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

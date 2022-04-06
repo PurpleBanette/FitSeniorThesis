@@ -9,12 +9,15 @@ public class bossTakeDamage : MonoBehaviour
     {
         if (other.transform.tag == "Weapon")
         {
+            bossAiObsidian.instance.damageParticles.SetActive(true);
             bossAiObsidian.instance.bossHealth -= hurtboxDamage * 3;
             bossAiObsidian.instance.hitTick = true;
             hitPause.instance.INevarFreeze();
             ModifiedTPC.instance.disableWeapon();
+            
         }
     }
+
     private void Update()
     {
         /*if (hitTick && InvincibleFrameTimer >= 0 && !bossAiObsidian.instance.phaseChanging)

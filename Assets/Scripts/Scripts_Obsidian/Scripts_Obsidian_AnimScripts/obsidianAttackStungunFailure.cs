@@ -7,7 +7,10 @@ public class obsidianAttackStungunFailure : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        bossAiObsidian.instance.damageParticles.SetActive(true);
+        bossAiObsidian.instance.bossHealth -= 25;
+        bossAiObsidian.instance.hitTick = true;
+        hitPause.instance.INevarFreeze();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

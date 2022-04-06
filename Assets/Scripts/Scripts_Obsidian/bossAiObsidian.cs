@@ -216,6 +216,8 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] GameObject p3Attack6Smoke;
     [Tooltip("Obsidian's Shield")]
     [SerializeField] GameObject bossShieldObsidian;
+    [Tooltip("Damage particles")]
+    public GameObject damageParticles;
 
     int bulletPoolManager = 0;
     int blasterPoolManager = 0;
@@ -587,7 +589,7 @@ public class bossAiObsidian : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //If the boss reaches its destination
-        if (distanceToWalkPoint.magnitude < 2f && currentphase == 3)
+        if (distanceToWalkPoint.magnitude < 3f && currentphase == 3)
         {
             walkPointSet = false;
             bossWaypointIndex = Random.Range(bossWaypointMin, bossWaypointMax);
@@ -1016,6 +1018,7 @@ public class bossAiObsidian : MonoBehaviour
             {
                 hurtbox.SetActive(true);
             }
+            damageParticles.SetActive(false);
         }
     }
     void AttackCameraShakeEffect()

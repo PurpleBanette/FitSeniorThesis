@@ -146,6 +146,9 @@ public class ModifiedTPC : MonoBehaviour
 	public Vector3 grabbedRotationObsidian;
 	public Vector3 grabbedScaleObsidian;
 
+	[Header("Particles and Effects")]
+	public GameObject blockParticle;
+
 
 	private void Awake()
 	{
