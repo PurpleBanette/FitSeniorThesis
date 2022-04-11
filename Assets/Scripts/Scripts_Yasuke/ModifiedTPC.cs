@@ -27,6 +27,7 @@ public class ModifiedTPC : MonoBehaviour
 	public float RotationSmoothTime = 0.12f;
 	[Tooltip("Acceleration and deceleration")]
 	public float SpeedChangeRate = 10.0f;
+	public Transform chestTarget;
 
 	[Space(10)]
 	[Tooltip("The height the player can jump")]
@@ -148,6 +149,9 @@ public class ModifiedTPC : MonoBehaviour
 
 	[Header("Particles and Effects")]
 	public GameObject blockParticle;
+
+	int dashPoolManager = 0;
+	public bool isDashing;
 
 
 	private void Awake()
@@ -633,4 +637,13 @@ public class ModifiedTPC : MonoBehaviour
     {
 		weapon.enabled = false;
 	}
+	/*IEnumerator DashAfterImage()
+	{
+		isDashing = true;
+		while (isDashing == true)
+        {
+			dashPoolManager = yasukeDashPool.instance.GetPooledObjectManaged(yasukeDashPool.instance.pooledYasukes, dashPoolManager, chestTarget, chestTarget, 0, null, 0);
+			yield return new WaitForSeconds(0.1f);
+		}
+	}*/
 }
