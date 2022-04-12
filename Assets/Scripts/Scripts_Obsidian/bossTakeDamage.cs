@@ -14,7 +14,6 @@ public class bossTakeDamage : MonoBehaviour
             bossAiObsidian.instance.hitTick = true;
             hitPause.instance.INevarFreeze();
             ModifiedTPC.instance.disableWeapon();
-            Debug.Log(GetComponentInParent<bossColorOverride>());
             GetComponentInParent<bossColorOverride>().colorFade = 1;
         }
     }
