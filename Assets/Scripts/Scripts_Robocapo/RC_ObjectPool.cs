@@ -8,13 +8,16 @@ public class RC_ObjectPool : MonoBehaviour
 
     public List<GameObject> pooledBullets;
     public List<GameObject> pooledBuckshot;
+    public List<GameObject> pooledMuzzleFlashes;
 
 
     [SerializeField] GameObject Bullets;
     [SerializeField] GameObject Buckshot;
+    [SerializeField] GameObject MuzzleFlash;
 
     public int bulletsToPool;
     public int buckshotToPool;
+    public int muzzleFlashesToPool;
 
     public GameObject L_defaultTarget;
     public GameObject R_defaultTarget;
@@ -25,6 +28,7 @@ public class RC_ObjectPool : MonoBehaviour
 
         poolSetup(Bullets, pooledBullets, bulletsToPool);
         poolSetup(Buckshot, pooledBuckshot, buckshotToPool);
+        poolSetup(MuzzleFlash, pooledMuzzleFlashes, muzzleFlashesToPool);
     }
 
     void poolSetup(GameObject objectToPool, List<GameObject> pooledObjects, int amountToPool)

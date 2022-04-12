@@ -105,12 +105,15 @@ public class bossAiRobocapo : MonoBehaviour
     [SerializeField] List<GameObject> attackHitboxesWeapons;
     [Tooltip("The boss's hurtbox to receive damage from the player")]
     public List<GameObject> hurtboxes;
+    [Tooltip("Invincibility frames")]
+    public float InvincibleFrameTimer = 0.25f;
+    public bool hitTick = false;
     //Particles
     [Header("Particles and Effects")]
-    [Tooltip("Particle Locations")]
-    [SerializeField] Transform particlePlaceholderLocation1;
-    [Tooltip("Particles")]
-    [SerializeField] GameObject particlePlaceholder1;
+    [SerializeField] GameObject muzzleParticleEffect;
+
+
+    public GameObject damageParticles;
     [Tooltip("This bool is true when RC is vulnerable to attack and false when he is capable of blocking")]
     public bool vulnurable;
     [Tooltip("This bool is true when RC is attacking while still capable of blocking")]
@@ -222,6 +225,7 @@ public class bossAiRobocapo : MonoBehaviour
         PhaseAiStates();
         //Debug.Log(randAttackTime);
         randAttackTracker.text = randAttack.ToString();
+        InvincibilityDetection();
 
         //Phase Setter
         if (bossHealth <= 750 && currentphase == 1)
@@ -482,7 +486,7 @@ public class bossAiRobocapo : MonoBehaviour
                 }
                 if (randAttack == 2)
                 {
-                    bossAnimator.SetTrigger("WindmillCharge");
+                    bossAnimator.SetTrigger("DoubleWind");
                 }
                 if (randAttack == 3)
                 {
@@ -710,36 +714,36 @@ public class bossAiRobocapo : MonoBehaviour
 
     void ActivateRightTonfa()
     {
-        rightTonfa.SetActive(true);
+        leftTonfa.SetActive(true);
     }
 
     void DisableRightTonfa()
     {
-        rightTonfa.SetActive(false);
+        leftTonfa.SetActive(false);
     }
 
     void ActivateLeftTonfa()
     {
-        leftTonfa.SetActive(true);
+        rightTonfa.SetActive(true);
     }
 
     void DisableLeftTonfa()
     {
-        leftTonfa.SetActive(false);
+        rightTonfa.SetActive(false);
     }
 
     void leftBuckshot()
     {
         //currentBullet = RC_ObjectPool.instance.GetPooledObject(RC_ObjectPool.instance.pooledBuckshot, true);
         //RC_ObjectPool.instance.LaunchObject(currentBullet, playerTarget, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
-        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager,playerTarget, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager,playerTarget, bulletEmmitterLeft.transform, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, buckshotForce);
     }
 
     void rightBuckshot()
     {
         //currentBullet = RC_ObjectPool.instance.GetPooledObject(RC_ObjectPool.instance.pooledBuckshot, true);
         //RC_ObjectPool.instance.LaunchObject(currentBullet, playerTarget, bulletEmmitterRight.transform, 0f, null, buckshotForce);
-        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager, playerTarget, bulletEmmitterRight.transform, 0f, null, buckshotForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBuckshot, bulletPoolManager, playerTarget, bulletEmmitterRight.transform, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, buckshotForce);
     }
 
     void startRapidFire()
@@ -752,8 +756,8 @@ public class bossAiRobocapo : MonoBehaviour
         rapidFire = true;
         while (rapidFire == true)
         {
-            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletEmmitterLeft.transform, 0f, null, buckshotForce);
-            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletEmmitterRight.transform, 0f, null, buckshotForce);
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletEmmitterLeft.transform, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, buckshotForce);
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletEmmitterRight.transform, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, buckshotForce);
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -833,6 +837,27 @@ public class bossAiRobocapo : MonoBehaviour
         {
             bossGrounded = false;
             bossAnimator.SetBool("bossGrounded", false);
+        }
+    }
+    void InvincibilityDetection()
+    {
+        if (hitTick && InvincibleFrameTimer > 0 && !phaseChanging)
+        {
+            InvincibleFrameTimer -= Time.deltaTime;
+            foreach (var hurtbox in hurtboxes)
+            {
+                hurtbox.SetActive(false);
+            }
+        }
+        if (hitTick && InvincibleFrameTimer <= 0 && !phaseChanging)
+        {
+            hitTick = false;
+            InvincibleFrameTimer = 0.25f;
+            foreach (var hurtbox in hurtboxes)
+            {
+                hurtbox.SetActive(true);
+            }
+            damageParticles.SetActive(false);
         }
     }
 }
