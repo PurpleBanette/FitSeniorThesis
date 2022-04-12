@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.InputSystem;
+
 
 
 public class MenuController : MonoBehaviour
@@ -47,7 +49,7 @@ public class MenuController : MonoBehaviour
     [Header("Resolution Dropdowns")]
     public TMP_Dropdown resolutionDropdown; // ref drop down indvisual settings
     private Resolution[] resolutions;   //An arry to change the resolution through build settings
-    /*
+   
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -87,7 +89,16 @@ public class MenuController : MonoBehaviour
     //New Game
     public void NewGameDialogYes()
     {
+
+      
         SceneManager.LoadScene(_newGameLevel);
+
+        /* if (PlayerPrefs.HasKey("YB_Intro_Scene001"))
+             {
+
+             }
+        */
+        
     }
     //Load Game level
     public void LoadGameDialogYes()
@@ -244,8 +255,8 @@ public class MenuController : MonoBehaviour
     public IEnumerator ConfirmationBox()
     {
         comfirmationPrompt.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         comfirmationPrompt.SetActive(false);
     }
-    */
+    
 }
