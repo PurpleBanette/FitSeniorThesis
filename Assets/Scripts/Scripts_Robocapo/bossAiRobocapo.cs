@@ -470,7 +470,7 @@ public class bossAiRobocapo : MonoBehaviour
         bossNavAgent.SetDestination(transform.position); //This forces the boss to stay in place during attacks
         bossNavAgent.speed = 0f;
 
-        Debug.Log("attackTick");
+        //Debug.Log("attackTick");
         if (!attackSet && !robocapoPlayerRangeDetectorSphere.instance.playerTooFarAway)
         {
             randAttack = Random.Range(1, 7);
