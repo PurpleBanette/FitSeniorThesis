@@ -17,6 +17,7 @@ public class PlayerHitbox : MonoBehaviour
         {
             Debug.Log("successful Block");
             charCtrl.blockParticle.SetActive(true);
+            bossAiObsidian.instance.bossAnimator.SetTrigger("attack2flinchP1");
             bossAiRobocapo.instance.bossAnimator.SetTrigger("stun");
         }
     }
