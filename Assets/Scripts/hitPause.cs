@@ -21,12 +21,12 @@ public class hitPause : MonoBehaviour
     {
         if (Frozen)
         {
-            Debug.Log("Lets Get This Bread");
+            //Debug.Log("Lets Get This Bread");
             freezeTimer -= Time.unscaledDeltaTime;
             //Debug.Log(sloMoTimer);
             if (freezeTimer <= 0)
             {
-                Debug.Log("Bread Gotten");
+                //Debug.Log("Bread Gotten");
                 Time.timeScale = 1;
                 Time.fixedDeltaTime = 0.02f * Time.timeScale;
                 freezeTimer = duration;
