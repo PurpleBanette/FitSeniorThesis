@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8194944915347755945
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da692e001514ec24dbc4cca1949ff7e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 11
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TreeLeaves 2
+  m_Shader: {fileID: -6465566751694194690, guid: 29ec88dd1a476914ba6311ca32aa155f, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON _ALPHATOMASK_ON _DEPTHOFFSET_ON _DOUBLESIDED_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 1
+  m_CustomRenderQueue: -1
+  stringTagMap:
+    MotionVector: User
+  disabledShaderPasses:
+  - DistortionVectors
+  - MOTIONVECTORS
+  - TransparentDepthPrepass
+  - TransparentDepthPostpass
+  - TransparentBackface
+  - RayTracingPrepass
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_e2ad159c61ed48778f3c5fe856577102:
+        m_Texture: {fileID: 2800000, guid: 58f08571068d548c784771cce1346ce6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_f14abffa70ca425d94e1c8e9e8f9fa04:
+        m_Texture: {fileID: 2800000, guid: e0eab39b8993b684dbb9800cf1151d33, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_31eccca94d3e46b298331b6d8c991f97_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_3da889b45d6e47ca8f06cc186c39bfd9_Texture_1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_02758239cc4e443b96b7a5429b378542: 0.58
+    - Vector1_41deebb127844d429560f67507cf0366: 0.3
+    - Vector1_822015b4caf14e9fb8d04d1dbb28b12c: 1.37
+    - Vector1_899d023dfeeb4c28a8a9cd4d68da6dca: 0
+    - Vector1_b8d1c0fe61564f7fbdb3589d8acf57b3: 0.01
+    - Vector1_c93a57c4fb9045388140b4e00104ccfa: 0.51
+    - Vector1_d0b04a73dd134cd29b2b4d5ee9a5a9d7: 0.1
+    - Vector1_f7176b2a15bc4c1f8ab54c2eeb8692de: 0.31
+    m_Colors:
+    - Color_4bbf7377a9a54c92b64e493905ba3a57: {r: 0.6501282, g: 0.7264151, b: 0.0788092, a: 0.682353}
+    - Color_5be99d3a44b04984808d8623795b5c55: {r: 0.07450979, g: 0.17288569, b: 0.2627451, a: 0.85882354}
+    - Color_ee45d1129e0240aa85b1dcfadc547f5c: {r: 0.3254902, g: 0.32121822, b: 0.10588235, a: 1}
+    - Vector2_3fd47e64d1354b718e93ef0586a803be: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_8b76c318c3b34fec8748bd76c37107d3: {r: 4, g: 4, b: 0, a: 0}
+    - Vector3_32e54304f54143f3914b608773d640ec: {r: 0, g: 0, b: 0, a: 0}
+  m_BuildTextureStacks: []
