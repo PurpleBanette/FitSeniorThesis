@@ -14,14 +14,14 @@ using UnityEngine.SceneManagement;
         TimerManager.mytimer -= Time.deltaTime;
 
         //Can Nest if's  as long as its not greater then set timer in script
-        if (TimerManager.mytimer <= 160 && !TimerManager.switchedScene)
+        if (TimerManager.mytimer <= 166 && !TimerManager.switchedScene)
         {
             SceneManager.LoadScene("YB_Intro_Scene001");
             TimerManager.switchedScene = true;
 
         }
         //will load next sceene ass delay 
-        if (TimerManager.mytimer <= 120 )
+        if (TimerManager.mytimer <= 128 )
           {
             
             SceneManager.LoadScene("YB_Intro_Scene002 1");
