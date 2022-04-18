@@ -138,6 +138,7 @@ public class ModifiedTPC : MonoBehaviour
 	public List<GameObject> hurtboxesPlayer;
 	public bool playerHitTick;
 	public float InvincibleFrameTimerPlayer = 1f;
+	public bool imHit;
 
 	//Grabbed Yasuke Measurements
 	public Vector3 yasukeRotation;
@@ -569,14 +570,18 @@ public class ModifiedTPC : MonoBehaviour
 
 	public void playerTakeDamage()
 	{
-		health -= 10;
-		healthBar.value = health;
-		//Debug.Log(health);
-		if (health <= 0 && !dead)
+		if (imHit)
         {
-			loser.text = "YOU SUCK";
-			dead = true;
-        }
+			health -= 10;
+			healthBar.value = health;
+			//Debug.Log(health);
+			if (health <= 0 && !dead)
+			{
+				loser.text = "YOU SUCK";
+				dead = true;
+			}
+		}
+		
 	}
 
 	public void PlayerPickupWeapon()
@@ -608,6 +613,7 @@ public class ModifiedTPC : MonoBehaviour
             {
 				hurtbox.SetActive(true);
             }
+			imHit = false;
         }
     }
 	void PlayerHealthUpdate()

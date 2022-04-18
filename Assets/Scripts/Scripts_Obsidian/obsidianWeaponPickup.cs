@@ -21,12 +21,13 @@ public class obsidianWeaponPickup : MonoBehaviour
     {
         instance = this;
         weprb = GetComponent<Rigidbody>();
+        StartParticle();
     }
 
     void Start()
     {
         //bossRef = GetComponent<bossAiObsidian>();
-        StartParticle();
+        //StartParticle();
     }
 
     // Update is called once per frame
