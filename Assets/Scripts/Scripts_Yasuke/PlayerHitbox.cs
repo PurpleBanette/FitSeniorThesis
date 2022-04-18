@@ -10,6 +10,7 @@ public class PlayerHitbox : MonoBehaviour
     {
         if(other.transform.tag == "EnemyProjectile" && charCtrl.blocking == false || other.transform.tag == "EnemyAttackTriggers" && charCtrl.blocking == false)
         {
+            charCtrl.imHit = true;
             charCtrl.playerTakeDamage();
             ModifiedTPC.instance.playerHitTick = true;
         }
