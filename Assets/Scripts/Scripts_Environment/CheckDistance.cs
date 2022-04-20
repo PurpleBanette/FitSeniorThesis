@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+
 /*
 public enum CheckMethod
 {
@@ -9,6 +10,7 @@ public enum CheckMethod
 
 public class CheckDistance : MonoBehaviour
 {
+    
     public Transform player;
     public CheckMethod checkMethod;
     public float loadRange;
@@ -116,4 +118,4 @@ public class CheckDistance : MonoBehaviour
     }
 
 }
-/*
+*/
