@@ -11,6 +11,7 @@ public class robocapoLandBehavior : StateMachineBehaviour
         bossReference.GetComponent<Rigidbody>().isKinematic = true;
         bossReference.bossNavAgent.speed = 0;
         /*bossReference.jumpAttack = false;*/
+        bossReference.jumpTrail.SetActive(false);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
