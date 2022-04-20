@@ -121,6 +121,7 @@ public class bossAiRobocapo : MonoBehaviour
     [Tooltip("This bool is true when RC is stunned")]
     public bool stunned;
     public bool charging;
+    public GameObject jumpTrail;
 
     //Weapons and Weapon Colliders
     [SerializeField] GameObject rightTonfa;

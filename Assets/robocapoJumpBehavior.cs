@@ -13,5 +13,6 @@ public class robocapoJumpBehavior : StateMachineBehaviour
         Vector3 horizontalDirection = bossReference.playerTarget.transform.position - bossReference.transform.position;
         bossReference.GetComponent<Rigidbody>().AddForce(horizontalDirection.normalized * 100, ForceMode.Impulse);
         bossReference.GetComponent<Rigidbody>().AddForce(0, 3000, 0);
+        bossReference.jumpTrail.SetActive(true);
     }
 }
