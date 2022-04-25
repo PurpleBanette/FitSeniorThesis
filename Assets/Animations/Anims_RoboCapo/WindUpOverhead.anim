@@ -59314,29 +59314,29 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 2
-    functionName: ActivateRightTonfa
+  - time: 0
+    functionName: PlayerTrackTrue
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.0333333
-    functionName: makeVulnurable
+  - time: 1.9333333
+    functionName: MeleeHitboxOn
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1
-    functionName: endTracking
+  - time: 1.9333333
+    functionName: PlayerTrackFalse
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.3666666
-    functionName: DisableRightTonfa
+  - time: 2.5333333
+    functionName: MeleeHitboxOff
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
