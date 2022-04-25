@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7077640939350778630
+--- !u!114 &-701371707614152847
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GroundMat 30x30 20x20
-  m_Shader: {fileID: -6465566751694194690, guid: 4a98726a4248b354fbb9adb72d2d6fc4, type: 3}
+  m_Name: _Test_Overridecolor 4
+  m_Shader: {fileID: -6465566751694194690, guid: 922f1dae5b1d04246ba000d3e5e59752, type: 3}
   m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -33,23 +33,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_02c2dba217064d348ccedd90a8a58a1f:
-        m_Texture: {fileID: 2800000, guid: 60fdfa47a4e492b4f8fba1fd4d8f3a4b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3e379cac0cab4a94aa6b5c6b4a50e631, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - Texture2D_091e103e544546a889f1e8d2376d14ce:
-        m_Texture: {fileID: 2800000, guid: 49c94886d2714694eba8a18db92b88d5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_11db0eabef74429291810f321c4b1a96:
-        m_Texture: {fileID: 2800000, guid: 92856bab59132254b95fe742e628e616, type: 3}
+    - Texture2D_42f580909f3b46f8985e9c63cdf38c12:
+        m_Texture: {fileID: 2800000, guid: 5a995bfad80d38a4fb32fa5e4ee11c43, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_70f7f0c6b0414f0b91e5561ed8ef843e:
-        m_Texture: {fileID: 2800000, guid: 67a70a78d678fb649b5c703cd7dc85c1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_7f2edcfecdac4fc9aa67a39f433b4317:
-        m_Texture: {fileID: 2800000, guid: dbcceb0e9aeed224bb48466d2296df4e, type: 3}
+        m_Texture: {fileID: 2800000, guid: ee0d8ed5f7c4a914492a65344e27f41a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
@@ -57,14 +49,6 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
-        m_Texture: {fileID: 2800000, guid: 43b54d39e0a4c4d47bef645abec127f1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture2D_fa2931794bf54c00adaf96328791eb41:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - Texture3D_d6a8f0782b3d458ca59f546dba668014:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -112,10 +96,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Texture2DAsset_337cbce1d56d42148fc8c77ce31e0822_Out_0:
-        m_Texture: {fileID: 2800000, guid: fc27579a349f2cb4bb8b4dea0458be4c, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -129,24 +109,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_16c0537d0b5d45309da9a4c75751ef9a: 0.7
-    - Vector1_2709a36a388a442ba34e17b3024eb590: 1
-    - Vector1_2f982c43d3db4470a8aaa597ae52d055: -0.85
-    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 1
-    - Vector1_3fb0d6f64ec84bd5a8d5264039870994: 1
-    - Vector1_6b4d022f523f4a5a9e23c7b74f291db6: 0
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 2.53
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 8.6
+    - Vector1_589ef83f9c594928b88ad2d0537acfff: 0.17
+    - Vector1_59323351be49470a9326c4785c58bd45: 1
+    - Vector1_6162ea706c724d168fee603b3f358f52: 1
     - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: 0
-    - Vector1_97a73147173e4b1fa21e1db184bc8623: -0.58
-    - Vector1_a0985c90018c40018516521048fd2267: 1
-    - Vector1_ab8f09bb8f074c1089745da64df70ee6: 0
-    - Vector1_bd0953b2866b4604aa97e258f58b716d: 0
-    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.5
-    - Vector1_c1abe7b023da410ba9a36040fd2b2e1e: 1
-    - Vector1_ccd5cae6f88b48b5ac0e38ed8fbb3eef: 0
-    - Vector1_d631efad0e1f4386bf36e5f84e2ac2e4: 2.01
-    - Vector1_dee67caaae9647769b2564f542064c08: 0.5
-    - Vector1_e312d995706e4465be4aabbe4de981d4: 0.35
-    - Vector1_e380723ec1c94be4a89fe681fc4da117: -0.91
+    - Vector1_a0985c90018c40018516521048fd2267: 1.4
+    - Vector1_b2b5af9b81884313bfbba52fb835e6cf: 0
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.28
+    - Vector1_d7e5cbb08db54963aa8ef1135117d3e4: 7.7
+    - Vector1_e312d995706e4465be4aabbe4de981d4: 0
+    - Vector1_e7f0aa401e3c4cd4a6a110dde1b28c92: -0.8
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -174,16 +148,13 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_068403d75ad146eb9c44a4f07550be88: {r: 1, g: 0, b: 0, a: 0}
-    - Color_2e08d63562d247b0be9f261b3ec86761: {r: 2.6721995, g: 2.6755922, b: 0, a: 0}
-    - Color_31faad6aac8e4546999b5e526adcb086: {r: 0, g: 0, b: 0, a: 0}
-    - Color_37496f96188a42d89879086d198a701e: {r: 0.4339623, g: 0.4339623, b: 0.4339623, a: 0}
-    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: 0, g: 0, b: 0, a: 0}
-    - Vector2_7908e1ef1216456f865021ddaeec0ac1: {r: 2, g: 2, b: 0, a: 0}
-    - Vector2_790d657bfefe41e199f55e33dfc56aca: {r: 2, g: 2, b: 0, a: 0}
-    - Vector2_87de75654fac44b5927d5c5ee6e579d8: {r: 0, g: 0, b: 0, a: 0}
+    - Color_37496f96188a42d89879086d198a701e: {r: 0.38679248, g: 0.37767002, b: 0.37767002, a: 0}
+    - Color_3f17d1c421eb4fa7b722a8b647a4e971: {r: 0, g: 0, b: 0, a: 0}
+    - Vector2_2f1c3b2ef89d4a08bb14214a39fb8781: {r: -0.14, g: 0, b: 0, a: 0}
+    - Vector2_40c0646ee8a545169e3cfd00fccad33b: {r: 1, g: 2, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OverrideColorRef: {r: 0.13207549, g: 0.111516565, b: 0.111516565, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

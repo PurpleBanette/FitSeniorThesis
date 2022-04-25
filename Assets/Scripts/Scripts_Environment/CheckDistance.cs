@@ -1,7 +1,10 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
+<<<<<<< HEAD
+=======
 /*
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
 public enum CheckMethod
 {
     Distance,
@@ -10,7 +13,10 @@ public enum CheckMethod
 
 public class CheckDistance : MonoBehaviour
 {
+<<<<<<< HEAD
+=======
     
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
     public Transform player;
     public CheckMethod checkMethod;
     public float loadRange;
@@ -34,10 +40,15 @@ public class CheckDistance : MonoBehaviour
                     isLoaded = true;
                 }
 
+<<<<<<< HEAD
+            }
+        }
+=======
                 Debug.Log(scene);
             }
         }
         
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
     }
     // Update is called once per frame
     void Update()
@@ -58,7 +69,10 @@ public class CheckDistance : MonoBehaviour
         {
             DistanceCheck();
         }
+<<<<<<< HEAD
+=======
         
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
         else if (checkMethod == CheckMethod.Trigger)
         {
            //TriggerCheck;
@@ -72,7 +86,10 @@ public class CheckDistance : MonoBehaviour
         {
             LoadScene();
         }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
         else
         {
              UnLoadScene();
@@ -118,4 +135,7 @@ public class CheckDistance : MonoBehaviour
     }
 
 }
+<<<<<<< HEAD
+=======
 */
+>>>>>>> 8c00dd186f493d6fee1be1b5cedc8b0aba7f9081
