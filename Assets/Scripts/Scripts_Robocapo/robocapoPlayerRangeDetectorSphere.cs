@@ -25,22 +25,21 @@ public class robocapoPlayerRangeDetectorSphere : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform.tag == "Player" && bossAiRobocapo.instance.currentphase == 2)
+        if (other.transform.tag == "Player")
         {
             playerTooFarAway = false;
             //Changes the bool in the animator, which allows the boss to use the animation that the bool is attatched to.
-            bossAiRobocapo.instance.bossAnimator.SetBool("playerTooFar", false);
-            bossAiRobocapo.instance.bossAnimator.SetBool("ShotLoop", false);
+            bossAiRobocapoRemake.instance.bossAnimator.SetBool("playerTooFar", false);
         }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Player" && bossAiRobocapo.instance.currentphase == 2)
+        if (other.transform.tag == "Player")
         {
             playerTooFarAway = true;
             //Changes the bool in the animator, which allows the boss to use the animation that the bool is attatched to.
-            bossAiRobocapo.instance.bossAnimator.SetBool("playerTooFar", true);
+            bossAiRobocapoRemake.instance.bossAnimator.SetBool("playerTooFar", true);
         }
     }
 }
