@@ -1038,6 +1038,7 @@ public class bossAiObsidian : MonoBehaviour
             if (bossPlayerDistance.magnitude < 5f)
             {
                 Debug.Log("Boss is dead");
+
                 //Placeholder for the finishing cutscene
                 Destroy(gameObject);
             }

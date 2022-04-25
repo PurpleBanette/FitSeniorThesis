@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-701371707614152847
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 4
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Scene001PauBalls
+  m_Shader: {fileID: -6465566751694194690, guid: 922f1dae5b1d04246ba000d3e5e59752, type: 3}
+  m_ShaderKeywords: MAIN_LIGHT_CALCULATE_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_02c2dba217064d348ccedd90a8a58a1f:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_42f580909f3b46f8985e9c63cdf38c12:
+        m_Texture: {fileID: 2800000, guid: d16eb20ffacaf5d4cb7ec75143a8af25, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_70f7f0c6b0414f0b91e5561ed8ef843e:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a9e00e2107254b50bf99d2b9a69ae8be:
+        m_Texture: {fileID: 2800000, guid: a2a95dc3943c7dd4e80f5cb6ce1f3a84, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_ed4d6ca0699e43c2b08d72fe6f9e4a44:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_2f982c43d3db4470a8aaa597ae52d055: 0.54
+    - Vector1_3531a84e06a94e57802ea39ece47c9fe: 9.1
+    - Vector1_589ef83f9c594928b88ad2d0537acfff: 0
+    - Vector1_59323351be49470a9326c4785c58bd45: 0.03
+    - Vector1_6162ea706c724d168fee603b3f358f52: 0.189
+    - Vector1_746fa53cd8f0428ea69a00c01a1bc4c7: -0.96
+    - Vector1_a0985c90018c40018516521048fd2267: -0.15
+    - Vector1_b2b5af9b81884313bfbba52fb835e6cf: 0
+    - Vector1_be77a91fe6bb449b94c6aabe11a1ace5: 0.22
+    - Vector1_d7e5cbb08db54963aa8ef1135117d3e4: -1.6
+    - Vector1_e312d995706e4465be4aabbe4de981d4: 0
+    - Vector1_e7f0aa401e3c4cd4a6a110dde1b28c92: -1.19
+    m_Colors:
+    - Color_37496f96188a42d89879086d198a701e: {r: 1, g: 0.007223506, b: 0, a: 0}
+    - Color_3f17d1c421eb4fa7b722a8b647a4e971: {r: 1, g: 1, b: 1, a: 0}
+    - Vector2_40c0646ee8a545169e3cfd00fccad33b: {r: 1, g: 2, b: 0, a: 0}
+    - _OverrideColorRef: {r: 0.186, g: 0.15704717, b: 0.15704717, a: 0.7019608}
+  m_BuildTextureStacks: []
