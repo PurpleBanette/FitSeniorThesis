@@ -16,12 +16,12 @@ using UnityEngine.SceneManagement;
         //Can Nest if's  as long as its not greater then set timer in script
         if (TimerManager.mytimer <= 166 && !TimerManager.switchedScene)
         {
-            SceneManager.LoadSceneAsync("Firstboss");
+            SceneManager.LoadScene("YB_Intro_Scene001");
             TimerManager.switchedScene = true;
 
         }
         //will load next sceene ass delay 
-       /* if (TimerManager.mytimer <= 128 )
+        if (TimerManager.mytimer <= 128 )
           {
             
             SceneManager.LoadScene("YB_Intro_Scene002 1");
@@ -32,7 +32,7 @@ using UnityEngine.SceneManagement;
             SceneManager.LoadScene("Firstboss");
         }
 
-         */
+
 
         Debug.Log(TimerManager.mytimer);
 
