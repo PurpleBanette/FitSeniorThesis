@@ -49,9 +49,13 @@ public class RC_Bullets : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (impactParticle != null) Instantiate(impactParticle, transform.position, Quaternion.identity);
+        if(other.tag == "Player" || other.tag == "ground")
+        {
+            if (impactParticle != null) Instantiate(impactParticle, transform.position, Quaternion.identity);
 
-        gameObject.SetActive(false);
-        //rb.velocity = Vector3.zero;
+            gameObject.SetActive(false);
+            //rb.velocity = Vector3.zero;
+        }
+
     }
 }

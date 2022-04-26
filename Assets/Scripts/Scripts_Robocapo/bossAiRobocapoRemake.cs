@@ -38,6 +38,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
     private AgentLinkMoverRobocapo linkMover;
     [Tooltip("The boss's nav mesh agent")]
     public NavMeshAgent bossNavAgent;
+    public GameObject bulletShotTargetL, bulletShotTargetR;
 
     //Projectiles
     [Header("Projectiles Information")]
@@ -380,8 +381,8 @@ public class bossAiRobocapoRemake : MonoBehaviour
         bulletRapidfireTrigger = true;
         while (bulletRapidfireTrigger == true)
         {
-            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletPositionL, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
-            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletPositionR, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, bulletShotTargetL.transform, bulletPositionL, .5f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce/3);
+            bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, bulletShotTargetR.transform, bulletPositionR, .5f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce/3);
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -394,11 +395,11 @@ public class bossAiRobocapoRemake : MonoBehaviour
 
     void FireBulletsL()
     {
-        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.L_defaultTarget.transform, bulletPositionL, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, playerTarget.transform, bulletPositionL, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
     }
     void FireBulletsR()
     {
-        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, RC_ObjectPool.instance.R_defaultTarget.transform, bulletPositionR, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
+        bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, playerTarget.transform, bulletPositionR, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
     }
 
     void InvincibilityDetection()
