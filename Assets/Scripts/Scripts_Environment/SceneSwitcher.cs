@@ -14,25 +14,19 @@ using UnityEngine.SceneManagement;
         TimerManager.mytimer -= Time.deltaTime;
 
         //Can Nest if's  as long as its not greater then set timer in script
-        if (TimerManager.mytimer <= 166 && !TimerManager.switchedScene)
+        if (TimerManager.mytimer <= 40 && !TimerManager.switchedScene)
         {
-            SceneManager.LoadScene("YB_Intro_Scene001");
+            SceneManager.LoadScene("IntroVideo");
             TimerManager.switchedScene = true;
 
         }
-        //will load next sceene ass delay 
-        if (TimerManager.mytimer <= 128 )
+       
+        if (TimerManager.mytimer <= 20 )
           {
             
-            SceneManager.LoadScene("YB_Intro_Scene002 1");
+            SceneManager.LoadScene("BossRobocapo");
         }
-        if (TimerManager.mytimer <= 80)
-        {
-
-            SceneManager.LoadScene("Firstboss");
-        }
-
-
+        
 
         Debug.Log(TimerManager.mytimer);
 
