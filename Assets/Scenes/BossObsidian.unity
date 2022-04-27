@@ -47371,7 +47371,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865162905}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -51216,7 +51216,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 692923149553884003, guid: b26640ae2d12e2048b56d31089c97b44, type: 3}
   m_PrefabInstance: {fileID: 1114228594}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1656645953}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -52045,6 +52045,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655572427}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1656645953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 692923149553884001, guid: b26640ae2d12e2048b56d31089c97b44, type: 3}
+  m_PrefabInstance: {fileID: 1114228594}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1661502253
 GameObject:
   m_ObjectHideFlags: 0
@@ -54239,7 +54244,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860116940}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -55511,7 +55516,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2066239155
 Transform:
   m_ObjectHideFlags: 0
@@ -55617,6 +55622,8 @@ PlayableDirector:
     value: {fileID: 1680330007}
   - key: {fileID: 7701185693637550360, guid: d223728696dd34249a5bd854efe5cefb, type: 2}
     value: {fileID: 8730493428826953943}
+  - key: {fileID: 4762640815431818802, guid: d223728696dd34249a5bd854efe5cefb, type: 2}
+    value: {fileID: 1656645953}
   m_ExposedReferences:
     m_References:
     - da14e9d13fd20de44b62a630c4d29102: {fileID: 0}
