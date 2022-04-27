@@ -22,6 +22,12 @@ public class RoboRemake_RangedShot : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossAiRobocapoRemake bossReference = animator.GetComponent<bossAiRobocapoRemake>();
+        animator.ResetTrigger("Gunspin");
+        animator.ResetTrigger("TripleStab");
+        animator.ResetTrigger("DoubleWind");
+        animator.ResetTrigger("3HitCombo");
+        animator.ResetTrigger("WindUpOverhead");
+        animator.ResetTrigger("StabDash");
         animator.ResetTrigger("RangedShot");
     }
 }

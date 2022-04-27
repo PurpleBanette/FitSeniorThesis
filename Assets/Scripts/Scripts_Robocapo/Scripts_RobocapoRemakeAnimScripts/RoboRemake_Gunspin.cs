@@ -35,14 +35,20 @@ public class RoboRemake_Gunspin : StateMachineBehaviour
         if (bossReference.currentphase == 3)
         {
             bossReference.bossNavAgent.speed = bossReference.bossMoveSpeedP3;
-            //bossReference.randAttack = 6;
+            bossReference.randAttack = 4;
         }
         if (bossReference.currentphase == 4)
         {
             bossReference.bossNavAgent.speed = bossReference.bossMoveSpeedP4;
-            //bossReference.randAttack = 6;
+            bossReference.randAttack = 8;
         }
         bossReference.bossIsAttacking = false;
         animator.ResetTrigger("Gunspin");
+        animator.ResetTrigger("TripleStab");
+        animator.ResetTrigger("DoubleWind");
+        animator.ResetTrigger("3HitCombo");
+        animator.ResetTrigger("WindUpOverhead");
+        animator.ResetTrigger("StabDash");
+        animator.ResetTrigger("RangedShot");
     }
 }

@@ -39,6 +39,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
     [Tooltip("The boss's nav mesh agent")]
     public NavMeshAgent bossNavAgent;
     public GameObject bulletShotTargetL, bulletShotTargetR;
+    public float shotLoopTimer = 5;
 
     //Projectiles
     [Header("Projectiles Information")]
@@ -162,6 +163,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
         InvincibilityDetection();
         FinisherCheck();
         BossGroundCheck();
+        RenderCheck();
     }
 
     void FixedUpdate()
@@ -189,6 +191,42 @@ public class bossAiRobocapoRemake : MonoBehaviour
             Phase2Pattern();
             Phase2Stats();
         }
+        if (currentphase == 2 && bossHealth <= 500)
+        {
+            playerInAttackRange = false;
+            Phase3Transition();
+            Phase3Stats();
+            currentphase = 3;
+        }
+        if (currentphase == 3)
+        {
+            Phase3Pattern();
+            if (!playerInSightRange && !playerInAttackRange) BossPatroling();
+            if (playerInSightRange && !playerInAttackRange) BossChasePlayer();
+            if (playerInAttackRange && playerInSightRange) BossAttackPlayer();
+        }
+        if (currentphase == 3 && bossHealth <= 250)
+        {
+            playerInAttackRange = false;
+            Phase4Transition();
+            Phase4Stats();
+            currentphase = 4;
+        }
+        if (currentphase == 4)
+        {
+            Phase4Pattern();
+            if (!playerInSightRange && !playerInAttackRange) BossPatroling();
+            if (playerInSightRange && !playerInAttackRange) BossChasePlayer();
+            if (playerInAttackRange && playerInSightRange) BossAttackPlayer();
+        }
+        if (bossHealth <= 0)
+        {
+            DeathTransition();
+            currentphase = 5;
+            dead = true;
+            bossNavAgent.speed = 0;
+            //Code for transition to next scene
+        }
     }
 
     private void HandleLinkStart()
@@ -210,11 +248,11 @@ public class bossAiRobocapoRemake : MonoBehaviour
             {
                 if (randAttack == 1)
                 {
-                    bossAnimator.SetTrigger("TripleStab");
+                    bossAnimator.SetTrigger("3HitCombo");
                 }
                 if (randAttack == 2)
                 {
-                    bossAnimator.SetTrigger("DoubleWind");
+                    bossAnimator.SetTrigger("3HitCombo");
                 }
                 if (randAttack == 3)
                 {
@@ -226,7 +264,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
                 }
                 if (randAttack == 5)
                 {
-                    bossAnimator.SetTrigger("StabDash");
+                    bossAnimator.SetTrigger("WindUpOverhead");
                 }
                 if (randAttack >= 6)
                 {
@@ -247,6 +285,69 @@ public class bossAiRobocapoRemake : MonoBehaviour
             if (randAttack >= 3)
             {
                 randAttack = Random.Range(1, 3);
+            }
+        }
+        if(currentphase == 3)
+        {
+            if(playerInAttackRange == true)
+            {
+                if (randAttack == 1)
+                {
+                    bossAnimator.SetTrigger("TripleStab");
+                }
+                if (randAttack == 2)
+                {
+                    bossAnimator.SetTrigger("DoubleWind");
+                }
+                if (randAttack == 3)
+                {
+                    bossAnimator.SetTrigger("StabDash");
+                }
+                if (randAttack >= 4)
+                {
+                    randAttack = Random.Range(1, 4);
+                }
+            }
+        }
+        if(currentphase == 4)
+        {
+            if(playerInAttackRange == true)
+            {
+                if(randAttack >= 1 && randAttack <= 3)
+                {
+                    bossAnimator.SetTrigger("3HitCombo");
+                }
+                if(randAttack == 4)
+                {
+                    bossAnimator.SetTrigger("WindUpOverhead");
+                }
+                if(randAttack == 5)
+                {
+                    bossAnimator.SetTrigger("TripleStab");
+                }
+                if(randAttack == 6)
+                {
+                    bossAnimator.SetTrigger("DoubleWind");
+                }
+                if(randAttack == 7)
+                {
+                    bossAnimator.SetTrigger("StabDash");
+                }
+            }
+            else
+            {
+                if(randAttack >= 1 && randAttack <= 4)
+                {
+                    bossAnimator.SetTrigger("RangedShot");
+                }
+                if(randAttack >= 5 && randAttack <= 7)
+                {
+                    bossAnimator.SetTrigger("Gunspin");
+                }
+            }
+            if(randAttack >= 8)
+            {
+                randAttack = Random.Range(1, 8);
             }
         }
     }
@@ -272,6 +373,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
         bossNavAgent.acceleration = 50;
         bossNavAgent.stoppingDistance = 0;
         bossNavAgent.autoBraking = true;
+        bossAnimator.SetFloat("runMultiplyer", 1f);
     }
 
     void Phase2Transition()
@@ -301,6 +403,69 @@ public class bossAiRobocapoRemake : MonoBehaviour
         bossNavAgent.acceleration = 50;
         bossNavAgent.stoppingDistance = 0;
         bossNavAgent.autoBraking = true;
+        bossAnimator.SetFloat("runMultiplyer", 1.2f);
+    }
+
+    void Phase3Transition()
+    {
+        StopAllCoroutines();
+    }
+
+    IEnumerator Phase3Pattern()
+    {
+        while (true && !dead && currentphase == 3)
+        {
+            yield return new WaitForSeconds(0); //I don't know why this works, but it crashes Unity if i don't put this here
+            if (playerInAttackRange)
+            {
+                randAttack = Random.Range(1, 4);
+                yield return new WaitForSeconds(attackCooldown);
+            }
+        }
+    }
+    void Phase3Stats()
+    {
+        attackCooldown = 4f;
+        bossNavAgent.speed = bossMoveSpeedP3;
+        bossNavAgent.angularSpeed = 250;
+        bossNavAgent.acceleration = 75;
+        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.autoBraking = true;
+        bossAnimator.SetFloat("runMultiplyer", 1.5f);
+    }
+
+    IEnumerator Phase4Pattern()
+    {
+        while (true && !dead && currentphase == 4)
+        {
+            yield return new WaitForSeconds(0); //I don't know why this works, but it crashes Unity if i don't put this here
+            if (playerInAttackRange)
+            {
+                randAttack = Random.Range(1, 8);
+                yield return new WaitForSeconds(attackCooldown);
+            }
+        }
+    }
+
+    void Phase4Transition()
+    {
+        StopAllCoroutines();
+    }
+
+    void Phase4Stats()
+    {
+        attackCooldown = 3f;
+        bossNavAgent.speed = bossMoveSpeedP4;
+        bossNavAgent.angularSpeed = 300;
+        bossNavAgent.acceleration = 80;
+        bossNavAgent.stoppingDistance = 0;
+        bossNavAgent.autoBraking = true;
+        bossAnimator.SetFloat("runMultiplyer", 2f);
+    }
+
+    void DeathTransition()
+    {
+        StopAllCoroutines();
     }
 
     void BossPatroling() //The boss moving in random directions
@@ -450,7 +615,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
                 Debug.Log("Boss is dead");
 
                 //Placeholder for the finishing cutscene
-                Destroy(gameObject);
+                //Destroy(gameObject);
             }
         }
     }
@@ -459,5 +624,27 @@ public class bossAiRobocapoRemake : MonoBehaviour
     {
         bossHealth -= 10;
         bossHealthSlider.value = bossHealth;
+    }
+
+    public void ShotLoopTimer()
+    {
+        shotLoopTimer -= Time.deltaTime;
+        if (shotLoopTimer <= 0)
+        {
+            shotLoopTimer = 5;
+            bossAnimator.SetTrigger("jumpTimer");
+        }
+    }
+    
+    public void RenderCheck()
+    {
+        if (GetComponent<Renderer>().isVisible)
+        {
+            bossLocator.instance.bossMarker.enabled = false;
+        }
+        else
+        {
+            bossLocator.instance.bossMarker.enabled = true;
+        }
     }
 }
