@@ -10,6 +10,13 @@ public class TimerManager
     public static bool switchedScene = false;
 
     //when boss health reach XXX return to scene  into time
+    void Update()
+    {
+        if(bossAiRobocapoRemake.instance.bossHealth <= 0)
+        {
+
+        }
+    }
     
 
 }
