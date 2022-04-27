@@ -22,7 +22,7 @@ public class PlayerHitbox : MonoBehaviour
             {
                 bossAiRobocapoRemake.instance.bossAnimator.SetTrigger("Stunned");
             }
-            if (GameObject.Find("Obsidian"))
+            if (GameObject.Find("M_BossObsidian"))
             {
                 bossAiObsidian.instance.bossAnimator.SetTrigger("attack2flinchP1");
             }

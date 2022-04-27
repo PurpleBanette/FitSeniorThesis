@@ -152,7 +152,7 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("Waypoints that trigger the boss attacks")]
     public List<GameObject> jumpPointAttacks;
     [Tooltip("The Navmesh links that allow Obsidian to jump")]
-    public NavMeshLink navMeshLinkScript;
+    public NavMeshLinkData navMeshLinkScript;
     [Tooltip("bool that tracks if the boss is using a jump attack")]
     public bool jumpAttack;
 
@@ -258,6 +258,7 @@ public class bossAiObsidian : MonoBehaviour
         InvincibilityDetection();
         FinisherCheck();
         BossGroundCheck();
+        RenderCheck();
     }
 
     void FixedUpdate()
@@ -1093,6 +1094,18 @@ public class bossAiObsidian : MonoBehaviour
         else
         {
             bossAnimator.SetBool("bossGrounded", false);
+        }
+    }
+
+    public void RenderCheck()
+    {
+        if (GetComponent<Renderer>().isVisible)
+        {
+            bossLocator.instance.bossMarker.enabled = false;
+        }
+        else
+        {
+            bossLocator.instance.bossMarker.enabled = true;
         }
     }
 }

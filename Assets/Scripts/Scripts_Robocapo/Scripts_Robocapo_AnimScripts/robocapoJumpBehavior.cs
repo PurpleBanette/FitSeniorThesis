@@ -15,5 +15,6 @@ public class robocapoJumpBehavior : StateMachineBehaviour
         bossReference.GetComponent<Rigidbody>().AddForce(0, 3000, 0);
         bossReference.jumpTrail.SetActive(true);
         bossReference.bossIsAttacking = false;
+        animator.ResetTrigger("jumpTimer");
     }
 }
