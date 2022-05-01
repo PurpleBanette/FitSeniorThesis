@@ -36,6 +36,7 @@ public class bossAiObsidian : MonoBehaviour
     [Tooltip("Checks if boss is grounded")]
     public bool bossGrounded;
     float bossGroundedRadius = 2f;
+    [SerializeField] GameObject _deathCutscene;
     
 
     //Information about projectiles
@@ -1030,7 +1031,7 @@ public class bossAiObsidian : MonoBehaviour
     {
         cinemachineCameraShake.instance.ShakeCamera(0.4f, .2f);
     }
-    void FinisherCheck()
+    public void FinisherCheck()
     {
         Vector3 bossPlayerDistance = transform.position - player.transform.position;
         //If the player reaches the end, grabs the weapon, and approaches the boss
@@ -1039,9 +1040,9 @@ public class bossAiObsidian : MonoBehaviour
             if (bossPlayerDistance.magnitude < 5f)
             {
                 Debug.Log("Boss is dead");
+                //cutsceneTrigger.instance.StartTimeline();
+                _deathCutscene.SetActive(true);
 
-                //Placeholder for the finishing cutscene
-                Destroy(gameObject);
             }
         }
     }
