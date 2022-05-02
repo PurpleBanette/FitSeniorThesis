@@ -154,6 +154,9 @@ public class ModifiedTPC : MonoBehaviour
 	int dashPoolManager = 0;
 	public bool isDashing;
 
+	public bool canRecieveInput = true;
+	public bool inputRecieved;
+
 
 	private void Awake()
 	{
@@ -500,6 +503,8 @@ public class ModifiedTPC : MonoBehaviour
 		*/
 		//weapon.enabled = true;
 
+		//OLD ATTACK SYSTEM
+		/*
 		if(canAttack)
         {
 			charAni.SetTrigger("Attack");
@@ -515,8 +520,33 @@ public class ModifiedTPC : MonoBehaviour
 		{
 			charAni.SetTrigger("Attack3");
 		}
+		*/
+		/*
+		charAni.SetTrigger("Attack");
+		inputRecieved = false;
+		InputManager();
+		*/
+		if (canRecieveInput)
+		{
+			inputRecieved = true;
+			Debug.Log("Input" + inputRecieved);
+			canRecieveInput = false;
+			Debug.Log("Can Recieve" + canRecieveInput);
+		}
 
 	}
+
+	public void InputManager()
+    {
+        if (!canRecieveInput)
+        {
+			canRecieveInput = true;
+        }
+        else
+        {
+			canRecieveInput = false;
+        }
+    }
 	void block()
 	{
 		/*Re Enable when GM is integrated
