@@ -2,33 +2,49 @@
     "name": "PauseMenu",
     "maps": [
         {
-            "name": "New action map",
+            "name": "isPause",
             "id": "ea538daf-bf03-4c90-9e7b-887aca0875e0",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "inPauseMenu",
                     "type": "Button",
-                    "id": "9b4049f2-89a1-4125-80a3-9eeb1bd0e941",
+                    "id": "3040abdb-f969-41fc-ba6f-1903fd85a009",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press"
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "49334398-9c38-4e9b-836b-931fe69edf0e",
-                    "path": "",
+                    "id": "0308f1d5-5825-450a-b71c-7c7f36c312dc",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": "Keybaord Scheme",
+                    "action": "inPauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "UIActive",
+            "id": "6b0c6439-040b-47b5-a76e-ed954ea9d8ff",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "1cf34c39-40e3-4690-ad1b-11689d06925c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "5cde322e-78bd-4cd1-aa87-48cfa508ab12",
+                    "id": "93b845da-563e-4f1b-a70b-48e2069adbad",
                     "path": "",
                     "interactions": "",
                     "processors": "",
@@ -40,5 +56,17 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keybaord Scheme",
+            "bindingGroup": "Keybaord Scheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }
