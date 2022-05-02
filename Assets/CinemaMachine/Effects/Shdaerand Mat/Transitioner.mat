@@ -8,17 +8,25 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Transitioner
-  m_Shader: {fileID: -6465566751694194690, guid: 382bff7dcbf96eb48b90b350678b7d81, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 4c5b70f546207a0438ffd2d18e72f6bb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: -3
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_4f1516a924b94e93b38a2b1f03b4f284:
+        m_Texture: {fileID: 2800000, guid: 55b14fdaa5ffe084883379726e6b2eca, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_a0e08c8b7305497081a01d065b514e55:
+        m_Texture: {fileID: 2800000, guid: d56ae78bc9cffe34ab5c09d2616a2857, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - Texture2D_daf5a131b50a4670ba088280c3fae3c8:
         m_Texture: {fileID: 2800000, guid: b97e08311bc703a4b9160862ad76e977, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -40,8 +48,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_4670908ae0e44d1c836228987fd1081a: 0
     - Vector1_6a8c7b9e89504220bca52c66f7030dd5: 0.2
+    - Vector1_7be33fe8e1c94f3caf2272058d40b5ec: 10
+    - Vector1_9e202765b1eb4670b852025f42b33c4d: 1
+    - Vector1_abea75b5dc0f4d029da4a09e2a23ed99: 1
+    - Vector1_d26b9b68389348da86f04331dfadd07b: -0.238
     - Vector1_e978a8708b1f40e1acccbbef5825c0f3: -0.1
+    - Vector1_f498a89ad392414b9ddb0de87f80ee32: 1.67
     m_Colors:
-    - Color_e7c560b787794d1d8588002219fe2418: {r: 1, g: 1, b: 1, a: 0}
+    - Color_445ead3442a54681868a427dbcfad009: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 0}
+    - Color_e7c560b787794d1d8588002219fe2418: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
