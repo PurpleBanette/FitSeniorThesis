@@ -219,6 +219,9 @@ public class bossAiObsidian : MonoBehaviour
     [SerializeField] GameObject bossShieldObsidian;
     [Tooltip("Damage particles")]
     public GameObject damageParticles;
+    public GameObject soundDamaged;
+    public AudioSource soundBullet;
+    public AudioSource soundCannon;
 
     int bulletPoolManager = 0;
     int blasterPoolManager = 0;
@@ -721,6 +724,7 @@ public class bossAiObsidian : MonoBehaviour
         {
             
             bulletPoolManager = ObjectPool.instance.GetPooledObjectManaged(ObjectPool.instance.pooledBullets, bulletPoolManager, playerTarget, p2BulletPosition, p2BulletSpread, ObjectPool.instance.pooledmuzzleFlash, p2ShootForce);
+            soundBullet.Play();
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -754,6 +758,7 @@ public class bossAiObsidian : MonoBehaviour
         while (p3BlasterTrigger == true)
         {
             blasterPoolManager = ObjectPool.instance.GetPooledObjectManaged(ObjectPool.instance.pooledBlasterBullets, blasterPoolManager, playerTarget, p3BlasterPosition, p3BlasterBulletSpread, ObjectPool.instance.pooledblastermuzzleFlash, p3BlasterShootForce);
+            soundBullet.Play();
             yield return new WaitForSeconds(0.05f);
         }
     }
@@ -766,6 +771,7 @@ public class bossAiObsidian : MonoBehaviour
 
     void Phase3MeteorL()
     {
+        soundCannon.Play();
         //calculate direction from weapon to player
         Vector3 bulletDirection = p3MeteorTarget.transform.position - p3MeteorPositionL.transform.position;
 
@@ -795,6 +801,7 @@ public class bossAiObsidian : MonoBehaviour
     }
     void Phase3MeteorR()
     {
+        soundCannon.Play();
         //calculate direction from weapon to player
         Vector3 bulletDirection = p3MeteorTarget.transform.position - p3MeteorPositionR.transform.position;
 
@@ -827,16 +834,19 @@ public class bossAiObsidian : MonoBehaviour
     void Phase3GrenadeLauncher()
     {
         grenadePoolManager = ObjectPool.instance.GetPooledObjectManaged(ObjectPool.instance.pooledGrenades, grenadePoolManager, playerTarget, p3GrenadePosition, p3GrenadeBulletSpread, null, p3GrenadeShootForce);
+        soundBullet.Play();
     }
 
     void Phase3BarrageL()
     {
         LbarrageManager = ObjectPool.instance.GetPooledObjectManaged(ObjectPool.instance.pooledBarrageL, LbarrageManager, playerTarget, p3BarragePositionL, p3BarrageBulletSpread, ObjectPool.instance.pooledbarragemuzzleFlashL, p3BarrageShootForce);
+        soundCannon.Play();
     }
 
     void Phase3BarrageR()
     {
         RbarrageManager = ObjectPool.instance.GetPooledObjectManaged(ObjectPool.instance.pooledBarrageR, RbarrageManager, playerTarget, p3BarragePositionR, p3BarrageBulletSpread, ObjectPool.instance.pooledbarragemuzzleFlashR, p3BarrageShootForce);
+        soundCannon.Play();
     }
 
     void ObsidianCharge() //The boss's charge attack
@@ -1010,6 +1020,7 @@ public class bossAiObsidian : MonoBehaviour
             {
                 hurtbox.SetActive(false);
             }
+            soundDamaged.SetActive(true);
         }
         //enable hurtboxes after the timer is done
         if (hitTick && InvincibleFrameTimer <= 0 && !phaseChanging)
@@ -1021,6 +1032,7 @@ public class bossAiObsidian : MonoBehaviour
                 hurtbox.SetActive(true);
             }
             damageParticles.SetActive(false);
+            soundDamaged.SetActive(false);
         }
     }
     void AttackCameraShakeEffect()

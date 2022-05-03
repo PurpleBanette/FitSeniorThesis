@@ -6,10 +6,11 @@ public class explosionTimer : MonoBehaviour
 {
 
     public float maxLifetime;
+    public AudioSource soundExplosion;
 
     void Start()
     {
-        
+        soundExplosion.Play();
     }
 
 
