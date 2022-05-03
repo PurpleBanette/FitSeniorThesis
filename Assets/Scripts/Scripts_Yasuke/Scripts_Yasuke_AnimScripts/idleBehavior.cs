@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class idleBehavior : StateMachineBehaviour
 {
-    /*
-    ModifiedTPC charctrl;
+    
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charctrl = animator.GetComponent<ModifiedTPC>();
+        if (ModifiedTPC.instance.inCombo)
+        {
+            ModifiedTPC.instance.inCombo = false;
+        }
     }
-    */
+    
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        /*
         if (ModifiedTPC.instance.inputRecieved)
         {
             animator.SetTrigger("Attack");
             ModifiedTPC.instance.inputRecieved = false;
             ModifiedTPC.instance.InputManager();
         }
+        */
     }
     
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

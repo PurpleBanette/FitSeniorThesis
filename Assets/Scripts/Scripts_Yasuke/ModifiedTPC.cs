@@ -156,6 +156,7 @@ public class ModifiedTPC : MonoBehaviour
 
 	public bool canRecieveInput = true;
 	public bool inputRecieved;
+	public bool inCombo;
 
 
 	private void Awake()
@@ -526,14 +527,23 @@ public class ModifiedTPC : MonoBehaviour
 		inputRecieved = false;
 		InputManager();
 		*/
-		if (canRecieveInput)
+
+
+		if (!inCombo)
 		{
+			charAni.SetTrigger("Attack");
+		}
+        else
+        {
 			inputRecieved = true;
 			Debug.Log("Input" + inputRecieved);
 			canRecieveInput = false;
 			Debug.Log("Can Recieve" + canRecieveInput);
 		}
-
+		
+		
+		
+        
 	}
 
 	public void InputManager()
@@ -608,6 +618,7 @@ public class ModifiedTPC : MonoBehaviour
 			if (health <= 0 && !dead)
 			{
 				loser.text = "YOU SUCK";
+				charAni.SetTrigger("Death");
 				dead = true;
 			}
 		}
