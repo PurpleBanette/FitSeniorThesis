@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Attack1 : StateMachineBehaviour
 {
-    /*
-    ModifiedTPC charCtrl;
+    
+    
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        charCtrl = animator.GetComponent<ModifiedTPC>();
+        ModifiedTPC.instance.inCombo = true;
         //charCtrl.inputRecieved = true;
     }
 
+    /*
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -23,7 +24,7 @@ public class Attack1 : StateMachineBehaviour
             charCtrl.inputRecieved = false;
         }
     }
-
+    */
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
@@ -41,5 +42,5 @@ public class Attack1 : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-    */
+    
 }
