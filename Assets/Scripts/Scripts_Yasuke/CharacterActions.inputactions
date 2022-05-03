@@ -325,6 +325,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "isPause",
+            "id": "f6845bbd-0d80-41bd-b833-f199bdc16bc7",
+            "actions": [
+                {
+                    "name": "isInMenu",
+                    "type": "Button",
+                    "id": "7c61b1d7-69b9-42fb-b61f-e017131b81b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "9f24d56f-7f97-4c18-9e4f-628450f22cb6",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "isInMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

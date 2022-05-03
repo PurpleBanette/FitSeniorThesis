@@ -338,6 +338,33 @@ public class @CharacterActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""isPause"",
+            ""id"": ""f6845bbd-0d80-41bd-b833-f199bdc16bc7"",
+            ""actions"": [
+                {
+                    ""name"": ""isInMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c61b1d7-69b9-42fb-b61f-e017131b81b6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""9f24d56f-7f97-4c18-9e4f-628450f22cb6"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""isInMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -400,6 +427,9 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         m_Player_Block = m_Player.FindAction("Block", throwIfNotFound: true);
         m_Player_MouseLock = m_Player.FindAction("MouseLock", throwIfNotFound: true);
         m_Player_LockToTarget = m_Player.FindAction("LockToTarget", throwIfNotFound: true);
+        // isPause
+        m_isPause = asset.FindActionMap("isPause", throwIfNotFound: true);
+        m_isPause_isInMenu = m_isPause.FindAction("isInMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -534,6 +564,39 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
+
+    // isPause
+    private readonly InputActionMap m_isPause;
+    private IIsPauseActions m_IsPauseActionsCallbackInterface;
+    private readonly InputAction m_isPause_isInMenu;
+    public struct IsPauseActions
+    {
+        private @CharacterActions m_Wrapper;
+        public IsPauseActions(@CharacterActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @isInMenu => m_Wrapper.m_isPause_isInMenu;
+        public InputActionMap Get() { return m_Wrapper.m_isPause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(IsPauseActions set) { return set.Get(); }
+        public void SetCallbacks(IIsPauseActions instance)
+        {
+            if (m_Wrapper.m_IsPauseActionsCallbackInterface != null)
+            {
+                @isInMenu.started -= m_Wrapper.m_IsPauseActionsCallbackInterface.OnIsInMenu;
+                @isInMenu.performed -= m_Wrapper.m_IsPauseActionsCallbackInterface.OnIsInMenu;
+                @isInMenu.canceled -= m_Wrapper.m_IsPauseActionsCallbackInterface.OnIsInMenu;
+            }
+            m_Wrapper.m_IsPauseActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @isInMenu.started += instance.OnIsInMenu;
+                @isInMenu.performed += instance.OnIsInMenu;
+                @isInMenu.canceled += instance.OnIsInMenu;
+            }
+        }
+    }
+    public IsPauseActions @isPause => new IsPauseActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -580,5 +643,9 @@ public class @CharacterActions : IInputActionCollection, IDisposable
         void OnBlock(InputAction.CallbackContext context);
         void OnMouseLock(InputAction.CallbackContext context);
         void OnLockToTarget(InputAction.CallbackContext context);
+    }
+    public interface IIsPauseActions
+    {
+        void OnIsInMenu(InputAction.CallbackContext context);
     }
 }

@@ -24,7 +24,7 @@ public class @PauseMenu : IInputActionCollection, IDisposable
                     ""id"": ""3040abdb-f969-41fc-ba6f-1903fd85a009"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [

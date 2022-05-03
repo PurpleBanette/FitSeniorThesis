@@ -8,7 +8,7 @@ public class CustomLoadPref : MonoBehaviour
 {
    // Command out when pushing
     [Header("GeneralSettings")]
-    [SerializeField] private bool canUse = false;
+    [SerializeField] private bool canUse = true;
     [SerializeField] private MenuController menuController;
 
     // will store Volume data
@@ -42,7 +42,7 @@ public class CustomLoadPref : MonoBehaviour
 
     [Header("Invert-Y Settings")]
     [SerializeField] private Toggle invertYToggle = null;
-    /*
+    
     private void Awake()
     {
         if (canUse)
@@ -121,7 +121,7 @@ public class CustomLoadPref : MonoBehaviour
                 }
             }
     }
-    */
+   
 }
 
 
