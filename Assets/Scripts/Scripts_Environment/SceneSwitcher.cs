@@ -28,13 +28,20 @@ using UnityEngine.SceneManagement;
         if (bossAiRobocapoRemake.instance.bossHealth == 0)
         {
             //TimerManager.switchedScene = false;
-            SceneManager.LoadScene("BossObsidian");
+            SceneManager.LoadScene("IntroVIdeoEnding");
            
 
         }
-        
+       // if (bossAiObsidian.instance.bossHealth == 0)
+       // {
+            //TimerManager.switchedScene = false;
+            //SceneManager.LoadScene("");
 
-        
+
+       // }
+
+
+
 
         Debug.Log(TimerManager.mytimer);
 

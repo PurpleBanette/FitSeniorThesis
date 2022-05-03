@@ -14,17 +14,17 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.3679245, g: 0.3001023, b: 0.16834283, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.008
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0.0019908145, g: 0.0041807103, b: 0.008162339, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_Sun: {fileID: 862851875}
+  m_IndirectSpecularColor: {r: 0.44639868, g: 0.49621367, b: 0.57471263, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 81aa4ba09919ac64c9aab559fcb8a373, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e586b8adb52cab841945bb0390869b62, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -754,7 +754,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34903baf40f95f541bf6b93446018393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossAiRobocapoRemake: {fileID: 3119983037224024181}
 --- !u!4 &471755394
 Transform:
   m_ObjectHideFlags: 0
@@ -857,7 +856,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26130
+  m_Name: pb_Mesh46248
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1182,7 +1181,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.6415094, g: 0.59198654, b: 0.45692417, a: 1}
+  m_Color: {r: 0.7169812, g: 0.59256727, b: 0.26717696, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -1240,13 +1239,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 862851874}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.41203374, y: -0.2340902, z: 0.11040409, w: 0.8736366}
   m_LocalPosition: {x: 39.12938, y: -11.798961, z: 6.3056026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 232269818}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.5, y: -30, z: 0}
 --- !u!114 &887358967 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1526812573180837004, guid: 787f7d2968d21694dbe0372263db42a3, type: 3}
@@ -9509,13 +9508,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1819977897}
-  m_LocalRotation: {x: 0.96644104, y: -0.06859376, z: 0.06389235, w: -0.23917438}
+  m_LocalRotation: {x: 0.8768611, y: 0.023182899, z: 0.41134727, w: -0.24773104}
   m_LocalPosition: {x: 33.71, y: -12.78, z: 6.3056026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 232269818}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -26.97, y: -190.101, z: -169.452}
+  m_LocalEulerAnglesHint: {x: -26.97, y: -232.8, z: -169.452}
 --- !u!108 &1819977899
 Light:
   m_ObjectHideFlags: 0
@@ -9527,7 +9526,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.6415094, g: 0.59198654, b: 0.45692417, a: 1}
+  m_Color: {r: 0.24007656, g: 0.7830189, b: 0.7723861, a: 1}
   m_Intensity: 0.8
   m_Range: 10
   m_SpotAngle: 30
@@ -10594,17 +10593,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
---- !u!114 &3119983037224024181 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3119983037224024182, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
-  m_PrefabInstance: {fileID: 3119983037224024180}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778483647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cfbd44da5162dc469991ac236b43f3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8705803146969021946
 PrefabInstance:
   m_ObjectHideFlags: 0
