@@ -14,19 +14,24 @@ using UnityEngine.SceneManagement;
         TimerManager.mytimer -= Time.deltaTime;
 
         //Can Nest if's  as long as its not greater then set timer in script
-        if (TimerManager.mytimer <= 40 && !TimerManager.switchedScene)
+        if (TimerManager.mytimer <= 300 && !TimerManager.switchedScene)
         {
-            SceneManager.LoadScene("IntroVideo");
+            SceneManager.LoadScene("BossRobocapo");
             TimerManager.switchedScene = true;
 
         }
-       
-        if (TimerManager.mytimer <= 20 )
-          {
-            
-            SceneManager.LoadScene("BossRobocapo");
+        if (bossAiRobocapoRemake.instance.bossHealth <= 0)
+        {
+            //SceneManager.LoadScene("IntroVideo2");
+            SceneManager.LoadScene("IntroVideo2");
         }
-        
+
+        /* if (TimerManager.mytimer <= 20 )
+           {
+
+             SceneManager.LoadScene("BossRobocapo");
+         }
+         */
 
         Debug.Log(TimerManager.mytimer);
 
