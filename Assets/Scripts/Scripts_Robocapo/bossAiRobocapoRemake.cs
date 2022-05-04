@@ -127,6 +127,8 @@ public class bossAiRobocapoRemake : MonoBehaviour
     public GameObject damageParticles;
     [Tooltip("Particles when the boss jumps")]
     public GameObject jumpTrail;
+    public AudioSource soundBullet;
+    public AudioSource soundDamaged;
 
     //Managers
     int bulletPoolManager = 0;
@@ -548,7 +550,8 @@ public class bossAiRobocapoRemake : MonoBehaviour
         {
             bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, bulletShotTargetL.transform, bulletPositionL, .5f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce/3);
             bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, bulletShotTargetR.transform, bulletPositionR, .5f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce/3);
-            yield return new WaitForSeconds(0.01f);
+            soundBullet.Play();
+            yield return new WaitForSeconds(0.05f);
         }
     }
 
@@ -561,10 +564,12 @@ public class bossAiRobocapoRemake : MonoBehaviour
     void FireBulletsL()
     {
         bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, playerTarget.transform, bulletPositionL, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
+        soundBullet.Play();
     }
     void FireBulletsR()
     {
         bulletPoolManager = RC_ObjectPool.instance.GetPooledObjectManaged(RC_ObjectPool.instance.pooledBullets, bulletPoolManager, playerTarget.transform, bulletPositionR, 0f, RC_ObjectPool.instance.pooledMuzzleFlashes, bulletShootForce);
+        soundBullet.Play();
     }
 
     void InvincibilityDetection()
@@ -577,6 +582,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
             {
                 hurtbox.SetActive(false);
             }
+            soundDamaged.Play();
         }
         //enable hurtboxes after the timer is done
         if (hitTick && InvincibleFrameTimer <= 0 && !phaseChanging)
