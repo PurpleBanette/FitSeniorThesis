@@ -23,8 +23,9 @@ using UnityEngine.SceneManagement;
         if (bossAiRobocapoRemake.instance.bossHealth <= 0)
         {
             //SceneManager.LoadScene("IntroVideo2");
-            SceneManager.LoadScene("IntroVideo2");
+            SceneManager.LoadScene("BossObsidian");
         }
+        
 
         /* if (TimerManager.mytimer <= 20 )
            {

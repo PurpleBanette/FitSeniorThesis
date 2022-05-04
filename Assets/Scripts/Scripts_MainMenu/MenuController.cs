@@ -44,6 +44,8 @@ public class MenuController : MonoBehaviour
     [Header("Levels To Load")]
     public string _newGameLevel; // new load from build settings
     private string levelToLoad;   //load from build settings
+    private string _credits;
+    [SerializeField] private GameObject credits = null;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
     [Header("Resolution Dropdowns")]
@@ -120,7 +122,13 @@ public class MenuController : MonoBehaviour
 
 
     //Will Quit Application
+    public void CreditsButton()
 
+    {
+
+        SceneManager.LoadScene("Credits");
+        //add cde to returne to main
+    }
     public void ExitButton()
 
     {

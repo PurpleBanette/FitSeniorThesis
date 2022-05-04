@@ -37,7 +37,7 @@ public class MouseLock : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
             }
-            if (Cursor.lockState == CursorLockMode.None)
+        if (Cursor.lockState == CursorLockMode.None && PauseScript.Paused == false)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
