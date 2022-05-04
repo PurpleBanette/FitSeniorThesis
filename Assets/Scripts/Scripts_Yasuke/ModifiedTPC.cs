@@ -261,7 +261,7 @@ public class ModifiedTPC : MonoBehaviour
 		GroundedCheck();
 		CharGravity();
         //JumpAndGravity();
-        if (!blocking)
+        if (!blocking && !dead)
         {
 			MoveValues = Move.ReadValue<Vector2>();
 			Movement();

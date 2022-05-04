@@ -10,6 +10,7 @@ public class RoboRemake_Stunned : StateMachineBehaviour
         bossAiRobocapoRemake bossReference = animator.GetComponent<bossAiRobocapoRemake>();
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossIsAttacking = true;
+        bossReference.soundDamaged.Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
