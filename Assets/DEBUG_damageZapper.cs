@@ -12,6 +12,7 @@ public class DEBUG_damageZapper : MonoBehaviour
         {
             ModifiedTPC.instance.imHit = true;
             ModifiedTPC.instance.playerTakeDamage();
+            Zapper = false;
             
         }
     }
