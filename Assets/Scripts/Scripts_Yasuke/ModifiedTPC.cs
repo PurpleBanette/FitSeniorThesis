@@ -121,7 +121,7 @@ public class ModifiedTPC : MonoBehaviour
 	float dodgeTimeoutDelta;
 	float blockTimeoutDelta;
 	public int comboSet;
-	bool canAttack = true;
+	public bool canAttack = true;
 	//public bool inputRecieved = false;
 	public bool inAttack1;
 	public bool inAttack2;
@@ -159,6 +159,7 @@ public class ModifiedTPC : MonoBehaviour
 	public bool inCombo;
 
 
+
 	private void Awake()
 	{
 		instance = this;
@@ -177,7 +178,7 @@ public class ModifiedTPC : MonoBehaviour
 
 	private void OnEnable()
 	{
-		
+        
 		Move = customCharActions.Player.Move;
 		Move.Enable();
 		
@@ -210,21 +211,23 @@ public class ModifiedTPC : MonoBehaviour
     private void DoBlock(InputAction.CallbackContext obj)
 	{
 		//Debug.Log("Blocking");
-		block();
+		if(!dead)
+			block();
 	}
 
 	private void DoAttack(InputAction.CallbackContext obj)
 	{
-        //Debug.Log("Attacking");
-        
-		attack();
+		//Debug.Log("Attacking");
+		if (!dead)
+			attack();
 
 	}
 
 	private void DoDodge(InputAction.CallbackContext obj)
 	{
 		//Debug.Log("Dodging");
-		dodge();
+		if (!dead)
+			dodge();
 	}
 
 	private void DoJump(InputAction.CallbackContext obj)
@@ -232,8 +235,11 @@ public class ModifiedTPC : MonoBehaviour
 		//throw new NotImplementedException();
 		//Debug.Log("Jumping");
 		//GroundedCheck();
-		charAni.SetTrigger("Jump");
-		JumpForce();
+		if (!dead && Grounded && _jumpTimeoutDelta <= 0.0f)
+        {
+			charAni.SetTrigger("Jump");
+			JumpForce();
+		}
 	}
 
 	
@@ -255,7 +261,7 @@ public class ModifiedTPC : MonoBehaviour
 		GroundedCheck();
 		CharGravity();
         //JumpAndGravity();
-        if (!blocking)
+        if (!blocking && !dead)
         {
 			MoveValues = Move.ReadValue<Vector2>();
 			Movement();
@@ -270,7 +276,10 @@ public class ModifiedTPC : MonoBehaviour
 		{
 			dodgeTimeoutDelta -= Time.deltaTime;
 		}
-        if (!inAttack1 && !inAttack2 && !inAttack3)
+
+
+        /*
+		if (!inAttack1 && !inAttack2 && !inAttack3)
         {
 			canAttack = true;
         }
@@ -278,6 +287,7 @@ public class ModifiedTPC : MonoBehaviour
         {
 			canAttack = false;
         }
+		*/
         
 	}
 
@@ -299,7 +309,7 @@ public class ModifiedTPC : MonoBehaviour
 	private void JumpForce()
 	{
 		// Jump
-		if (Grounded && _jumpTimeoutDelta <= 0.0f)
+		if (_jumpTimeoutDelta <= 0.0f)
 		{
 
 			// the square root of H * -2 * G = how much velocity needed to reach desired height
@@ -491,7 +501,7 @@ public class ModifiedTPC : MonoBehaviour
 	}
 	private void attack()
 	{
-		/*Re Enable when GM is integrated
+        /*Re Enable when GM is integrated
 		if (gm.playerstagger == false)
 		{
 			weapon.enabled = true;
@@ -502,10 +512,10 @@ public class ModifiedTPC : MonoBehaviour
 			Debug.Log("you are staggered");
 		}
 		*/
-		//weapon.enabled = true;
+        //weapon.enabled = true;
 
-		//OLD ATTACK SYSTEM
-		/*
+        //OLD ATTACK SYSTEM
+        /*
 		if(canAttack)
         {
 			charAni.SetTrigger("Attack");
@@ -522,24 +532,27 @@ public class ModifiedTPC : MonoBehaviour
 			charAni.SetTrigger("Attack3");
 		}
 		*/
-		/*
+        /*
 		charAni.SetTrigger("Attack");
 		inputRecieved = false;
 		InputManager();
 		*/
 
-
-		if (!inCombo)
+        if(canAttack)
 		{
-			charAni.SetTrigger("Attack");
+			if (!inCombo)
+			{
+				charAni.SetTrigger("Attack");
+			}
+			else
+			{
+				inputRecieved = true;
+				Debug.Log("Input" + inputRecieved);
+				canRecieveInput = false;
+				Debug.Log("Can Recieve" + canRecieveInput);
+			}
 		}
-        else
-        {
-			inputRecieved = true;
-			Debug.Log("Input" + inputRecieved);
-			canRecieveInput = false;
-			Debug.Log("Can Recieve" + canRecieveInput);
-		}
+		
 		
 		
 		
@@ -620,7 +633,11 @@ public class ModifiedTPC : MonoBehaviour
 				loser.text = "YOU SUCK";
 				charAni.SetTrigger("Death");
 				dead = true;
-			}
+            }
+            else if (!dead)
+            {
+				charAni.SetTrigger("Stagger");
+            }
 		}
 		
 	}
