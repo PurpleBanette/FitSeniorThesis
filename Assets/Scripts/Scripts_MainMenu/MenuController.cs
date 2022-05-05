@@ -44,6 +44,7 @@ public class MenuController : MonoBehaviour
     [Header("Levels To Load")]
     public string _newGameLevel; // new load from build settings
     private string levelToLoad;   //load from build settings
+    private string yourLevelis;
     private string _credits;
     [SerializeField] private GameObject credits = null;
     [SerializeField] private GameObject noSavedGameDialog = null;
@@ -109,6 +110,7 @@ public class MenuController : MonoBehaviour
         {
             levelToLoad = PlayerPrefs.GetString("SaveLevel");
             SceneManager.LoadScene(levelToLoad);
+            PlayerPrefs.SetString("SavedLevel", yourLevelis);
         }
 
         else
@@ -119,7 +121,13 @@ public class MenuController : MonoBehaviour
 
 
     //Command out when pushing
+    public void RoboButton()
 
+    {
+
+        SceneManager.LoadScene("BossRobocapo");
+        //add cde to returne to main
+    }
 
     //Will Quit Application
     public void CreditsButton()

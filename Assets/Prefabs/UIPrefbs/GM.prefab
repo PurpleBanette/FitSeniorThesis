@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6620001835268510162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6620001835268510160}
+  - component: {fileID: 6620001835268510163}
+  - component: {fileID: 6620001835268510161}
+  - component: {fileID: 6620001835268510158}
+  - component: {fileID: 6620001835268510159}
+  - component: {fileID: 6620001835268510156}
+  m_Layer: 0
+  m_Name: GM
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6620001835268510160
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6620001835268510163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e826f65b4b64c0a478020c795f1e1062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerstagger: 0
+  firstTutComplete: 0
+  playerPosition: {fileID: 0}
+  playerDodgePosition: {fileID: 0}
+  slowMoTimeScale: 0.2
+  slowMoDuration: 0.3
+--- !u!114 &6620001835268510161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0231c751dbdad2447870193d1bf77603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledBullets: []
+  pooledBuckshot: []
+  pooledMuzzleFlashes: []
+  Bullets: {fileID: 4836766889849028866, guid: cdeea6ebbb00c9f4aa55c580435ca66a, type: 3}
+  Buckshot: {fileID: 4836766889849028866, guid: cdeea6ebbb00c9f4aa55c580435ca66a, type: 3}
+  MuzzleFlash: {fileID: 8440453472026985016, guid: 8c34e8bff5253ac4baab0157ecbd56a4, type: 3}
+  bulletsToPool: 450
+  buckshotToPool: 60
+  muzzleFlashesToPool: 50
+  L_defaultTarget: {fileID: 0}
+  R_defaultTarget: {fileID: 0}
+--- !u!114 &6620001835268510158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47fb986949fbe644484a2bae9f6bf0ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6620001835268510159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a180de44b9d8ea45b9c1821e2fb1d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  TheCauseOfMyPain: {fileID: 0}
+--- !u!114 &6620001835268510156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620001835268510162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ed297616d2c6e46a4e84ae45420eb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ui_canvaus: {fileID: 0}
