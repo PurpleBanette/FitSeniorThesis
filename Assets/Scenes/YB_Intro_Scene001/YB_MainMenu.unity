@@ -26576,7 +26576,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &257679801
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26821,6 +26821,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 541142515}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: RoboButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -30623,6 +30635,34 @@ PrefabInstance:
     - target: {fileID: 3891727414624008556, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -677.9636
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 541142515}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: LoadGameDialogYes
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: MenuController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3891727414757980795, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3891727414772622480, guid: a7fa6efbbf17e3e439a571fb6f7764af, type: 3}
       propertyPath: m_AnchoredPosition.x

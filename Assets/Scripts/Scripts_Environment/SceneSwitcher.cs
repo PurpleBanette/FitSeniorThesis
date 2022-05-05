@@ -20,6 +20,17 @@ using UnityEngine.SceneManagement;
             TimerManager.switchedScene = true;
 
         }
+
+        // if robo is dead switch to 2nd introscene 
+
+        if (TimerManager.mytimer <= 20)
+        {
+
+            SceneManager.LoadScene("IntroVideo2");
+        }
+
+        //when video over load obsne scene 
+
         if (bossAiRobocapoRemake.instance.bossHealth <= 0)
         {
             //SceneManager.LoadScene("IntroVideo2");
