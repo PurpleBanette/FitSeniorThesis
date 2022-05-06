@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 
 
 
+
 public class MenuController : MonoBehaviour
 
 { //Command out when pushing
@@ -122,13 +123,24 @@ public class MenuController : MonoBehaviour
 
     //Command out when pushing
     public void RoboButton()
-
     {
 
         SceneManager.LoadScene("BossRobocapo");
-        //add cde to returne to main
+        //add code to returne to main
     }
 
+    public void ObsidianButton()
+    {
+
+        SceneManager.LoadScene("BossObsidian");
+        //add code to returne to main
+    }
+    public void GunSlingerButton()
+    {
+
+        SceneManager.LoadScene("BossGunslinger");
+        //add code to returne to main
+    }
     //Will Quit Application
     public void CreditsButton()
 
