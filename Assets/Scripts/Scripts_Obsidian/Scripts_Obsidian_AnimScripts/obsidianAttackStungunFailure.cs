@@ -11,6 +11,8 @@ public class obsidianAttackStungunFailure : StateMachineBehaviour
         bossAiObsidian.instance.bossHealth -= 25;
         bossAiObsidian.instance.hitTick = true;
         hitPause.instance.INevarFreeze();
+        bossAiObsidian.instance.obsidianLaserOff();
+        bossAiObsidian.instance.Phase2RapidFireStop();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
