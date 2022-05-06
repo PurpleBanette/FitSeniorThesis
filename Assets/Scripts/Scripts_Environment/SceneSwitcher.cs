@@ -7,14 +7,16 @@ using UnityEngine.SceneManagement;
  public class SceneSwitcher : MonoBehaviour 
  {
     
+ 
     // Update is called once per frame
     void Update()
     {
        //Connected to TimeMangerScript
         TimerManager.mytimer -= Time.deltaTime;
 
+
         //Can Nest if's  as long as its not greater then set timer in script
-        if (TimerManager.mytimer <= 300 && !TimerManager.switchedScene)
+        if (TimerManager.mytimer <= 70 && !TimerManager.switchedScene)
         {
             SceneManager.LoadScene("BossRobocapo");
             TimerManager.switchedScene = true;
@@ -23,10 +25,11 @@ using UnityEngine.SceneManagement;
 
         // if robo is dead switch to 2nd introscene 
 
-        if (TimerManager.mytimer <= 20)
+        if (bossAiRobocapoRemake.instance.bossHealth <= 0)
         {
 
             SceneManager.LoadScene("IntroVideo2");
+           
         }
 
         //when video over load obsne scene 
@@ -38,12 +41,17 @@ using UnityEngine.SceneManagement;
         }
         
 
-        /* if (TimerManager.mytimer <= 20 )
-           {
+        if (TimerManager.switchedScene == true && !TimerManager.switchedScene)
+         {
 
-             SceneManager.LoadScene("BossRobocapo");
-         }
-         */
+            TimerManager.switchedScene = false;
+            }
+       // else if (TimerManager.mytimer == 0)
+       // {
+
+            
+        //}
+
 
         Debug.Log(TimerManager.mytimer);
 
