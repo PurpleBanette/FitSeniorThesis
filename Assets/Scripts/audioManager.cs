@@ -12,10 +12,10 @@ public class audioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            
             return;
         }
-        if (instance == this) return;
+        else if (boss2Music == this) return;
         Destroy(gameObject);
     }
     // Start is called before the first frame update

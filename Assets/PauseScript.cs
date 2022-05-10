@@ -75,6 +75,7 @@ public class PauseScript : MonoBehaviour
     public void MainMenu( string _mainMenu)
     {
         SceneManager.LoadScene("YB_MainMenu");
+
     }
 
     public void theFunny()

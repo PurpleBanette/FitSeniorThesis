@@ -229,6 +229,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
             currentphase = 5;
             dead = true;
             bossNavAgent.speed = 0;
+            SceneSwitcher.switcher.IntroVideoOver();
             //Code for transition to next scene
         }
     }
