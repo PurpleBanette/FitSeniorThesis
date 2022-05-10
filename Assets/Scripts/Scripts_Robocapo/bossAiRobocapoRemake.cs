@@ -113,6 +113,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
     public float InvincibleFrameTimer = 0.25f;
     [Tooltip("Checks if the boss is hit by the player")]
     public bool hitTick = false;
+    public bool GuardUp;
 
     //Melee Hitboxes
     [Tooltip("Trigger GameObject for Melee Attacks")]
@@ -129,6 +130,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
     public GameObject jumpTrail;
     public AudioSource soundBullet;
     public AudioSource soundDamaged;
+    public GameObject ShieldParticle;
 
     //Managers
     int bulletPoolManager = 0;
@@ -628,7 +630,7 @@ public class bossAiRobocapoRemake : MonoBehaviour
 
     public void TakeDamage()
     {
-        bossHealth -= 10;
+        bossHealth -= 25;
         bossHealthSlider.value = bossHealth;
     }
 
@@ -642,6 +644,18 @@ public class bossAiRobocapoRemake : MonoBehaviour
         }
     }
     
+    public void ActivateGuard()
+    {
+        ShieldParticle.SetActive(true);
+        GuardUp = true;
+    }
+
+    public void DeActivateGuard()
+    {
+        ShieldParticle.SetActive(false);
+        GuardUp = false;
+    }
+
     public void RenderCheck()
     {
         if (GetComponent<Renderer>().isVisible)

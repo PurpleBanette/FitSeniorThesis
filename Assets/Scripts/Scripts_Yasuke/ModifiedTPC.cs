@@ -547,9 +547,9 @@ public class ModifiedTPC : MonoBehaviour
 			else
 			{
 				inputRecieved = true;
-				Debug.Log("Input" + inputRecieved);
+				//Debug.Log("Input" + inputRecieved);
 				canRecieveInput = false;
-				Debug.Log("Can Recieve" + canRecieveInput);
+				//Debug.Log("Can Recieve" + canRecieveInput);
 			}
 		}
 		
