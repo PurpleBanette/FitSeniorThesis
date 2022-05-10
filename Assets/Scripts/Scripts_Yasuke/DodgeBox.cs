@@ -35,7 +35,7 @@ public class DodgeBox : MonoBehaviour
     {
         if (other.transform.tag == "EnemyProjectile" || other.transform.tag == "EnemyAttackTriggers")
         {
-            Debug.Log("successfull Dodge");
+            //Debug.Log("successfull Dodge");
             //StartCoroutine(GameMaster.gm.activateSlowMo());
             GameMaster.gm.activateSlowMo();
             gameObject.SetActive(false);

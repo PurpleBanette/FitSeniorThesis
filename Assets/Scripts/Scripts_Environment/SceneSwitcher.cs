@@ -53,7 +53,7 @@ using UnityEngine.SceneManagement;
         //}
 
 
-        Debug.Log(TimerManager.mytimer);
+        //Debug.Log(TimerManager.mytimer);
 
 
 
