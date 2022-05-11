@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7105365044651141065, guid: 312226d998d697842833a3e562a4bf49, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0c840a4b9b8a1a341b7c2730000c10fa, type: 3}
     - target: {fileID: 7105365044651141067, guid: 312226d998d697842833a3e562a4bf49, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -858,7 +862,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh31948
+  m_Name: pb_Mesh47162
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1353,7 +1357,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621998239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 471755393}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: ReturnToMain
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &621998239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,7 +1513,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Main Menu
 --- !u!222 &628069470
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10947,7 +10963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Resume
 --- !u!222 &1480861465
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11038,7 +11054,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1528457401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1535421713}
+        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_MethodName: ResumeGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &1528457401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12042,7 +12070,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: 'Settings
+
+'
 --- !u!222 &1858725543
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13217,6 +13247,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1778483648}
     m_Modifications:
+    - target: {fileID: 2645145180557373545, guid: 8141dfe7818bff14fa3e34a0d0dd3bbe, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3818592176769239814, guid: 8141dfe7818bff14fa3e34a0d0dd3bbe, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -13279,7 +13313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4590731486178234812, guid: 8141dfe7818bff14fa3e34a0d0dd3bbe, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8141dfe7818bff14fa3e34a0d0dd3bbe, type: 3}
@@ -13309,6 +13343,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 401709426, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.53576857
+      objectReference: {fileID: 0}
+    - target: {fileID: 401709426, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.53576857
+      objectReference: {fileID: 0}
+    - target: {fileID: 401709426, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.53576857
+      objectReference: {fileID: 0}
     - target: {fileID: 134033490806319368, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -1.7806346
@@ -13597,6 +13643,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 975377340}
+    - target: {fileID: 3119983037224024182, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
+      propertyPath: attackRange
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3119983037224024182, guid: 726f36209b4d69d4c8f0552f383ef70b, type: 3}
       propertyPath: soundBullet
       value: 

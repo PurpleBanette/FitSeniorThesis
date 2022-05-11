@@ -35,4 +35,19 @@ using UnityEngine.SceneManagement;
     {
         SceneManager.LoadScene("IntroVideo2", LoadSceneMode.Single);
     }
+
+    public void ReturnToMain()
+    {
+        SceneManager.LoadScene(0, LoadSceneMode.Single);
+    }
+
+    public void ReloadOnDeath()
+    {
+        Invoke("ReloadScene", 5f);
+    }
+
+    void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

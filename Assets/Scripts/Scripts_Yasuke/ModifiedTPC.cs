@@ -158,6 +158,7 @@ public class ModifiedTPC : MonoBehaviour
 	public bool inputRecieved;
 	public bool inCombo;
 
+	//[SerializeField] Animation deathAnim;
 
 
 	private void Awake()
@@ -172,6 +173,8 @@ public class ModifiedTPC : MonoBehaviour
         {
 			dodgeBox.SetActive(false);
         }
+
+		
 
 		
 	}
@@ -630,13 +633,17 @@ public class ModifiedTPC : MonoBehaviour
 			//Debug.Log(health);
 			if (health <= 0 && !dead)
 			{
-				loser.text = "YOU SUCK";
+				charAni.ResetTrigger("Stagger");
+				//loser.text = "YOU SUCK";
 				charAni.SetTrigger("Death");
+				Debug.Log("END MY SUFFERING");
 				dead = true;
+				SceneSwitcher.switcher.ReloadOnDeath();
             }
-            else if (!dead)
+            else if (!dead && health > 0)
             {
 				charAni.SetTrigger("Stagger");
+				Debug.Log("STAGG HER?");
             }
 		}
 		

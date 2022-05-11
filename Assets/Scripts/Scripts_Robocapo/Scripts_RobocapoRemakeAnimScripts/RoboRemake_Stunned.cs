@@ -10,6 +10,7 @@ public class RoboRemake_Stunned : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossAiRobocapoRemake bossReference = animator.GetComponent<bossAiRobocapoRemake>();
+        bossReference.DeActivateGuard();
         cachedSpeed = bossReference.bossNavAgent.speed;
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossIsAttacking = true;

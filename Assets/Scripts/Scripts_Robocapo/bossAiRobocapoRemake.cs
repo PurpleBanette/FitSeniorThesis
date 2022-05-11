@@ -177,6 +177,8 @@ public class bossAiRobocapoRemake : MonoBehaviour
 
     void PhaseStates()
     {
+        
+        
         if (currentphase == 1)
         {
             Phase1Pattern();
