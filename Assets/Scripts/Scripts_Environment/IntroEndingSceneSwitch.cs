@@ -81,7 +81,7 @@ public class IntroEndingSceneSwitch : MonoBehaviour
     {
 
 
-        asyncOperation = SceneManager.LoadSceneAsync("BossObsidian", LoadSceneMode.Single);
+        asyncOperation = SceneManager.LoadSceneAsync("YB_MainMenu", LoadSceneMode.Single);
 
         Debug.Log("JUst yelll ");
 
@@ -89,7 +89,7 @@ public class IntroEndingSceneSwitch : MonoBehaviour
       
 
     }
-
+        /*
     IEnumerator LoadScene()
 
     {
@@ -133,5 +133,5 @@ public class IntroEndingSceneSwitch : MonoBehaviour
             yield return null;
 
         }
-    }
+    }*/
 }

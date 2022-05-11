@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class NewIntroSwitcher : MonoBehaviour
 {
-
     public VideoPlayer VideoPlayer; // Drag & Drop the GameObject holding the VideoPlayer component
                                     //public string SceneName;
 
@@ -14,6 +13,7 @@ public class NewIntroSwitcher : MonoBehaviour
 
     void Start()
     {
+        
         // Will attach a VideoPlayer to the main camera.
         //GameObject camera = GameObject.Find("Main Camera");
 
@@ -55,13 +55,14 @@ public class NewIntroSwitcher : MonoBehaviour
 
     void EndReached(UnityEngine.Video.VideoPlayer vp)
     {
+        
         vp.playbackSpeed = vp.playbackSpeed / 5.0F;
         IntroStart();
 
     }
     void IntroStart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("IntroVideo2", LoadSceneMode.Single);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("BossRobocapo", LoadSceneMode.Single);
 
     }
 }
