@@ -8,10 +8,11 @@ public class RoboRemake_WindUpOverhead : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bossAiRobocapoRemake bossReference = animator.GetComponent<bossAiRobocapoRemake>();
-        cachedSpeed = bossReference.bossNavAgent.speed;
-        bossReference.bossNavAgent.speed = 0;
-        bossReference.bossIsAttacking = true;
+
+        //bossAiRobocapoRemake.instance.ActivateGuard();
+        cachedSpeed = bossAiRobocapoRemake.instance.bossNavAgent.speed;
+        bossAiRobocapoRemake.instance.bossNavAgent.speed = 0;
+        bossAiRobocapoRemake.instance.bossIsAttacking = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,9 +24,9 @@ public class RoboRemake_WindUpOverhead : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bossAiRobocapoRemake bossReference = animator.GetComponent<bossAiRobocapoRemake>();
-        bossReference.bossNavAgent.speed = cachedSpeed;
-        bossReference.bossIsAttacking = false;
+
+        bossAiRobocapoRemake.instance.bossNavAgent.speed = cachedSpeed;
+        bossAiRobocapoRemake.instance.bossIsAttacking = false;
         animator.ResetTrigger("TripleStab");
         animator.ResetTrigger("DoubleWind");
         animator.ResetTrigger("3HitCombo");
@@ -33,5 +34,10 @@ public class RoboRemake_WindUpOverhead : StateMachineBehaviour
         animator.ResetTrigger("StabDash");
         animator.ResetTrigger("Gunspin");
         animator.ResetTrigger("RangedShot");
+
+        if (bossAiRobocapoRemake.instance.GuardUp)
+        {
+            bossAiRobocapoRemake.instance.DeActivateGuard();
+        }
     }
 }
