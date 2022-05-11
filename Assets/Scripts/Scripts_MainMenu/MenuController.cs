@@ -105,7 +105,7 @@ public class MenuController : MonoBehaviour
         
     }
     //Load Game level
-    public void LoadGameDialogYes()
+    /*public void LoadGameDialogYes()
     {
        
             levelToLoad = PlayerPrefs.GetString("SaveLevel");
@@ -114,7 +114,7 @@ public class MenuController : MonoBehaviour
         
            
         
-    }
+    }*/
 
 
     //Command out when pushing

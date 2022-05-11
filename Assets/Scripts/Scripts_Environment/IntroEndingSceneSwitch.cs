@@ -14,7 +14,7 @@ public class IntroEndingSceneSwitch : MonoBehaviour
     public bool doneSwitching;
     private void Awake()
     {
-        StartCoroutine("LoadScene");
+        
         SceneManager.GetActiveScene();
         
         
