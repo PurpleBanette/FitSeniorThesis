@@ -651,6 +651,7 @@ public class ModifiedTPC : MonoBehaviour
 		obsWep.transform.localEulerAngles = obsWep.itemRotation;
 		obsWep.transform.localScale = obsWep.itemScale;
 		playerHasBossWeapon = true;
+		charAni.SetTrigger("ObsWeapon");
 	}
 
 	public void PlayerInvincibilityDetection()

@@ -17,6 +17,8 @@ public class obsidianWeaponPickup : MonoBehaviour
     public Vector3 itemRotation;
     public Vector3 itemScale;
 
+    bool pickedUp;
+
     void Awake()
     {
         instance = this;
@@ -33,9 +35,20 @@ public class obsidianWeaponPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerInWeaponRange = Physics.CheckSphere(weaponEmpty.transform.position, bossWeaponRadius, bossPickupDetector);
-        if (playerInWeaponRange) GiveWeapon();
+        if (!pickedUp)
+        {
+            playerInWeaponRange = Physics.CheckSphere(weaponEmpty.transform.position, bossWeaponRadius, bossPickupDetector);
+            if (playerInWeaponRange)
+            {
+                GiveWeapon();
+                pickedUp = true;
+            }
+        }
+        
+        
     }
+
+    
 
     public void StartParticle()
     {
@@ -46,6 +59,8 @@ public class obsidianWeaponPickup : MonoBehaviour
     {
         if (bossAiObsidian.instance.dead)
         {
+            weprb.useGravity = false;
+            weprb.isKinematic = true;
             ModifiedTPC.instance.PlayerPickupWeapon();
             wepParticle.SetActive(false);
         }

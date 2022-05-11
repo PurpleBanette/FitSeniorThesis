@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RC_Hurtbox : MonoBehaviour
 {
-    int hurtboxDamage = 25;
+    int hurtboxDamage = 34;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Weapon" && !bossAiRobocapoRemake.instance.GuardUp)

@@ -1047,9 +1047,10 @@ public class bossAiObsidian : MonoBehaviour
     {
         Vector3 bossPlayerDistance = transform.position - player.transform.position;
         //If the player reaches the end, grabs the weapon, and approaches the boss
+        
         if (currentphase == 4 && ModifiedTPC.instance.playerHasBossWeapon == true)
         {
-            if (bossPlayerDistance.magnitude < 5f)
+            if (bossPlayerDistance.magnitude < 10f)
             {
                 Debug.Log("Boss is dead");
                 //cutsceneTrigger.instance.StartTimeline();
