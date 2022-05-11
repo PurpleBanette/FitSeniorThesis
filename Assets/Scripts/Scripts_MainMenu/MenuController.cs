@@ -107,17 +107,13 @@ public class MenuController : MonoBehaviour
     //Load Game level
     public void LoadGameDialogYes()
     {
-        if (PlayerPrefs.HasKey("SavedLevel"))
-        {
+       
             levelToLoad = PlayerPrefs.GetString("SaveLevel");
             SceneManager.LoadScene(levelToLoad);
             PlayerPrefs.SetString("SavedLevel", yourLevelis);
-        }
-
-        else
-        {
-            noSavedGameDialog.SetActive(true);
-        }
+        
+           
+        
     }
 
 
@@ -125,7 +121,7 @@ public class MenuController : MonoBehaviour
     public void RoboButton()
     {
 
-        SceneManager.LoadScene("BossRobocapo");
+        SceneManager.LoadScene("IntroVideo");
         //add code to returne to main
     }
 
@@ -135,12 +131,14 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("BossObsidian");
         //add code to returne to main
     }
+    /*
     public void GunSlingerButton()
     {
 
         SceneManager.LoadScene("BossGunslinger");
         //add code to returne to main
     }
+    */
     //Will Quit Application
     public void CreditsButton()
 
@@ -285,6 +283,10 @@ public class MenuController : MonoBehaviour
         comfirmationPrompt.SetActive(true);
         yield return new WaitForSeconds(4f);
         comfirmationPrompt.SetActive(false);
+    }
+    public void LoadConfimBox()
+    {
+        StartCoroutine(ConfirmationBox());
     }
     
 }
