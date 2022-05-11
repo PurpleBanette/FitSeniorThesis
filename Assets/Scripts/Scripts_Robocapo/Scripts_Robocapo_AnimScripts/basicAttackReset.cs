@@ -19,7 +19,7 @@ public class basicAttackReset : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        bossAiRobocapo.instance.bossAnimator.SetBool("basicAttack", false);    
+        bossAiRobocapoRemake.instance.bossAnimator.SetBool("basicAttack", false);    
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

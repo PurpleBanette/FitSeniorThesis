@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class bossAiRobocapo : MonoBehaviour
 {
 
-    public static bossAiRobocapo instance;
+    //public static bossAiRobocapo instance;
     //General
     public Animator bossAnimator;
     [Header("Boss Information")]
@@ -163,7 +163,7 @@ public class bossAiRobocapo : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        //instance = this;
 
         bossAnimator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
