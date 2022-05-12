@@ -14,6 +14,7 @@ public class PauseScript : MonoBehaviour
     private void Awake()
     {    
         Action = new CharacterActions();
+        Time.timeScale = 1;
     }
     private void OnEnable()
     {
@@ -53,6 +54,10 @@ public class PauseScript : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+        if(Cursor.visible == false)
+        {
+            Cursor.visible = true;
+        }
     }
 
     public void ResumeGame()
@@ -65,6 +70,10 @@ public class PauseScript : MonoBehaviour
         if (Cursor.lockState == CursorLockMode.None)
         {
             Cursor.lockState = CursorLockMode.Locked;
+        }
+        if (Cursor.visible)
+        {
+            Cursor.visible = false;
         }
     }
     public void ExitButton()

@@ -19,7 +19,8 @@ using UnityEngine.SceneManagement;
          {
 
             TimerManager.switchedScene = false;
-            }
+         }
+        
     }
     void FixedUpdate()
     {
