@@ -11,6 +11,10 @@ public class DisableMouseLock : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+        if(Cursor.visible == false)
+        {
+            Cursor.visible = true;
+        }
     }
 
 }

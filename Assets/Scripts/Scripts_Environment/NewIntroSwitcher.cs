@@ -60,9 +60,9 @@ public class NewIntroSwitcher : MonoBehaviour
         IntroStart();
 
     }
-    void IntroStart()
+    public void IntroStart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("BossRobocapo", LoadSceneMode.Single);
-
+        Debug.Log("I Clicked the fucking thing you scumfuckratbastard");
+        SceneManager.LoadScene("BossRobocapo", LoadSceneMode.Single);
     }
 }
