@@ -30,6 +30,9 @@ public class obsidianWeaponPickup : MonoBehaviour
     {
         //bossRef = GetComponent<bossAiObsidian>();
         //StartParticle();
+        bossWeaponLocator.instance.markerTarget = weaponEmpty.transform;
+        
+        
     }
 
     // Update is called once per frame
@@ -42,6 +45,7 @@ public class obsidianWeaponPickup : MonoBehaviour
             {
                 GiveWeapon();
                 pickedUp = true;
+                bossWeaponLocator.instance.weaponMarker.enabled = false;
             }
         }
         
@@ -64,5 +68,10 @@ public class obsidianWeaponPickup : MonoBehaviour
             ModifiedTPC.instance.PlayerPickupWeapon();
             wepParticle.SetActive(false);
         }
+    }
+
+    public void RenderCheckWeapon()
+    {
+        
     }
 }

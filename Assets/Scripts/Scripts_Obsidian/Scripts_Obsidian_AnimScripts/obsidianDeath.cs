@@ -8,6 +8,7 @@ public class obsidianDeath : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         bossAiObsidian bossReference = animator.GetComponent<bossAiObsidian>();
+        bossWeaponLocator.instance.weaponMarker.enabled = true;
         bossReference.bossNavAgent.speed = 0;
         bossReference.bossNavAgent.acceleration = 1000;
         bossReference.phaseChanging = true;

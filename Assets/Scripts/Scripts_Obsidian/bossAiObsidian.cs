@@ -350,6 +350,7 @@ public class bossAiObsidian : MonoBehaviour
         {
             Phase4Transition();
             currentphase = 4;
+
         }
         if (obsidianIsLeaping)
         {
@@ -1055,6 +1056,7 @@ public class bossAiObsidian : MonoBehaviour
                 Debug.Log("Boss is dead");
                 //cutsceneTrigger.instance.StartTimeline();
                 _deathCutscene.SetActive(true);
+
 
             }
         }
